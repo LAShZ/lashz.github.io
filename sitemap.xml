@@ -3,65 +3,65 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://lashz.github.io/categories/</loc>
+    <loc>https://example.com/categories/</loc>
     <lastmod>2020-12-30T17:45:11+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lashz.github.io/categories/go/</loc>
+    <loc>https://example.com/categories/go/</loc>
     <lastmod>2020-12-30T17:45:11+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%B8%80/</loc>
+    <loc>https://example.com/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%B8%80/</loc>
     <lastmod>2020-12-30T17:45:11+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%BA%8C/</loc>
+    <loc>https://example.com/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%BA%8C/</loc>
     <lastmod>2020-12-30T17:45:11+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lashz.github.io/</loc>
+    <loc>https://example.com/</loc>
     <lastmod>2020-12-30T17:45:11+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lashz.github.io/post/</loc>
+    <loc>https://example.com/post/</loc>
     <lastmod>2020-12-30T17:45:11+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lashz.github.io/categories/%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://example.com/categories/%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2020-12-30T17:45:11+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lashz.github.io/archives/</loc>
+    <loc>https://example.com/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lashz.github.io/page/</loc>
+    <loc>https://example.com/page/</loc>
     <lastmod>2020-10-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lashz.github.io/about/</loc>
+    <loc>https://example.com/about/</loc>
     <lastmod>2020-10-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lashz.github.io/search/</loc>
+    <loc>https://example.com/search/</loc>
   </url>
   
   <url>
-    <loc>https://lashz.github.io/tags/</loc>
+    <loc>https://example.com/tags/</loc>
   </url>
   
   <url>
-    <loc>https://lashz.github.io/categories/test/</loc>
+    <loc>https://example.com/categories/test/</loc>
   </url>
   
 </urlset>
