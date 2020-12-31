@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Lavch&#39;s blog</title>
-    <link>https://example.com/post/</link>
+    <link>https://lashz.github.io/post/</link>
     <description>Recent content in Posts on Lavch&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Dec 2020 17:45:11 +0800</lastBuildDate><atom:link href="https://example.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 30 Dec 2020 17:45:11 +0800</lastBuildDate><atom:link href="https://lashz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go语言学习之旅(一)</title>
-      <link>https://example.com/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%B8%80/</link>
+      <link>https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%B8%80/</link>
       <pubDate>Wed, 30 Dec 2020 17:45:11 +0800</pubDate>
       
-      <guid>https://example.com/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%B8%80/</guid>
+      <guid>https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%B8%80/</guid>
       <description>Go语言学习之旅  计算机咸鱼自救之路
  本文是用于记录作者在Go语言的学习过程中经历的种种，并用于日后复习与为他人提供些许的经验参考。
 本文开始于作者大三寒假时期，对于数据结构、算法、计算机网络等知识都有一定的了解，也有过一定的项目经验，故一些较为基础的知识不再予以记录，如若读者遇到了难以理解的部分，可以上网自行寻找相关的资料，若仍然无法理解，请联系作者加以解释。也欢迎各位对本文中出现的错误以及不足之处予以指正。
@@ -22,7 +22,7 @@ GO语言的安装 Windows下的安装 由于本文作者主要使用的操作系
 若安装过Windows下的包管理器如Scoop、Chocolatey等，也可以以使用指令：
 scoop install go 或是
 choco install go 进行安装。
-Linux下的安装 本文作者目前使用的Linux发行版为Debian系下的Ubuntu 18.04和Deepin 20，故使用的指令均为Debian系下的操作。
+Linux下的安装 本文作者目前使用的Linux发行版为Debian系下的Ubuntu 20.04和Deepin 20，故使用的指令均为Debian系下的操作。
 直接打开终端，输入
 sudo apt install golang 即可完成安装。
 GO语言的IDE 一个好的IDE可以使代码的编写事半功倍。本文作者使用的IDE为JetBrains推出的GoLand，平时对于小型代码的编写也会使用Visual Studio Code配上Go语言插件直接进行编写。
@@ -34,6 +34,19 @@ Go的变量声明使用var关键字：var identifier type
 var a int var b,c *int var d bool // 使用因式分解关键字写法，一般用于全局变量 var ( str string array []int ) 可以看出这样声明可以使得变量的类型定义清晰，每一行声明的变量都一定是同一个类型的。
 Go语言的 变量命名需要遵循骆驼命名法，如myArray和startDate。
 Go语言的变量在声明的时候会被赋予该类型的初值：int为0，float为0.0，bool为false，string为空字符串，指针为nil。Go中所有的变量都是经过初始化的。Go语言也支持变量在声明的时候进行初始化。同时，若在初始化时不指定类型，Go语言会根据初始化的值自动判断类型，但是没有初始化值且没有类型的变量声明是不被允许的。</description>
+    </item>
+    
+    <item>
+      <title>Go语言学习之旅(二)</title>
+      <link>https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%BA%8C/</link>
+      <pubDate>Wed, 30 Dec 2020 17:45:11 +0800</pubDate>
+      
+      <guid>https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%BA%8C/</guid>
+      <description>Go语言学习之旅  计算机咸鱼自救之路
+ 本文是用于记录作者在Go语言的学习过程中经历的种种，并用于日后复习与为他人提供些许的经验参考。
+本文开始于作者大三寒假时期，对于数据结构、算法、计算机网络等知识都有一定的了解，也有过一定的项目经验，故一些较为基础的知识不再予以记录，如若读者遇到了难以理解的部分，可以上网自行寻找相关的资料，若仍然无法理解，请联系作者加以解释。也欢迎各位对本文中出现的错误以及不足之处予以指正。
+转载请注明出处。
+Go语言语法基础 </description>
     </item>
     
   </channel>

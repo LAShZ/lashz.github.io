@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Hugo, the world&#39;s fastest framework for building websites'><title>About</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Go语言学习之旅  计算机咸鱼自救之路
+ 本文是用于记录作者在Go语言的学习过程中经历的种种，并用于日后复习与为他人提供些许的经验参考。
+本文开始于作者大三寒假时期，对于数据结构、算法、计算机网络等知识都有一定的了解，也有过一定的项目经验，故一些较为基础的知识不再予以记录，如若读者遇到了难以理解的部分，可以上网自行寻找相关的资料，若仍然无法理解，请联系作者加以解释。也欢迎各位对本文中出现的错误以及不足之处予以指正。
+转载请注明出处。
+Go语言语法基础 '><title>Go语言学习之旅(二)</title>
 
-<link rel='canonical' href='https://lashz.github.io/about/'>
+<link rel='canonical' href='https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%BA%8C/'>
 
-<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='About'>
-<meta property='og:description' content='Hugo, the world&#39;s fastest framework for building websites'>
-<meta property='og:url' content='https://lashz.github.io/about/'>
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Go语言学习之旅(二)'>
+<meta property='og:description' content='Go语言学习之旅  计算机咸鱼自救之路
+ 本文是用于记录作者在Go语言的学习过程中经历的种种，并用于日后复习与为他人提供些许的经验参考。
+本文开始于作者大三寒假时期，对于数据结构、算法、计算机网络等知识都有一定的了解，也有过一定的项目经验，故一些较为基础的知识不再予以记录，如若读者遇到了难以理解的部分，可以上网自行寻找相关的资料，若仍然无法理解，请联系作者加以解释。也欢迎各位对本文中出现的错误以及不足之处予以指正。
+转载请注明出处。
+Go语言语法基础 '>
+<meta property='og:url' content='https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%BA%8C/'>
 <meta property='og:site_name' content='Lavch&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Page' /><meta property='article:published_time' content='2019-02-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2020-10-09T00:00:00&#43;00:00'/>
-<meta name="twitter:title" content="About">
-<meta name="twitter:description" content="Hugo, the world&#39;s fastest framework for building websites">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2020-12-30T17:45:11&#43;08:00'/><meta property='article:modified_time' content='2020-12-30T17:45:11&#43;08:00'/>
+<meta name="twitter:title" content="Go语言学习之旅(二)">
+<meta name="twitter:description" content="Go语言学习之旅  计算机咸鱼自救之路
+ 本文是用于记录作者在Go语言的学习过程中经历的种种，并用于日后复习与为他人提供些许的经验参考。
+本文开始于作者大三寒假时期，对于数据结构、算法、计算机网络等知识都有一定的了解，也有过一定的项目经验，故一些较为基础的知识不再予以记录，如若读者遇到了难以理解的部分，可以上网自行寻找相关的资料，若仍然无法理解，请联系作者加以解释。也欢迎各位对本文中出现的错误以及不足之处予以指正。
+转载请注明出处。
+Go语言语法基础 ">
     </head>
-    <body class="article-page keep-sidebar">
+    <body class="">
     <script>
         (function() {
             const colorSchemeKey = 'StackColorScheme';
@@ -35,7 +47,7 @@
             document.body.dataset.scheme = 'light';
         }
     })();
-</script><div class="container main-container flex on-phone--column extended ">
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
             <aside class="sidebar left-sidebar sticky">
     <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
         <span class="hamburger-box">
@@ -89,7 +101,7 @@
         
         
 
-        <li  class='current' >
+        <li >
             <a href='/about'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -168,20 +180,41 @@
 </aside>
 
             <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://lashz.github.io/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
     <article class="main-article">
     <header class="article-header">
 
     <div class="article-details">
     
+    <header class="article-category">
+        
+            <a href="/categories/go/" >
+                Go
+            </a>
+        
+            <a href="/categories/%E5%AD%A6%E4%B9%A0/" >
+                学习
+            </a>
+        
+    </header>
+    
 
     <h2 class="article-title">
-        <a href="/about/">About</a>
+        <a href="/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%BA%8C/">Go语言学习之旅(二)</a>
     </h2>
 
-    
-    <h3 class="article-subtitle">
-        Hugo, the world&#39;s fastest framework for building websites
-    </h3>
     <footer class="article-time">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -191,26 +224,19 @@
 
 
 
-        <time class="article-time--published">Feb 28, 2019</time>
+        <time class="article-time--published">Dec 30, 2020</time>
     </footer></div>
 </header>
 
     <section class="article-content">
-    <p>Written in Go, Hugo is an open source static site generator available under the <a class="link" href="https://github.com/gohugoio/hugo/blob/master/LICENSE"  target="_blank" rel="noopener"
-    >Apache Licence 2.0.</a> Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.</p>
-<p>Hugo makes use of a variety of open source projects including:</p>
-<ul>
-<li><a href="https://github.com/yuin/goldmark">https://github.com/yuin/goldmark</a></li>
-<li><a href="https://github.com/alecthomas/chroma">https://github.com/alecthomas/chroma</a></li>
-<li><a href="https://github.com/muesli/smartcrop">https://github.com/muesli/smartcrop</a></li>
-<li><a href="https://github.com/spf13/cobra">https://github.com/spf13/cobra</a></li>
-<li><a href="https://github.com/spf13/viper">https://github.com/spf13/viper</a></li>
-</ul>
-<p>Hugo is ideal for blogs, corporate websites, creative portfolios, online magazines, single page applications or even a website with thousands of pages.</p>
-<p>Hugo is for people who want to hand code their own website without worrying about setting up complicated runtimes, dependencies and databases.</p>
-<p>Websites built with Hugo are extremelly fast, secure and can be deployed anywhere including, AWS, GitHub Pages, Heroku, Netlify and any other hosting provider.</p>
-<p>Learn more and contribute on <a class="link" href="https://github.com/gohugoio"  target="_blank" rel="noopener"
-    >GitHub</a>.</p>
+    <h1 id="go语言学习之旅">Go语言学习之旅</h1>
+<blockquote>
+<p><em>计算机咸鱼自救之路</em></p>
+</blockquote>
+<p>本文是用于记录作者在Go语言的学习过程中经历的种种，并用于日后复习与为他人提供些许的经验参考。</p>
+<p>本文开始于作者大三寒假时期，对于数据结构、算法、计算机网络等知识都有一定的了解，也有过一定的项目经验，故一些较为基础的知识不再予以记录，如若读者遇到了难以理解的部分，可以上网自行寻找相关的资料，若仍然无法理解，请联系作者加以解释。也欢迎各位对本文中出现的错误以及不足之处予以指正。</p>
+<p>转载请注明出处。</p>
+<h2 id="go语言语法基础">Go语言语法基础</h2>
 
 </section>
 
@@ -228,26 +254,39 @@
 
 
 
-        <span>CC BY-NC-ND</span>
+        <span>Licensed under CC BY-NC-SA 4.0</span>
     </section>
-    <section class="article-time">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <polyline points="12 7 12 12 15 15" />
-</svg>
-
-
-
-        <span class="article-time--modified">
-            最后更新于 Oct 09, 2020 00:00 UTC
-        </span>
-    </section></footer>
+    </footer>
 
     
 </article>
 
-     
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%B8%80/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Go语言学习之旅(一)</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
         
     <div class="disqus-container">
     <div id="disqus_thread"></div>
@@ -296,8 +335,6 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
-
-    
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
     
@@ -366,7 +403,6 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
-
             </main>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
