@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Lavch&#39;s blog</title>
+    <link>https://lashz.github.io/categories/</link>
+    <description>Recent content in Categories on Lavch&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 30 Dec 2020 17:45:11 +0800</lastBuildDate><atom:link href="https://lashz.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go</title>
+      <link>https://lashz.github.io/categories/go/</link>
+      <pubDate>Wed, 30 Dec 2020 17:45:11 +0800</pubDate>
+      
+      <guid>https://lashz.github.io/categories/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>学习</title>
+      <link>https://lashz.github.io/categories/%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Wed, 30 Dec 2020 17:45:11 +0800</pubDate>
+      
+      <guid>https://lashz.github.io/categories/%E5%AD%A6%E4%B9%A0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Test</title>
+      <link>https://lashz.github.io/categories/test/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lashz.github.io/categories/test/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
