@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Go语言学习之旅  计算机咸鱼自救之路
+ 本文是用于记录作者在Go语言的学习过程中经历的种种，并用于日后复习与为他人提供些许的经验参考。
+本文开始于作者大三寒假时期，对于数据结构、算法、计算机网络等知识都有一定的了解，也有过一定的项目经验，故一些较为基础的知识不再予以记录，如若读者遇到了难以理解的部分，可以上网自行寻找相关的资料，若仍然无法理解，请联系作者加以解释。也欢迎各位对本文中出现的错误以及不足之处予以指正。
+转载请注明出处。
+GO语言的安装 Windows下的安装 由于本文作者主要使用的操作系统仍是Windows（没钱买Mac），故首先尝试的是在Windows下安装GO。
+进入GO语言官方下载地址，点击Microsoft Windows下方的下载链接自动下载最新的GO语言稳定版安装器。下载完成后运行后选择Install即可完成安装。
+若安装过Windows下的包管理器如Scoop、Chocolatey等，也可以以使用指令：
+scoop install go 或是
+choco install go 进行安装。
+Linux下的安装 本文作者目前使用的Linux发行版为Debian系下的Ubuntu 18.04和Deepin 20，故使用的指令均为Debian系下的操作。
+直接打开终端，输入
+sudo apt install golang 即可完成安装。
+GO语言的IDE 一个好的IDE可以使代码的编写事半功倍。本文作者使用的IDE为JetBrains推出的GoLand，平时对于小型代码的编写也会使用Visual Studio Code配上Go语言插件直接进行编写。
+两个软件的下载安装配置工作请读者自行学习，本文不再赘述。
+GO语言的语法基础 Go语言作为21世纪的C语言，许多语法特性与C语言类似，如需要对每个变量的类型都进行声明等，本文不对Go语言的语法基础细节做过多的说明，对于一些基本的语法使用只需参照官方文档或是任意一本参考书即可，本文只对作者学习过程中遇到的较为难以理解或是复杂的概念做一个记录说明。
+变量与常量声明 Go的常量声明使用const关键字：const identifier [type] = value
+Go的变量声明使用var关键字：var identifier type
+可以注意到的是，Go语言的变量声明与其他语言最为不同的一点是，类型放在变量名之后，这点在之后的各个地方都会被使用到，也是新手学习Go语言要跨过的第一个障碍。下面给出几个Go语言声明变量的例子：
+var a int var b,c *int var d bool // 使用因式分解关键字写法，一般用于全局变量 var ( str string array []int ) 可以看出这样声明可以使得变量的类型定义清晰，每一行声明的变量都一定是同一个类型的。
+Go语言的 变量命名需要遵循骆驼命名法，如myArray和startDate。
+Go语言的变量在声明的时候会被赋予该类型的初值：int为0，float为0.0，bool为false，string为空字符串，指针为nil。Go中所有的变量都是经过初始化的。Go语言也支持变量在声明的时候进行初始化。同时，若在初始化时不指定类型，Go语言会根据初始化的值自动判断类型，但是没有初始化值且没有类型的变量声明是不被允许的。'><title>Go语言学习之旅(一)</title>
+
+<link rel='canonical' href='https://example.com/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%B8%80/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Go语言学习之旅(一)'>
+<meta property='og:description' content='Go语言学习之旅  计算机咸鱼自救之路
+ 本文是用于记录作者在Go语言的学习过程中经历的种种，并用于日后复习与为他人提供些许的经验参考。
+本文开始于作者大三寒假时期，对于数据结构、算法、计算机网络等知识都有一定的了解，也有过一定的项目经验，故一些较为基础的知识不再予以记录，如若读者遇到了难以理解的部分，可以上网自行寻找相关的资料，若仍然无法理解，请联系作者加以解释。也欢迎各位对本文中出现的错误以及不足之处予以指正。
+转载请注明出处。
+GO语言的安装 Windows下的安装 由于本文作者主要使用的操作系统仍是Windows（没钱买Mac），故首先尝试的是在Windows下安装GO。
+进入GO语言官方下载地址，点击Microsoft Windows下方的下载链接自动下载最新的GO语言稳定版安装器。下载完成后运行后选择Install即可完成安装。
+若安装过Windows下的包管理器如Scoop、Chocolatey等，也可以以使用指令：
+scoop install go 或是
+choco install go 进行安装。
+Linux下的安装 本文作者目前使用的Linux发行版为Debian系下的Ubuntu 18.04和Deepin 20，故使用的指令均为Debian系下的操作。
+直接打开终端，输入
+sudo apt install golang 即可完成安装。
+GO语言的IDE 一个好的IDE可以使代码的编写事半功倍。本文作者使用的IDE为JetBrains推出的GoLand，平时对于小型代码的编写也会使用Visual Studio Code配上Go语言插件直接进行编写。
+两个软件的下载安装配置工作请读者自行学习，本文不再赘述。
+GO语言的语法基础 Go语言作为21世纪的C语言，许多语法特性与C语言类似，如需要对每个变量的类型都进行声明等，本文不对Go语言的语法基础细节做过多的说明，对于一些基本的语法使用只需参照官方文档或是任意一本参考书即可，本文只对作者学习过程中遇到的较为难以理解或是复杂的概念做一个记录说明。
+变量与常量声明 Go的常量声明使用const关键字：const identifier [type] = value
+Go的变量声明使用var关键字：var identifier type
+可以注意到的是，Go语言的变量声明与其他语言最为不同的一点是，类型放在变量名之后，这点在之后的各个地方都会被使用到，也是新手学习Go语言要跨过的第一个障碍。下面给出几个Go语言声明变量的例子：
+var a int var b,c *int var d bool // 使用因式分解关键字写法，一般用于全局变量 var ( str string array []int ) 可以看出这样声明可以使得变量的类型定义清晰，每一行声明的变量都一定是同一个类型的。
+Go语言的 变量命名需要遵循骆驼命名法，如myArray和startDate。
+Go语言的变量在声明的时候会被赋予该类型的初值：int为0，float为0.0，bool为false，string为空字符串，指针为nil。Go中所有的变量都是经过初始化的。Go语言也支持变量在声明的时候进行初始化。同时，若在初始化时不指定类型，Go语言会根据初始化的值自动判断类型，但是没有初始化值且没有类型的变量声明是不被允许的。'>
+<meta property='og:url' content='https://example.com/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%B8%80/'>
+<meta property='og:site_name' content='Lavch&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2020-12-30T17:45:11&#43;08:00'/><meta property='article:modified_time' content='2020-12-30T17:45:11&#43;08:00'/>
+<meta name="twitter:title" content="Go语言学习之旅(一)">
+<meta name="twitter:description" content="Go语言学习之旅  计算机咸鱼自救之路
+ 本文是用于记录作者在Go语言的学习过程中经历的种种，并用于日后复习与为他人提供些许的经验参考。
+本文开始于作者大三寒假时期，对于数据结构、算法、计算机网络等知识都有一定的了解，也有过一定的项目经验，故一些较为基础的知识不再予以记录，如若读者遇到了难以理解的部分，可以上网自行寻找相关的资料，若仍然无法理解，请联系作者加以解释。也欢迎各位对本文中出现的错误以及不足之处予以指正。
+转载请注明出处。
+GO语言的安装 Windows下的安装 由于本文作者主要使用的操作系统仍是Windows（没钱买Mac），故首先尝试的是在Windows下安装GO。
+进入GO语言官方下载地址，点击Microsoft Windows下方的下载链接自动下载最新的GO语言稳定版安装器。下载完成后运行后选择Install即可完成安装。
+若安装过Windows下的包管理器如Scoop、Chocolatey等，也可以以使用指令：
+scoop install go 或是
+choco install go 进行安装。
+Linux下的安装 本文作者目前使用的Linux发行版为Debian系下的Ubuntu 18.04和Deepin 20，故使用的指令均为Debian系下的操作。
+直接打开终端，输入
+sudo apt install golang 即可完成安装。
+GO语言的IDE 一个好的IDE可以使代码的编写事半功倍。本文作者使用的IDE为JetBrains推出的GoLand，平时对于小型代码的编写也会使用Visual Studio Code配上Go语言插件直接进行编写。
+两个软件的下载安装配置工作请读者自行学习，本文不再赘述。
+GO语言的语法基础 Go语言作为21世纪的C语言，许多语法特性与C语言类似，如需要对每个变量的类型都进行声明等，本文不对Go语言的语法基础细节做过多的说明，对于一些基本的语法使用只需参照官方文档或是任意一本参考书即可，本文只对作者学习过程中遇到的较为难以理解或是复杂的概念做一个记录说明。
+变量与常量声明 Go的常量声明使用const关键字：const identifier [type] = value
+Go的变量声明使用var关键字：var identifier type
+可以注意到的是，Go语言的变量声明与其他语言最为不同的一点是，类型放在变量名之后，这点在之后的各个地方都会被使用到，也是新手学习Go语言要跨过的第一个障碍。下面给出几个Go语言声明变量的例子：
+var a int var b,c *int var d bool // 使用因式分解关键字写法，一般用于全局变量 var ( str string array []int ) 可以看出这样声明可以使得变量的类型定义清晰，每一行声明的变量都一定是同一个类型的。
+Go语言的 变量命名需要遵循骆驼命名法，如myArray和startDate。
+Go语言的变量在声明的时候会被赋予该类型的初值：int为0，float为0.0，bool为false，string为空字符串，指针为nil。Go中所有的变量都是经过初始化的。Go语言也支持变量在声明的时候进行初始化。同时，若在初始化时不指定类型，Go语言会根据初始化的值自动判断类型，但是没有初始化值且没有类型的变量声明是不被允许的。">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/user_hucdbaef835969ba3d08dab3492d2577ec_4979_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🧠</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Lavch&#39;s blog</a></h1>
+        <h2 class="site-description">Lavch&#39;s blog</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/go/" >
+                Go
+            </a>
+        
+            <a href="/categories/%E5%AD%A6%E4%B9%A0/" >
+                学习
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%B8%80/">Go语言学习之旅(一)</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Dec 30, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="go语言学习之旅">Go语言学习之旅</h1>
+<blockquote>
+<p><em>计算机咸鱼自救之路</em></p>
+</blockquote>
+<p>本文是用于记录作者在Go语言的学习过程中经历的种种，并用于日后复习与为他人提供些许的经验参考。</p>
+<p>本文开始于作者大三寒假时期，对于数据结构、算法、计算机网络等知识都有一定的了解，也有过一定的项目经验，故一些较为基础的知识不再予以记录，如若读者遇到了难以理解的部分，可以上网自行寻找相关的资料，若仍然无法理解，请联系作者加以解释。也欢迎各位对本文中出现的错误以及不足之处予以指正。</p>
+<p>转载请注明出处。</p>
+<h2 id="go语言的安装">GO语言的安装</h2>
+<h3 id="windows下的安装"><em>Windows下的安装</em></h3>
+<p>由于本文作者主要使用的操作系统仍是Windows（没钱买Mac），故首先尝试的是在Windows下安装GO。</p>
+<p>进入<a class="link" href="https://golang.org/dl/"  target="_blank" rel="noopener"
+    >GO语言官方下载地址</a>，点击Microsoft Windows下方的下载链接自动下载最新的GO语言稳定版安装器。下载完成后运行后选择Install即可完成安装。</p>
+<p>若安装过Windows下的包管理器如<em>Scoop</em>、<em>Chocolatey</em>等，也可以以使用指令：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">scoop install go
+</code></pre></div><p>或是</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">choco install go
+</code></pre></div><p>进行安装。</p>
+<h3 id="linux下的安装">Linux下的安装</h3>
+<p>本文作者目前使用的Linux发行版为Debian系下的Ubuntu 18.04和Deepin 20，故使用的指令均为Debian系下的操作。</p>
+<p>直接打开终端，输入</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo apt install golang
+</code></pre></div><p>即可完成安装。</p>
+<h2 id="go语言的ide">GO语言的IDE</h2>
+<p>一个好的IDE可以使代码的编写事半功倍。本文作者使用的IDE为JetBrains推出的GoLand，平时对于小型代码的编写也会使用Visual Studio Code配上Go语言插件直接进行编写。</p>
+<p>两个软件的下载安装配置工作请读者自行学习，本文不再赘述。</p>
+<h2 id="go语言的语法基础">GO语言的语法基础</h2>
+<p>Go语言作为21世纪的C语言，许多语法特性与C语言类似，如需要对每个变量的类型都进行声明等，本文不对Go语言的语法基础细节做过多的说明，对于一些基本的语法使用只需参照官方文档或是任意一本参考书即可，本文只对作者学习过程中遇到的较为难以理解或是复杂的概念做一个记录说明。</p>
+<h3 id="变量与常量声明">变量与常量声明</h3>
+<p>Go的常量声明使用<code>const</code>关键字：<code>const identifier [type] = value</code></p>
+<p>Go的变量声明使用<code>var</code>关键字：<code>var identifier type</code></p>
+<p>可以注意到的是，Go语言的变量声明与其他语言最为不同的一点是，<strong>类型放在变量名之后</strong>，这点在之后的各个地方都会被使用到，也是新手学习Go语言要跨过的第一个障碍。下面给出几个Go语言声明变量的例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Go" data-lang="Go"><span class="kd">var</span> <span class="nx">a</span> <span class="kt">int</span>
+<span class="kd">var</span> <span class="nx">b</span><span class="p">,</span><span class="nx">c</span> <span class="o">*</span><span class="kt">int</span>
+<span class="kd">var</span> <span class="nx">d</span> <span class="kt">bool</span>
+<span class="c1">// 使用因式分解关键字写法，一般用于全局变量
+</span><span class="c1"></span><span class="kd">var</span> <span class="p">(</span>
+	<span class="nx">str</span> <span class="kt">string</span>
+    <span class="nx">array</span> <span class="p">[]</span><span class="kt">int</span>
+<span class="p">)</span>
+</code></pre></div><p>可以看出这样声明可以使得变量的类型定义清晰，每一行声明的变量都一定是同一个类型的。</p>
+<p>Go语言的 变量命名需要遵循骆驼命名法，如<code>myArray</code>和<code>startDate</code>。</p>
+<p>Go语言的变量在声明的时候会被赋予该类型的初值：int为0，float为0.0，bool为false，string为空字符串，指针为nil。Go中所有的变量都是经过<strong>初始化</strong>的。Go语言也支持变量在声明的时候进行初始化。同时，若在初始化时不指定类型，Go语言会根据初始化的值自动判断类型，但是没有初始化值且没有类型的变量声明是不被允许的。</p>
+<p>由于自动判断特性，Go语言在声明时支持简短声明语法<code>:=</code>，如<code>a := 1</code>，此时a自动被初始化成int型的变量，且值为1。（该种用法只能在一个代码块内对同一个变量名使用一次）</p>
+<p>Go语言也支持对多个变量同时声明或是同时赋值</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span> <span class="o">:=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="s">&#34;abc&#34;</span>	<span class="c1">//变量之前未被声明
+</span><span class="c1"></span><span class="nx">d</span><span class="p">,</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">f</span> <span class="p">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&#34;def&#34;</span>	<span class="c1">//变量之前已被声明
+</span><span class="c1"></span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="p">=</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">a</span>	<span class="c1">//交换两个变量的值
+</span><span class="c1"></span><span class="nx">_</span><span class="p">,</span> <span class="nx">b</span> <span class="p">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span>	<span class="c1">//使用只写变量&#34;_&#34;抛弃值
+</span></code></pre></div><p>最后，在每个源文件中都支持包含一个init函数，支持对全局变量的初始化。这是一类非常特殊的函数，它不能够被人为调用，而是在每个包完成初始化后自动执行，并且执行优先级比 main 函数高。如下面的例子中便将Pi初始化为了3.1415</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">Pi</span> <span class="kt">float64</span>
+
+<span class="kd">func</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+   <span class="nx">Pi</span> <span class="p">=</span> <span class="mf">3.1415</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="字符串">字符串</h3>
+<p>与Python字符串类似，支持<code>+</code>拼接字符串，支持len(str)获取字符串长度，也支持str[]获取内容。若是导入了<code>strings</code>包或是<code>strconv</code>包则支持更多的特性。相关的函数接口功能参照该<a class="link" href="https://github.com/unknwon/the-way-to-go_ZH_CN/blob/master/eBook/04.7.md"  target="_blank" rel="noopener"
+    >链接</a>，做了较为详细的说明。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+</aside>
+
+
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2020 Lavch&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
