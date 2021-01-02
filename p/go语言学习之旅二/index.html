@@ -5,10 +5,8 @@
  本文是用于记录作者在Go语言的学习过程中经历的种种，方便日后复习，也为他人提供些许的经验参考。
 本文开始于作者大三寒假时期，对于数据结构、算法、计算机网络等知识都有一定的了解，也有过一定的项目经验，故一些较为基础的知识不再予以记录，如若读者遇到了难以理解的部分，可以上网自行寻找相关的资料，若仍然无法理解，请联系作者加以解释。也欢迎各位对本文中出现的错误以及不足之处予以指正。
 转载请注明出处。
-Go语言语法基础 函数   函数定义
-func g() { } 需要注意的是，左花括号必须与函数名在同一行，否则无法通过编译。
-  函数参数与返回值
-函数可以接收多个参数，并返回多个值，且可以对返回值命名。
+Go语言语法基础 函数 函数定义 func g() { } 需要注意的是，左花括号必须与函数名在同一行，否则无法通过编译。
+函数参数与返回值 函数可以接收多个参数，并返回多个值，且可以对返回值命名。
 func getX2AndX3_2(input int) (x2 int, x3 int) { x2 = 2 * input x3 = 3 * input // return x2, x3  return } 在函数有多个返回值时，只要有一个返回值有命名，其他的也必须命名，如以下代码片段就会报错。
 func funcMui(x,y int)(sum int,error){ return x&#43;y,nil } 如果有多个返回值必须加上括号()；如果只有一个返回值且命名也必须加上括号()。
 如果函数的最后一个参数使用...type的形式，则可以传入变长的参数。如果参数被储存在一个slice类型的变量slice中，则可以通过slice...的形式传递参数，调用变参函数。
@@ -21,10 +19,8 @@ package main import &amp;#34;fmt&amp;#34; func main() { x := min(1, 3, 2, 0) fmt
  本文是用于记录作者在Go语言的学习过程中经历的种种，方便日后复习，也为他人提供些许的经验参考。
 本文开始于作者大三寒假时期，对于数据结构、算法、计算机网络等知识都有一定的了解，也有过一定的项目经验，故一些较为基础的知识不再予以记录，如若读者遇到了难以理解的部分，可以上网自行寻找相关的资料，若仍然无法理解，请联系作者加以解释。也欢迎各位对本文中出现的错误以及不足之处予以指正。
 转载请注明出处。
-Go语言语法基础 函数   函数定义
-func g() { } 需要注意的是，左花括号必须与函数名在同一行，否则无法通过编译。
-  函数参数与返回值
-函数可以接收多个参数，并返回多个值，且可以对返回值命名。
+Go语言语法基础 函数 函数定义 func g() { } 需要注意的是，左花括号必须与函数名在同一行，否则无法通过编译。
+函数参数与返回值 函数可以接收多个参数，并返回多个值，且可以对返回值命名。
 func getX2AndX3_2(input int) (x2 int, x3 int) { x2 = 2 * input x3 = 3 * input // return x2, x3  return } 在函数有多个返回值时，只要有一个返回值有命名，其他的也必须命名，如以下代码片段就会报错。
 func funcMui(x,y int)(sum int,error){ return x&#43;y,nil } 如果有多个返回值必须加上括号()；如果只有一个返回值且命名也必须加上括号()。
 如果函数的最后一个参数使用...type的形式，则可以传入变长的参数。如果参数被储存在一个slice类型的变量slice中，则可以通过slice...的形式传递参数，调用变参函数。
@@ -37,10 +33,8 @@ package main import &amp;#34;fmt&amp;#34; func main() { x := min(1, 3, 2, 0) fmt
  本文是用于记录作者在Go语言的学习过程中经历的种种，方便日后复习，也为他人提供些许的经验参考。
 本文开始于作者大三寒假时期，对于数据结构、算法、计算机网络等知识都有一定的了解，也有过一定的项目经验，故一些较为基础的知识不再予以记录，如若读者遇到了难以理解的部分，可以上网自行寻找相关的资料，若仍然无法理解，请联系作者加以解释。也欢迎各位对本文中出现的错误以及不足之处予以指正。
 转载请注明出处。
-Go语言语法基础 函数   函数定义
-func g() { } 需要注意的是，左花括号必须与函数名在同一行，否则无法通过编译。
-  函数参数与返回值
-函数可以接收多个参数，并返回多个值，且可以对返回值命名。
+Go语言语法基础 函数 函数定义 func g() { } 需要注意的是，左花括号必须与函数名在同一行，否则无法通过编译。
+函数参数与返回值 函数可以接收多个参数，并返回多个值，且可以对返回值命名。
 func getX2AndX3_2(input int) (x2 int, x3 int) { x2 = 2 * input x3 = 3 * input // return x2, x3  return } 在函数有多个返回值时，只要有一个返回值有命名，其他的也必须命名，如以下代码片段就会报错。
 func funcMui(x,y int)(sum int,error){ return x&#43;y,nil } 如果有多个返回值必须加上括号()；如果只有一个返回值且命名也必须加上括号()。
 如果函数的最后一个参数使用...type的形式，则可以传入变长的参数。如果参数被储存在一个slice类型的变量slice中，则可以通过slice...的形式传递参数，调用变参函数。
@@ -256,15 +250,11 @@ package main import &amp;#34;fmt&amp;#34; func main() { x := min(1, 3, 2, 0) fmt
 <p>转载请注明出处。</p>
 <h2 id="go语言语法基础">Go语言语法基础</h2>
 <h3 id="函数">函数</h3>
-<ol>
-<li>
-<p>函数定义</p>
+<h4 id="函数定义">函数定义</h4>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">g</span><span class="p">()</span> <span class="p">{</span>
 <span class="p">}</span>
 </code></pre></div><p>需要注意的是，左花括号必须与函数名在同一行，否则无法通过编译。</p>
-</li>
-<li>
-<p>函数参数与返回值</p>
+<h4 id="函数参数与返回值">函数参数与返回值</h4>
 <p>函数可以接收多个参数，并返回多个值，且可以对返回值命名。</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">getX2AndX3_2</span><span class="p">(</span><span class="nx">input</span> <span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="nx">x2</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">x3</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">x2</span> <span class="p">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">input</span>
@@ -274,43 +264,40 @@ package main import &amp;#34;fmt&amp;#34; func main() { x := min(1, 3, 2, 0) fmt
 <span class="p">}</span>
 </code></pre></div><p>在函数有多个返回值时，只要有一个返回值有命名，其他的也必须命名，如以下代码片段就会报错。</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">funcMui</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span> <span class="kt">int</span><span class="p">)(</span><span class="nx">sum</span> <span class="kt">int</span><span class="p">,</span><span class="kt">error</span><span class="p">){</span>
- <span class="k">return</span> <span class="nx">x</span><span class="o">+</span><span class="nx">y</span><span class="p">,</span><span class="kc">nil</span>
+	<span class="k">return</span> <span class="nx">x</span><span class="o">+</span><span class="nx">y</span><span class="p">,</span><span class="kc">nil</span>
 <span class="p">}</span>
 </code></pre></div><p>如果有多个返回值必须加上括号()；如果只有一个返回值且命名也必须加上括号()。</p>
 <p>如果函数的最后一个参数使用<code>...type</code>的形式，则可以传入变长的参数。如果参数被储存在一个slice类型的变量<code>slice</code>中，则可以通过<code>slice...</code>的形式传递参数，调用变参函数。</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-   
+
 <span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
-   
+
 <span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
- <span class="nx">x</span> <span class="o">:=</span> <span class="nf">min</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
- <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;The minimum is: %d\n&#34;</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
- <span class="nx">slice</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span>
- <span class="nx">x</span> <span class="p">=</span> <span class="nf">min</span><span class="p">(</span><span class="nx">slice</span><span class="o">...</span><span class="p">)</span>
- <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;The minimum in the slice is: %d&#34;</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
+	<span class="nx">x</span> <span class="o">:=</span> <span class="nf">min</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;The minimum is: %d\n&#34;</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
+	<span class="nx">slice</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span>
+	<span class="nx">x</span> <span class="p">=</span> <span class="nf">min</span><span class="p">(</span><span class="nx">slice</span><span class="o">...</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;The minimum in the slice is: %d&#34;</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
 <span class="p">}</span>
-   
+
 <span class="kd">func</span> <span class="nf">min</span><span class="p">(</span><span class="nx">s</span> <span class="o">...</span><span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
- <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span> <span class="p">{</span>
-     <span class="k">return</span> <span class="mi">0</span>
- <span class="p">}</span>
- <span class="nx">min</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
- <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">s</span> <span class="p">{</span>
-     <span class="k">if</span> <span class="nx">v</span> <span class="p">&lt;</span> <span class="nx">min</span> <span class="p">{</span>
-         <span class="nx">min</span> <span class="p">=</span> <span class="nx">v</span>
-     <span class="p">}</span>
- <span class="p">}</span>
- <span class="k">return</span> <span class="nx">min</span>
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="mi">0</span>
+	<span class="p">}</span>
+	<span class="nx">min</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">s</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="nx">v</span> <span class="p">&lt;</span> <span class="nx">min</span> <span class="p">{</span>
+			<span class="nx">min</span> <span class="p">=</span> <span class="nx">v</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">min</span>
 <span class="p">}</span>
-   
+
 <span class="cm">/* Output:
 </span><span class="cm">The minimum is: 0
 </span><span class="cm">The minimum in the slice is: 1
 </span><span class="cm">*/</span>
-</code></pre></div></li>
-<li></li>
-</ol>
-
+</code></pre></div>
 </section>
 
 
@@ -550,6 +537,70 @@ package main import &amp;#34;fmt&amp;#34; func main() { x := min(1, 3, 2, 0) fmt
                     </li>
                     
                     
+                </ul>
+                
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#%e5%87%bd%e6%95%b0%e5%ae%9a%e4%b9%89">
+                            函数定义
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                </ul>
+                
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#%e5%87%bd%e6%95%b0%e5%8f%82%e6%95%b0%e4%b8%8e%e8%bf%94%e5%9b%9e%e5%80%bc">
+                            函数参数与返回值
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
                 </ul>
                 
                 </ul>
