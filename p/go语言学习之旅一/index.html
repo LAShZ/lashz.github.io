@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Go语言学习之旅  计算机咸鱼自救之路
- 本文是用于记录作者在Go语言的学习过程中经历的种种，并用于日后复习与为他人提供些许的经验参考。
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Go语言学习之旅  Go语言是21世纪的C语言
+ 本文是用于记录作者在Go语言的学习过程中经历的种种，方便日后复习，也为他人提供些许的经验参考。
 本文开始于作者大三寒假时期，对于数据结构、算法、计算机网络等知识都有一定的了解，也有过一定的项目经验，故一些较为基础的知识不再予以记录，如若读者遇到了难以理解的部分，可以上网自行寻找相关的资料，若仍然无法理解，请联系作者加以解释。也欢迎各位对本文中出现的错误以及不足之处予以指正。
 转载请注明出处。
 GO语言的安装 Windows下的安装 由于本文作者主要使用的操作系统仍是Windows（没钱买Mac），故首先尝试的是在Windows下安装GO。
@@ -26,8 +26,8 @@ Go语言的变量在声明的时候会被赋予该类型的初值：int为0，fl
 <link rel='canonical' href='https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%B8%80/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Go语言学习之旅(一)'>
-<meta property='og:description' content='Go语言学习之旅  计算机咸鱼自救之路
- 本文是用于记录作者在Go语言的学习过程中经历的种种，并用于日后复习与为他人提供些许的经验参考。
+<meta property='og:description' content='Go语言学习之旅  Go语言是21世纪的C语言
+ 本文是用于记录作者在Go语言的学习过程中经历的种种，方便日后复习，也为他人提供些许的经验参考。
 本文开始于作者大三寒假时期，对于数据结构、算法、计算机网络等知识都有一定的了解，也有过一定的项目经验，故一些较为基础的知识不再予以记录，如若读者遇到了难以理解的部分，可以上网自行寻找相关的资料，若仍然无法理解，请联系作者加以解释。也欢迎各位对本文中出现的错误以及不足之处予以指正。
 转载请注明出处。
 GO语言的安装 Windows下的安装 由于本文作者主要使用的操作系统仍是Windows（没钱买Mac），故首先尝试的是在Windows下安装GO。
@@ -49,10 +49,10 @@ Go语言的 变量命名需要遵循骆驼命名法，如myArray和startDate。
 Go语言的变量在声明的时候会被赋予该类型的初值：int为0，float为0.0，bool为false，string为空字符串，指针为nil。Go中所有的变量都是经过初始化的。Go语言也支持变量在声明的时候进行初始化。同时，若在初始化时不指定类型，Go语言会根据初始化的值自动判断类型，但是没有初始化值且没有类型的变量声明是不被允许的。'>
 <meta property='og:url' content='https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%B8%80/'>
 <meta property='og:site_name' content='Lavch&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2020-12-30T17:45:11&#43;08:00'/><meta property='article:modified_time' content='2020-12-30T17:45:11&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Go' /><meta property='article:tag' content='学习' /><meta property='article:published_time' content='2020-12-30T17:45:11&#43;08:00'/><meta property='article:modified_time' content='2020-12-30T17:45:11&#43;08:00'/>
 <meta name="twitter:title" content="Go语言学习之旅(一)">
-<meta name="twitter:description" content="Go语言学习之旅  计算机咸鱼自救之路
- 本文是用于记录作者在Go语言的学习过程中经历的种种，并用于日后复习与为他人提供些许的经验参考。
+<meta name="twitter:description" content="Go语言学习之旅  Go语言是21世纪的C语言
+ 本文是用于记录作者在Go语言的学习过程中经历的种种，方便日后复习，也为他人提供些许的经验参考。
 本文开始于作者大三寒假时期，对于数据结构、算法、计算机网络等知识都有一定的了解，也有过一定的项目经验，故一些较为基础的知识不再予以记录，如若读者遇到了难以理解的部分，可以上网自行寻找相关的资料，若仍然无法理解，请联系作者加以解释。也欢迎各位对本文中出现的错误以及不足之处予以指正。
 转载请注明出处。
 GO语言的安装 Windows下的安装 由于本文作者主要使用的操作系统仍是Windows（没钱买Mac），故首先尝试的是在Windows下安装GO。
@@ -249,12 +249,8 @@ Go语言的变量在声明的时候会被赋予该类型的初值：int为0，fl
     
     <header class="article-category">
         
-            <a href="/categories/go/" >
-                Go
-            </a>
-        
-            <a href="/categories/%E5%AD%A6%E4%B9%A0/" >
-                学习
+            <a href="/categories/go%E6%95%99%E7%A8%8B/" >
+                Go教程
             </a>
         
     </header>
@@ -280,9 +276,9 @@ Go语言的变量在声明的时候会被赋予该类型的初值：int为0，fl
     <section class="article-content">
     <h1 id="go语言学习之旅">Go语言学习之旅</h1>
 <blockquote>
-<p><em>计算机咸鱼自救之路</em></p>
+<p><em>Go语言是21世纪的C语言</em></p>
 </blockquote>
-<p>本文是用于记录作者在Go语言的学习过程中经历的种种，并用于日后复习与为他人提供些许的经验参考。</p>
+<p>本文是用于记录作者在Go语言的学习过程中经历的种种，方便日后复习，也为他人提供些许的经验参考。</p>
 <p>本文开始于作者大三寒假时期，对于数据结构、算法、计算机网络等知识都有一定的了解，也有过一定的项目经验，故一些较为基础的知识不再予以记录，如若读者遇到了难以理解的部分，可以上网自行寻找相关的资料，若仍然无法理解，请联系作者加以解释。也欢迎各位对本文中出现的错误以及不足之处予以指正。</p>
 <p>转载请注明出处。</p>
 <h2 id="go语言的安装">GO语言的安装</h2>
@@ -360,6 +356,9 @@ Go语言的变量在声明的时候会被赋予该类型的初值：int为0，fl
     <span class="k">case</span> <span class="k">default</span><span class="p">:</span> <span class="nx">t</span> <span class="p">=</span> <span class="mi">1</span>
 <span class="p">}</span>
 </code></pre></div><p>在上面这个代码片段中，变量 a 和 b 被平行初始化，然后作为判断条件。</p>
+<h3 id="for结构">for结构</h3>
+<p>基本用法与C语言类似，只是不需要小括号。</p>
+<p>Go也支持一种特殊的迭代结构<strong>for-range</strong>，一般形式为：<code>for ix, val := range coll {}</code>。其中<code>val</code>是集合中对应值的<strong>拷贝</strong>，对其的修改不会改变原集合中的值。</p>
 <blockquote>
 <p><em>未完待续</em></p>
 </blockquote>
@@ -369,6 +368,14 @@ Go语言的变量在声明的时候会被赋予该类型的初值：int为0，fl
 
     <footer class="article-footer">
     
+    <section class="article-tags">
+        
+            <a href="/tags/go/">Go</a>
+        
+            <a href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
+        
+    </section>
+
 
     
     <section class="article-copyright">
@@ -807,6 +814,34 @@ Go语言的变量在声明的时候会被赋予该类型的初值：int为0，fl
                     <li class="nav-item">
                         <a class="nav-link text-left" href="#switch%e7%bb%93%e6%9e%84">
                             switch结构
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#for%e7%bb%93%e6%9e%84">
+                            for结构
                         </a>
                     </li>
                     

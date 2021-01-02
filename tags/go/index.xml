@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Lavch&#39;s blog</title>
-    <link>https://lashz.github.io/post/</link>
-    <description>Recent content in Posts on Lavch&#39;s blog</description>
+    <title>Go on Lavch&#39;s blog</title>
+    <link>https://lashz.github.io/tags/go/</link>
+    <description>Recent content in Go on Lavch&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Dec 2020 17:45:11 +0800</lastBuildDate><atom:link href="https://lashz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 30 Dec 2020 17:45:11 +0800</lastBuildDate><atom:link href="https://lashz.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go语言学习之旅(一)</title>
       <link>https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%B8%80/</link>

@@ -8,7 +8,12 @@
   </url>
   
   <url>
-    <loc>https://lashz.github.io/categories/go/</loc>
+    <loc>https://lashz.github.io/tags/go/</loc>
+    <lastmod>2020-12-30T17:45:11+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lashz.github.io/categories/go%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2020-12-30T17:45:11+08:00</lastmod>
   </url>
   
@@ -33,7 +38,12 @@
   </url>
   
   <url>
-    <loc>https://lashz.github.io/categories/%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://lashz.github.io/tags/</loc>
+    <lastmod>2020-12-30T17:45:11+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lashz.github.io/tags/%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2020-12-30T17:45:11+08:00</lastmod>
   </url>
   
@@ -54,14 +64,6 @@
   
   <url>
     <loc>https://lashz.github.io/search/</loc>
-  </url>
-  
-  <url>
-    <loc>https://lashz.github.io/tags/</loc>
-  </url>
-  
-  <url>
-    <loc>https://lashz.github.io/categories/test/</loc>
   </url>
   
 </urlset>
