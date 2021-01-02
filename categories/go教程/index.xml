@@ -6,7 +6,25 @@
     <description>Recent content in Go教程 on Lavch&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Dec 2020 17:45:11 +0800</lastBuildDate><atom:link href="https://lashz.github.io/categories/go%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 30 Dec 2020 18:45:11 +0800</lastBuildDate><atom:link href="https://lashz.github.io/categories/go%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go语言学习之旅(二)</title>
+      <link>https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%BA%8C/</link>
+      <pubDate>Wed, 30 Dec 2020 18:45:11 +0800</pubDate>
+      
+      <guid>https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%BA%8C/</guid>
+      <description>Go语言学习之旅  Go语言是21世纪的C语言
+ 本文是用于记录作者在Go语言的学习过程中经历的种种，方便日后复习，也为他人提供些许的经验参考。
+本文开始于作者大三寒假时期，对于数据结构、算法、计算机网络等知识都有一定的了解，也有过一定的项目经验，故一些较为基础的知识不再予以记录，如若读者遇到了难以理解的部分，可以上网自行寻找相关的资料，若仍然无法理解，请联系作者加以解释。也欢迎各位对本文中出现的错误以及不足之处予以指正。
+转载请注明出处。
+Go语言语法基础 函数 函数定义 func g() { } 需要注意的是，左花括号必须与函数名在同一行，否则无法通过编译。
+函数参数与返回值 函数可以接收多个参数，并返回多个值，且可以对返回值命名。
+func getX2AndX3_2(input int) (x2 int, x3 int) { x2 = 2 * input x3 = 3 * input // return x2, x3  return } 在函数有多个返回值时，只要有一个返回值有命名，其他的也必须命名，如以下代码片段就会报错。
+func funcMui(x,y int)(sum int,error){ return x+y,nil } 如果有多个返回值必须加上括号()；如果只有一个返回值且命名也必须加上括号()。
+如果函数的最后一个参数使用...type的形式，则可以传入变长的参数。如果参数被储存在一个slice类型的变量slice中，则可以通过slice...的形式传递参数，调用变参函数。
+package main import &amp;#34;fmt&amp;#34; func main() { x := min(1, 3, 2, 0) fmt.Printf(&amp;#34;The minimum is: %d\n&amp;#34;, x) slice := []int{7,9,3,5,1} x = min(slice.</description>
+    </item>
+    
     <item>
       <title>Go语言学习之旅(一)</title>
       <link>https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%B8%80/</link>
@@ -34,24 +52,6 @@ Go的变量声明使用var关键字：var identifier type
 var a int var b,c *int var d bool // 使用因式分解关键字写法，一般用于全局变量 var ( str string array []int ) 可以看出这样声明可以使得变量的类型定义清晰，每一行声明的变量都一定是同一个类型的。
 Go语言的 变量命名需要遵循骆驼命名法，如myArray和startDate。
 Go语言的变量在声明的时候会被赋予该类型的初值：int为0，float为0.0，bool为false，string为空字符串，指针为nil。Go中所有的变量都是经过初始化的。Go语言也支持变量在声明的时候进行初始化。同时，若在初始化时不指定类型，Go语言会根据初始化的值自动判断类型，但是没有初始化值且没有类型的变量声明是不被允许的。</description>
-    </item>
-    
-    <item>
-      <title>Go语言学习之旅(二)</title>
-      <link>https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%BA%8C/</link>
-      <pubDate>Wed, 30 Dec 2020 17:45:11 +0800</pubDate>
-      
-      <guid>https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%BA%8C/</guid>
-      <description>Go语言学习之旅  Go语言是21世纪的C语言
- 本文是用于记录作者在Go语言的学习过程中经历的种种，方便日后复习，也为他人提供些许的经验参考。
-本文开始于作者大三寒假时期，对于数据结构、算法、计算机网络等知识都有一定的了解，也有过一定的项目经验，故一些较为基础的知识不再予以记录，如若读者遇到了难以理解的部分，可以上网自行寻找相关的资料，若仍然无法理解，请联系作者加以解释。也欢迎各位对本文中出现的错误以及不足之处予以指正。
-转载请注明出处。
-Go语言语法基础 函数 函数定义 func g() { } 需要注意的是，左花括号必须与函数名在同一行，否则无法通过编译。
-函数参数与返回值 函数可以接收多个参数，并返回多个值，且可以对返回值命名。
-func getX2AndX3_2(input int) (x2 int, x3 int) { x2 = 2 * input x3 = 3 * input // return x2, x3  return } 在函数有多个返回值时，只要有一个返回值有命名，其他的也必须命名，如以下代码片段就会报错。
-func funcMui(x,y int)(sum int,error){ return x+y,nil } 如果有多个返回值必须加上括号()；如果只有一个返回值且命名也必须加上括号()。
-如果函数的最后一个参数使用...type的形式，则可以传入变长的参数。如果参数被储存在一个slice类型的变量slice中，则可以通过slice...的形式传递参数，调用变参函数。
-package main import &amp;#34;fmt&amp;#34; func main() { x := min(1, 3, 2, 0) fmt.Printf(&amp;#34;The minimum is: %d\n&amp;#34;, x) slice := []int{7,9,3,5,1} x = min(slice.</description>
     </item>
     
   </channel>

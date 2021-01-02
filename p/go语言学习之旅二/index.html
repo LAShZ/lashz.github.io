@@ -27,7 +27,7 @@ func funcMui(x,y int)(sum int,error){ return x&#43;y,nil } 如果有多个返回
 package main import &amp;#34;fmt&amp;#34; func main() { x := min(1, 3, 2, 0) fmt.Printf(&amp;#34;The minimum is: %d\n&amp;#34;, x) slice := []int{7,9,3,5,1} x = min(slice.'>
 <meta property='og:url' content='https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%BA%8C/'>
 <meta property='og:site_name' content='Lavch&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Go' /><meta property='article:tag' content='学习' /><meta property='article:published_time' content='2020-12-30T17:45:11&#43;08:00'/><meta property='article:modified_time' content='2020-12-30T17:45:11&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Go' /><meta property='article:tag' content='学习' /><meta property='article:published_time' content='2020-12-30T18:45:11&#43;08:00'/><meta property='article:modified_time' content='2020-12-30T18:45:11&#43;08:00'/>
 <meta name="twitter:title" content="Go语言学习之旅(二)">
 <meta name="twitter:description" content="Go语言学习之旅  Go语言是21世纪的C语言
  本文是用于记录作者在Go语言的学习过程中经历的种种，方便日后复习，也为他人提供些许的经验参考。
@@ -297,7 +297,73 @@ package main import &amp;#34;fmt&amp;#34; func main() { x := min(1, 3, 2, 0) fmt
 </span><span class="cm">The minimum is: 0
 </span><span class="cm">The minimum in the slice is: 1
 </span><span class="cm">*/</span>
-</code></pre></div>
+</code></pre></div><h4 id="defer">defer</h4>
+<p>defer是Go中一个特殊的关键字，用于将某函数或是语句的执行顺序推迟到函数返回之前，使得函数在返回时进行一些操作。通过defer语句可以进行进程中止前的收尾，代码追踪，记录函数参数及返回值等功能，如以下的例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;io&#34;</span>
+	<span class="s">&#34;log&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">func1</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;func1(%q) = %d, %v&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+	<span class="p">}()</span>
+	<span class="k">return</span> <span class="mi">7</span><span class="p">,</span> <span class="nx">io</span><span class="p">.</span><span class="nx">EOF</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nf">func1</span><span class="p">(</span><span class="s">&#34;Go&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="cm">/* Output:
+</span><span class="cm">2011/10/04 10:46:11 func1(&#34;Go&#34;) = 7, EOF
+</span><span class="cm">*/</span>
+</code></pre></div><h4 id="内置函数">内置函数</h4>
+<p>Go 语言拥有一些不需要进行导入操作就可以使用的内置函数，可以理解为某种类型的关键字，但是是以函数的方式实现的。以下给出一个简单的列表，之后会进行深入讨论：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>close</td>
+<td>用于管道通信</td>
+</tr>
+<tr>
+<td>len、cap</td>
+<td>len 用于返回某个类型的长度或数量（字符串、数组、切片、map 和管道）；cap 是容量的意思，用于返回某个类型的最大容量（只能用于切片和 map）</td>
+</tr>
+<tr>
+<td>new、make</td>
+<td>new 和 make 均是用于分配内存：new 用于值类型和用户定义的类型，如自定义结构，make 用于内置引用类型（切片、map 和管道）。它们的用法就像是函数，但是将类型作为参数：new(type)、make(type)。new(T) 分配类型 T 的零值并返回其地址，也就是指向类型 T 的指针。它也可以被用于基本类型：<code>v := new(int)</code>。make(T) 返回类型 T 的初始化之后的值，因此它比 new 进行更多的工作。<strong>new() 是一个函数，不要忘记它的括号</strong></td>
+</tr>
+<tr>
+<td>copy、append</td>
+<td>用于复制和连接切片</td>
+</tr>
+<tr>
+<td>panic、recover</td>
+<td>两者均用于错误处理机制</td>
+</tr>
+<tr>
+<td>print、println</td>
+<td>底层打印函数，在部署环境中建议使用 fmt 包</td>
+</tr>
+<tr>
+<td>complex、real imag</td>
+<td>用于创建和操作复数</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><em>未完待续</em>&hellip;</p>
+</blockquote>
+
 </section>
 
 
@@ -595,6 +661,70 @@ package main import &amp;#34;fmt&amp;#34; func main() { x := min(1, 3, 2, 0) fmt
                     <li class="nav-item">
                         <a class="nav-link text-left" href="#%e5%87%bd%e6%95%b0%e5%8f%82%e6%95%b0%e4%b8%8e%e8%bf%94%e5%9b%9e%e5%80%bc">
                             函数参数与返回值
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                </ul>
+                
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#defer">
+                            defer
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                </ul>
+                
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#%e5%86%85%e7%bd%ae%e5%87%bd%e6%95%b0">
+                            内置函数
                         </a>
                     </li>
                     
