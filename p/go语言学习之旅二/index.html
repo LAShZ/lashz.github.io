@@ -7,7 +7,7 @@
 转载请注明出处。
 Go语言语法基础 函数 函数定义 func g() { } 需要注意的是，左花括号必须与函数名在同一行，否则无法通过编译。
 函数参数与返回值 函数可以接收多个参数，并返回多个值，且可以对返回值命名。
-func getX2AndX3_2(input int) (x2 int, x3 int) { x2 = 2 * input x3 = 3 * input // return x2, x3  return } 在函数有多个返回值时，只要有一个返回值有命名，其他的也必须命名，如以下代码片段就会报错。
+func getX2AndX3_2(input int) (x2 int, x3 int) { x2 = 2 * input x3 = 3 * input // return x2, x3  return } 在函数有多个返回值时，只要有一个返回值有命名，其他的也必须命名，如以下代码片段就会报错，因为error类型的返回值没有命名。
 func funcMui(x,y int)(sum int,error){ return x&#43;y,nil } 如果有多个返回值必须加上括号()；如果只有一个返回值且命名也必须加上括号()。
 如果函数的最后一个参数使用...type的形式，则可以传入变长的参数。如果参数被储存在一个slice类型的变量slice中，则可以通过slice...的形式传递参数，调用变参函数。
 package main import &amp;#34;fmt&amp;#34; func main() { x := min(1, 3, 2, 0) fmt.Printf(&amp;#34;The minimum is: %d\n&amp;#34;, x) slice := []int{7,9,3,5,1} x = min(slice.'><title>Go语言学习之旅(二)</title>
@@ -21,7 +21,7 @@ package main import &amp;#34;fmt&amp;#34; func main() { x := min(1, 3, 2, 0) fmt
 转载请注明出处。
 Go语言语法基础 函数 函数定义 func g() { } 需要注意的是，左花括号必须与函数名在同一行，否则无法通过编译。
 函数参数与返回值 函数可以接收多个参数，并返回多个值，且可以对返回值命名。
-func getX2AndX3_2(input int) (x2 int, x3 int) { x2 = 2 * input x3 = 3 * input // return x2, x3  return } 在函数有多个返回值时，只要有一个返回值有命名，其他的也必须命名，如以下代码片段就会报错。
+func getX2AndX3_2(input int) (x2 int, x3 int) { x2 = 2 * input x3 = 3 * input // return x2, x3  return } 在函数有多个返回值时，只要有一个返回值有命名，其他的也必须命名，如以下代码片段就会报错，因为error类型的返回值没有命名。
 func funcMui(x,y int)(sum int,error){ return x&#43;y,nil } 如果有多个返回值必须加上括号()；如果只有一个返回值且命名也必须加上括号()。
 如果函数的最后一个参数使用...type的形式，则可以传入变长的参数。如果参数被储存在一个slice类型的变量slice中，则可以通过slice...的形式传递参数，调用变参函数。
 package main import &amp;#34;fmt&amp;#34; func main() { x := min(1, 3, 2, 0) fmt.Printf(&amp;#34;The minimum is: %d\n&amp;#34;, x) slice := []int{7,9,3,5,1} x = min(slice.'>
@@ -35,7 +35,7 @@ package main import &amp;#34;fmt&amp;#34; func main() { x := min(1, 3, 2, 0) fmt
 转载请注明出处。
 Go语言语法基础 函数 函数定义 func g() { } 需要注意的是，左花括号必须与函数名在同一行，否则无法通过编译。
 函数参数与返回值 函数可以接收多个参数，并返回多个值，且可以对返回值命名。
-func getX2AndX3_2(input int) (x2 int, x3 int) { x2 = 2 * input x3 = 3 * input // return x2, x3  return } 在函数有多个返回值时，只要有一个返回值有命名，其他的也必须命名，如以下代码片段就会报错。
+func getX2AndX3_2(input int) (x2 int, x3 int) { x2 = 2 * input x3 = 3 * input // return x2, x3  return } 在函数有多个返回值时，只要有一个返回值有命名，其他的也必须命名，如以下代码片段就会报错，因为error类型的返回值没有命名。
 func funcMui(x,y int)(sum int,error){ return x&#43;y,nil } 如果有多个返回值必须加上括号()；如果只有一个返回值且命名也必须加上括号()。
 如果函数的最后一个参数使用...type的形式，则可以传入变长的参数。如果参数被储存在一个slice类型的变量slice中，则可以通过slice...的形式传递参数，调用变参函数。
 package main import &amp;#34;fmt&amp;#34; func main() { x := min(1, 3, 2, 0) fmt.Printf(&amp;#34;The minimum is: %d\n&amp;#34;, x) slice := []int{7,9,3,5,1} x = min(slice.">
@@ -262,7 +262,7 @@ package main import &amp;#34;fmt&amp;#34; func main() { x := min(1, 3, 2, 0) fmt
     <span class="c1">// return x2, x3
 </span><span class="c1"></span>    <span class="k">return</span>
 <span class="p">}</span>
-</code></pre></div><p>在函数有多个返回值时，只要有一个返回值有命名，其他的也必须命名，如以下代码片段就会报错。</p>
+</code></pre></div><p>在函数有多个返回值时，只要有一个返回值有命名，其他的也必须命名，如以下代码片段就会报错，因为error类型的返回值没有命名。</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">funcMui</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span> <span class="kt">int</span><span class="p">)(</span><span class="nx">sum</span> <span class="kt">int</span><span class="p">,</span><span class="kt">error</span><span class="p">){</span>
 	<span class="k">return</span> <span class="nx">x</span><span class="o">+</span><span class="nx">y</span><span class="p">,</span><span class="kc">nil</span>
 <span class="p">}</span>

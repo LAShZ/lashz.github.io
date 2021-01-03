@@ -6,7 +6,33 @@
     <description>Recent content in Go on Lavch&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Jan 2021 11:49:10 +0800</lastBuildDate><atom:link href="https://lashz.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 03 Jan 2021 14:23:11 +0800</lastBuildDate><atom:link href="https://lashz.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LeetCode 剑指Offer 10-I</title>
+      <link>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-10-i/</link>
+      <pubDate>Sun, 03 Jan 2021 14:23:11 +0800</pubDate>
+      
+      <guid>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-10-i/</guid>
+      <description>LeetCode刷题笔记&amp;ndash;剑指Offer 10-I 题目：斐波那契数列 题目链接。
+写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项。斐波那契数列的定义如下：
+F(0) = 0, F(1) = 1 F(N) = F(N - 1) + F(N - 2), 其中 N &amp;gt; 1. 斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。
+答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。
+ 示例 1：
+ 输入：
+n = 2
+输出：
+1
+ 示例2：
+ 输入:
+n = 5
+输出:
+5
+限制：
+0 &amp;lt;= n &amp;lt;= 100
+题解 本题也是很经典的基础题，可以使用递归与非递归的解法。也可以选择保存Fibonacci数列的所有值或是只保存所求值。下面给出代码：
+递归解法 var fibs [101]int	//保存Fibonacci数列中的各个元素值  func fib(n int) int { if fibs[n] !</description>
+    </item>
+    
     <item>
       <title>LeetCode 剑指Offer 03</title>
       <link>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-03/</link>
@@ -16,8 +42,12 @@
       <description>LeetCode刷题笔记&amp;ndash;剑指Offer 03 题目：数组中重复的数字 找出数组中重复的数字。
 在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
 示例 1：
-输入： [2, 3, 1, 0, 2, 5, 3] 输出： 2 或 3
-限制： 2 &amp;lt;= n &amp;lt;= 100000
+输入：
+[2, 3, 1, 0, 2, 5, 3]
+输出：
+2 或 3
+限制：
+2 &amp;lt;= n &amp;lt;= 100000
 题解 本题为基础题，难度不高，看到题目即可想到最为简单的暴力哈希解法，不过其实还存在更优解法，下面给予讨论。
 哈希表 直接使用一个map存放数字是否出现过，遍历整个slice，若数字对应的value为true则返回该数字，否则将其value置为true。
 func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val := range nums { if(stat[val]){ return val }else{ stat[val] = true } } return -1 } 执行用时: 48 ms
@@ -37,7 +67,7 @@ func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val :
 转载请注明出处。
 Go语言语法基础 函数 函数定义 func g() { } 需要注意的是，左花括号必须与函数名在同一行，否则无法通过编译。
 函数参数与返回值 函数可以接收多个参数，并返回多个值，且可以对返回值命名。
-func getX2AndX3_2(input int) (x2 int, x3 int) { x2 = 2 * input x3 = 3 * input // return x2, x3  return } 在函数有多个返回值时，只要有一个返回值有命名，其他的也必须命名，如以下代码片段就会报错。
+func getX2AndX3_2(input int) (x2 int, x3 int) { x2 = 2 * input x3 = 3 * input // return x2, x3  return } 在函数有多个返回值时，只要有一个返回值有命名，其他的也必须命名，如以下代码片段就会报错，因为error类型的返回值没有命名。
 func funcMui(x,y int)(sum int,error){ return x+y,nil } 如果有多个返回值必须加上括号()；如果只有一个返回值且命名也必须加上括号()。
 如果函数的最后一个参数使用...type的形式，则可以传入变长的参数。如果参数被储存在一个slice类型的变量slice中，则可以通过slice...的形式传递参数，调用变参函数。
 package main import &amp;#34;fmt&amp;#34; func main() { x := min(1, 3, 2, 0) fmt.Printf(&amp;#34;The minimum is: %d\n&amp;#34;, x) slice := []int{7,9,3,5,1} x = min(slice.</description>
