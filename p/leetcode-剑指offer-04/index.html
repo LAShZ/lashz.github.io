@@ -277,9 +277,9 @@ func findNumberIn2DArray(matrix [][]int, target int) bool { i := 0 if (len(matri
 <h2 id="题解">题解</h2>
 <p>这道题最简单的做法就是遍历整个数组，每一个元素都拿来比较，找到了就返回<code>true</code>，遍历完之后还没找到就返回<code>false</code>，但这种方法的时间复杂度为O(NM)，且并未利用数组内元素递增的特点，</p>
 <p>对于这道题我们先将数组画出来，可以发现对于任意一个元素，总是要大于它的左下方的元素。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/LAShZ/blog-pic-repo@main//img/%E5%89%91%E6%8C%87Offer04-1.png" alt="img1"  /></p>
+<p><!-- raw HTML omitted --></p>
 <p>所以，我们可以先在第一行进行搜索，找到第一个<code>大于</code>目标值的数，然后一直朝着<strong>左下方</strong>搜索，该处的值<code>大于</code>目标值就<code>朝左</code>，<code>小于</code>目标值就<code>朝右</code>。整个搜索过程中，找到对应值就返回true，超出边界就立即停止搜索，并返回false。在上图中搜索14的过程如下图所示：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/LAShZ/blog-pic-repo@main/img/%E5%89%91%E6%8C%87Offer04-2.png" alt="img2"  /></p>
+<p><!-- raw HTML omitted --></p>
 <p>程序代码如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">findNumberIn2DArray</span><span class="p">(</span><span class="nx">matrix</span> <span class="p">[][]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">target</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span>
