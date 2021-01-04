@@ -6,26 +6,7 @@
     <description>Recent content in LeetCode on Lavch&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 Jan 2021 19:39:31 +0800</lastBuildDate><atom:link href="https://lashz.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>LeetCode 剑指Offer 04</title>
-      <link>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-04/</link>
-      <pubDate>Mon, 04 Jan 2021 19:39:31 +0800</pubDate>
-      
-      <guid>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-04/</guid>
-      <description>LeetCode刷题笔记&amp;ndash;剑指Offer 04 题目：二维数组中的查找 题目链接。
-在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
- 示例
- 现有矩阵 matrix 如下：
-[ [1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30] ] 给定 target = 5，返回 true。
-给定 target = 20，返回 false。
-限制：
-0 &amp;lt;= n &amp;lt;= 1000
-0 &amp;lt;= m &amp;lt;= 1000
-题解 这道题最简单的做法就是遍历整个数组，每一个元素都拿来比较，找到了就返回true，遍历完之后还没找到就返回false，但这种方法的时间复杂度为O(NM)，且并未利用数组内元素递增的特点，
-对于这道题我们先将数组画出来，可以发现对于任意一个元素，总是要大于它的左下方的元素。</description>
-    </item>
-    
+    <lastBuildDate>Sun, 03 Jan 2021 14:23:11 +0800</lastBuildDate><atom:link href="https://lashz.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>LeetCode 剑指Offer 10-I</title>
       <link>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-10-i/</link>
