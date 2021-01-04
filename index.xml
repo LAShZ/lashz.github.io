@@ -196,7 +196,9 @@ F(N) = F(N - 1) + F(N - 2), 其中 N &amp;gt; 1.
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;找出数组中重复的数字&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。&lt;/p&gt;
+&lt;blockquote&gt;
 &lt;p&gt;示例 1：&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;输入&lt;/strong&gt;：&lt;/p&gt;
 &lt;p&gt;[2, 3, 1, 0, 2, 5, 3]&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;输出&lt;/strong&gt;：&lt;/p&gt;
@@ -470,6 +472,7 @@ F(N) = F(N - 1) + F(N - 2), 其中 N &amp;gt; 1.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在上面这个代码片段中，变量 a 和 b 被平行初始化，然后作为判断条件。&lt;/p&gt;
 &lt;h3 id=&#34;for结构&#34;&gt;for结构&lt;/h3&gt;
 &lt;p&gt;基本用法与C语言类似，只是不需要小括号。&lt;/p&gt;
+&lt;p&gt;for是Go语言提供的&lt;strong&gt;唯一一种&lt;/strong&gt;循环结构，Go语言&lt;strong&gt;没有&lt;/strong&gt;&lt;code&gt;while&lt;/code&gt;或是&lt;code&gt;do-while&lt;/code&gt;循环，因为都可以以for循环的形式实现。&lt;/p&gt;
 &lt;p&gt;Go也支持一种特殊的迭代结构&lt;strong&gt;for-range&lt;/strong&gt;，一般形式为：&lt;code&gt;for ix, val := range coll {}&lt;/code&gt;。其中&lt;code&gt;val&lt;/code&gt;是集合中对应值的&lt;strong&gt;拷贝&lt;/strong&gt;，对其的修改不会改变原集合中的值。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;未完待续&lt;/em&gt;&amp;hellip;&lt;/p&gt;

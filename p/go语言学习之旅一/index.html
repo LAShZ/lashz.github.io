@@ -358,6 +358,7 @@ Go语言的变量在声明的时候会被赋予该类型的初值：int为0，fl
 </code></pre></div><p>在上面这个代码片段中，变量 a 和 b 被平行初始化，然后作为判断条件。</p>
 <h3 id="for结构">for结构</h3>
 <p>基本用法与C语言类似，只是不需要小括号。</p>
+<p>for是Go语言提供的<strong>唯一一种</strong>循环结构，Go语言<strong>没有</strong><code>while</code>或是<code>do-while</code>循环，因为都可以以for循环的形式实现。</p>
 <p>Go也支持一种特殊的迭代结构<strong>for-range</strong>，一般形式为：<code>for ix, val := range coll {}</code>。其中<code>val</code>是集合中对应值的<strong>拷贝</strong>，对其的修改不会改变原集合中的值。</p>
 <blockquote>
 <p><em>未完待续</em>&hellip;</p>
