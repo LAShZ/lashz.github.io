@@ -11,7 +11,10 @@
 0 &amp;lt;= n &amp;lt;= 1000
 0 &amp;lt;= m &amp;lt;= 1000
 题解 这道题最简单的做法就是遍历整个数组，每一个元素都拿来比较，找到了就返回true，遍历完之后还没找到就返回false，但这种方法的时间复杂度为O(NM)，且并未利用数组内元素递增的特点，
-对于这道题我们先将数组画出来，可以发现对于任意一个元素，总是要大于它的左下方的元素。'><title>LeetCode 剑指Offer 04</title>
+对于这道题我们先将数组画出来，可以发现对于任意一个元素，总是要大于它的左下方的元素。
+所以，我们可以先在第一行进行搜索，找到第一个大于目标值的数，然后一直朝着左下方搜索，该处的值大于目标值就朝左，小于目标值就朝右。整个搜索过程中，找到对应值就返回true，超出边界就立即停止搜索，并返回false。在上图中搜索14的过程如下图所示：
+程序代码如下：
+func findNumberIn2DArray(matrix [][]int, target int) bool { i := 0 if (len(matrix) == 0 || len(matrix[0]) == 0) {	// 为空数组直接返回false  return false } for ; ((i &amp;lt; len(matrix[0]) - 1) &amp;amp;&amp;amp; matrix[0][i] &amp;lt; target); i&#43;&#43; {	// 在第一行大于target的或是超出边界 	} for j := 0; ; { if i &amp;lt; 0 || j &amp;gt; (len(matrix)-1) { return false } if matrix[j][i] == target { return true } else if matrix[j][i] &amp;gt; target {	// 朝左  i-- } else {	// 朝下  j&#43;&#43; } } } 执行用时: 24 ms'><title>LeetCode 剑指Offer 04</title>
 
 <link rel='canonical' href='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-04/'>
 
@@ -26,7 +29,10 @@
 0 &amp;lt;= n &amp;lt;= 1000
 0 &amp;lt;= m &amp;lt;= 1000
 题解 这道题最简单的做法就是遍历整个数组，每一个元素都拿来比较，找到了就返回true，遍历完之后还没找到就返回false，但这种方法的时间复杂度为O(NM)，且并未利用数组内元素递增的特点，
-对于这道题我们先将数组画出来，可以发现对于任意一个元素，总是要大于它的左下方的元素。'>
+对于这道题我们先将数组画出来，可以发现对于任意一个元素，总是要大于它的左下方的元素。
+所以，我们可以先在第一行进行搜索，找到第一个大于目标值的数，然后一直朝着左下方搜索，该处的值大于目标值就朝左，小于目标值就朝右。整个搜索过程中，找到对应值就返回true，超出边界就立即停止搜索，并返回false。在上图中搜索14的过程如下图所示：
+程序代码如下：
+func findNumberIn2DArray(matrix [][]int, target int) bool { i := 0 if (len(matrix) == 0 || len(matrix[0]) == 0) {	// 为空数组直接返回false  return false } for ; ((i &amp;lt; len(matrix[0]) - 1) &amp;amp;&amp;amp; matrix[0][i] &amp;lt; target); i&#43;&#43; {	// 在第一行大于target的或是超出边界 	} for j := 0; ; { if i &amp;lt; 0 || j &amp;gt; (len(matrix)-1) { return false } if matrix[j][i] == target { return true } else if matrix[j][i] &amp;gt; target {	// 朝左  i-- } else {	// 朝下  j&#43;&#43; } } } 执行用时: 24 ms'>
 <meta property='og:url' content='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-04/'>
 <meta property='og:site_name' content='Lavch&#39;s blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Go' /><meta property='article:tag' content='LeetCode' /><meta property='article:tag' content='算法' /><meta property='article:tag' content='剑指Offer' /><meta property='article:published_time' content='2021-01-04T19:39:31&#43;08:00'/><meta property='article:modified_time' content='2021-01-04T19:39:31&#43;08:00'/>
@@ -41,7 +47,10 @@
 0 &amp;lt;= n &amp;lt;= 1000
 0 &amp;lt;= m &amp;lt;= 1000
 题解 这道题最简单的做法就是遍历整个数组，每一个元素都拿来比较，找到了就返回true，遍历完之后还没找到就返回false，但这种方法的时间复杂度为O(NM)，且并未利用数组内元素递增的特点，
-对于这道题我们先将数组画出来，可以发现对于任意一个元素，总是要大于它的左下方的元素。">
+对于这道题我们先将数组画出来，可以发现对于任意一个元素，总是要大于它的左下方的元素。
+所以，我们可以先在第一行进行搜索，找到第一个大于目标值的数，然后一直朝着左下方搜索，该处的值大于目标值就朝左，小于目标值就朝右。整个搜索过程中，找到对应值就返回true，超出边界就立即停止搜索，并返回false。在上图中搜索14的过程如下图所示：
+程序代码如下：
+func findNumberIn2DArray(matrix [][]int, target int) bool { i := 0 if (len(matrix) == 0 || len(matrix[0]) == 0) {	// 为空数组直接返回false  return false } for ; ((i &amp;lt; len(matrix[0]) - 1) &amp;amp;&amp;amp; matrix[0][i] &amp;lt; target); i&#43;&#43; {	// 在第一行大于target的或是超出边界 	} for j := 0; ; { if i &amp;lt; 0 || j &amp;gt; (len(matrix)-1) { return false } if matrix[j][i] == target { return true } else if matrix[j][i] &amp;gt; target {	// 朝左  i-- } else {	// 朝下  j&#43;&#43; } } } 执行用时: 24 ms">
     </head>
     <body class="">
     <script>
@@ -268,8 +277,32 @@
 <h2 id="题解">题解</h2>
 <p>这道题最简单的做法就是遍历整个数组，每一个元素都拿来比较，找到了就返回<code>true</code>，遍历完之后还没找到就返回<code>false</code>，但这种方法的时间复杂度为O(NM)，且并未利用数组内元素递增的特点，</p>
 <p>对于这道题我们先将数组画出来，可以发现对于任意一个元素，总是要大于它的左下方的元素。</p>
-<p><!-- raw HTML omitted --></p>
-<p><img src="1.png" alt="image"  /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/LAShZ/blog-pic-repo@main//img/%E5%89%91%E6%8C%87Offer04-1.png" alt="img1"  /></p>
+<p>所以，我们可以先在第一行进行搜索，找到第一个<code>大于</code>目标值的数，然后一直朝着<strong>左下方</strong>搜索，该处的值<code>大于</code>目标值就<code>朝左</code>，<code>小于</code>目标值就<code>朝右</code>。整个搜索过程中，找到对应值就返回true，超出边界就立即停止搜索，并返回false。在上图中搜索14的过程如下图所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/LAShZ/blog-pic-repo@main/img/%E5%89%91%E6%8C%87Offer04-2.png" alt="img2"  /></p>
+<p>程序代码如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">findNumberIn2DArray</span><span class="p">(</span><span class="nx">matrix</span> <span class="p">[][]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">target</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">matrix</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="nb">len</span><span class="p">(</span><span class="nx">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>	<span class="c1">// 为空数组直接返回false
+</span><span class="c1"></span>        <span class="k">return</span> <span class="kc">false</span>
+    <span class="p">}</span>
+	<span class="k">for</span> <span class="p">;</span> <span class="p">((</span><span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>  <span class="o">&amp;&amp;</span> <span class="nx">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="nx">i</span><span class="p">]</span> <span class="p">&lt;</span> <span class="nx">target</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>	<span class="c1">// 在第一行大于target的或是超出边界
+</span><span class="c1"></span>	<span class="p">}</span>
+	<span class="k">for</span> <span class="nx">j</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">;</span> <span class="p">{</span>
+	    <span class="k">if</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">j</span> <span class="p">&gt;</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">matrix</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+	        <span class="k">return</span> <span class="kc">false</span>
+	    <span class="p">}</span>
+	    <span class="k">if</span> <span class="nx">matrix</span><span class="p">[</span><span class="nx">j</span><span class="p">][</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="nx">target</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">true</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">matrix</span><span class="p">[</span><span class="nx">j</span><span class="p">][</span><span class="nx">i</span><span class="p">]</span> <span class="p">&gt;</span> <span class="nx">target</span> <span class="p">{</span>	<span class="c1">// 朝左
+</span><span class="c1"></span>            <span class="nx">i</span><span class="o">--</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>	<span class="c1">// 朝下
+</span><span class="c1"></span>            <span class="nx">j</span><span class="o">++</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>执行用时: 24 ms</p>
+<p>内存消耗: 6.6 MB</p>
 
 </section>
 
