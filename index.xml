@@ -6,7 +6,39 @@
         <description>Recent content on Lavch&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Mon, 04 Jan 2021 19:39:31 +0800</lastBuildDate><atom:link href="https://lashz.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 04 Jan 2021 21:54:24 +0800</lastBuildDate><atom:link href="https://lashz.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>LeetCode 剑指Offer 05</title>
+        <link>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-05/</link>
+        <pubDate>Mon, 04 Jan 2021 21:54:24 +0800</pubDate>
+        
+        <guid>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-05/</guid>
+        <description>&lt;h1 id=&#34;leetcode刷题笔记--剑指offer-05&#34;&gt;LeetCode刷题笔记&amp;ndash;剑指Offer 05&lt;/h1&gt;
+&lt;h2 id=&#34;题目二维数组中的查找&#34;&gt;题目：二维数组中的查找&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;题目链接&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;请实现一个函数，把字符串 &lt;code&gt;s&lt;/code&gt; 中的每个空格替换成&amp;quot;%20&amp;quot;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;示例&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;输入&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;s = &amp;ldquo;We are happy.&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;输出&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;We%20are%20happy.&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;限制&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;0 &amp;lt;= s 的长度 &amp;lt;= 10000&lt;/p&gt;
+&lt;h2 id=&#34;题解&#34;&gt;题解&lt;/h2&gt;
+&lt;p&gt;直接使用strings下的Replaces接口函数即可。&lt;/p&gt;
+&lt;p&gt;函数声明为: &lt;code&gt;func Replace(s, old, new string, n int) string&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;功能为: 返回将s中前n个不重叠old子串都替换为new的新字符串，如果n&amp;lt;0会替换所有old子串。&lt;/p&gt;
+&lt;p&gt;代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;replaceSpace&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;strings&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Replace&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34; &amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;%20&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;执行用时: 0 ms&lt;/p&gt;
+&lt;p&gt;内存消耗: 1.9 MB&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>LeetCode 剑指Offer 04</title>
         <link>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-04/</link>
         <pubDate>Mon, 04 Jan 2021 19:39:31 +0800</pubDate>

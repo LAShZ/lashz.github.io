@@ -6,7 +6,30 @@
     <description>Recent content in LeetCode on Lavch&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 Jan 2021 19:39:31 +0800</lastBuildDate><atom:link href="https://lashz.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Jan 2021 21:54:24 +0800</lastBuildDate><atom:link href="https://lashz.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LeetCode 剑指Offer 05</title>
+      <link>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-05/</link>
+      <pubDate>Mon, 04 Jan 2021 21:54:24 +0800</pubDate>
+      
+      <guid>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-05/</guid>
+      <description>LeetCode刷题笔记&amp;ndash;剑指Offer 05 题目：二维数组中的查找 题目链接。
+请实现一个函数，把字符串 s 中的每个空格替换成&amp;quot;%20&amp;quot;。
+ 示例
+ 输入：
+s = &amp;ldquo;We are happy.&amp;rdquo;
+输出：
+&amp;ldquo;We%20are%20happy.&amp;rdquo;
+限制:
+0 &amp;lt;= s 的长度 &amp;lt;= 10000
+题解 直接使用strings下的Replaces接口函数即可。
+函数声明为: func Replace(s, old, new string, n int) string
+功能为: 返回将s中前n个不重叠old子串都替换为new的新字符串，如果n&amp;lt;0会替换所有old子串。
+代码：
+func replaceSpace(s string) string { return strings.Replace(s, &amp;#34; &amp;#34;, &amp;#34;%20&amp;#34;, -1) } 执行用时: 0 ms
+内存消耗: 1.9 MB</description>
+    </item>
+    
     <item>
       <title>LeetCode 剑指Offer 04</title>
       <link>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-04/</link>
