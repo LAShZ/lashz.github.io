@@ -6,7 +6,124 @@
         <description>Recent content on Lavch&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 03 Jan 2021 14:23:11 +0800</lastBuildDate><atom:link href="https://lashz.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 04 Jan 2021 15:28:37 +0800</lastBuildDate><atom:link href="https://lashz.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Go语言闭包研究</title>
+        <link>https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80%E9%97%AD%E5%8C%85%E7%A0%94%E7%A9%B6/</link>
+        <pubDate>Mon, 04 Jan 2021 15:28:37 +0800</pubDate>
+        
+        <guid>https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80%E9%97%AD%E5%8C%85%E7%A0%94%E7%A9%B6/</guid>
+        <description>&lt;h1 id=&#34;go语言闭包研究&#34;&gt;Go语言闭包研究&lt;/h1&gt;
+&lt;p&gt;闭包是Go语言中一个非常抽象的概念，也是笔者在Go语言的学习过程中遇到的第一个难点，希望本文可以较为细致的将闭包的概念及特性介绍清楚。&lt;/p&gt;
+&lt;h2 id=&#34;从函数变量说起&#34;&gt;从函数变量说起&lt;/h2&gt;
+&lt;p&gt;在Go语言中，函数也是一个变量，有类型、有值、有地址、可以被赋值、引用等，函数的零值为nil，但函数之间不能进行比较运算。&lt;/p&gt;
+&lt;h2 id=&#34;什么是闭包&#34;&gt;什么是闭包&lt;/h2&gt;
+&lt;p&gt;由于函数也是变量，自然的可以想到函数也是有地址的（对汇编和操作系统有一定了解后就会知道，每一次函数的调用都会在内存中为该函数分配一片区域，叫做&lt;strong&gt;栈帧&lt;/strong&gt;），而闭包，就可以理解为将函数的地址赋值给了一个变量，又由于Go的变量会进行自动反向引用，所以可以将该变量也当作一个函数使用（且由于栈帧的概念，该变量中还保存着函数被赋值时的内部各个变量的状态）。下面给出例子对其进行展示：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;
+
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;
+
+&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;inc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;	&lt;span class=&#34;c1&#34;&gt;//返回值为函数闭包
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;incr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;	&lt;span class=&#34;c1&#34;&gt;//i被赋值为函数闭包，i内保存了x的状态
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;printLn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;())&lt;/span&gt;	&lt;span class=&#34;c1&#34;&gt;// 1
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;printLn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;())&lt;/span&gt;	&lt;span class=&#34;c1&#34;&gt;// 2
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;printLn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;())&lt;/span&gt;	&lt;span class=&#34;c1&#34;&gt;// 3
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    
+    &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;printLn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;incr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()())&lt;/span&gt;	&lt;span class=&#34;c1&#34;&gt;//1
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;printLn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;incr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()())&lt;/span&gt;	&lt;span class=&#34;c1&#34;&gt;//1
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;printLn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;incr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()())&lt;/span&gt;	&lt;span class=&#34;c1&#34;&gt;//1
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;最开始的三个输出中，由于&lt;code&gt;i&lt;/code&gt;内保存了&lt;code&gt;x&lt;/code&gt;的状态，故每次对&lt;code&gt;i&lt;/code&gt;的调用都会通过&lt;code&gt;i&lt;/code&gt;内保存的指向&lt;code&gt;x&lt;/code&gt;的指针修改&lt;code&gt;x&lt;/code&gt;的值，且状态继续保存在&lt;code&gt;i&lt;/code&gt;中，这种状态叫做&lt;code&gt;x&lt;/code&gt;的&lt;strong&gt;逃逸&lt;/strong&gt;，它的生命周期没有随着作用域的结束而结束。&lt;/p&gt;
+&lt;p&gt;之后的三个输出时，由于每一次都调用一次&lt;code&gt;incr()&lt;/code&gt;返回的一个闭包，故三次的&lt;code&gt;x&lt;/code&gt;属于不同的栈帧，状态各自独立。&lt;/p&gt;
+&lt;h2 id=&#34;闭包引用&#34;&gt;闭包引用&lt;/h2&gt;
+&lt;p&gt;理解了闭包的定义之后，对于闭包的引用也就自然而然了。闭包的引用其实就和其他变量的引用一样，只不过引用闭包之后得到的是一个保存了闭包声明时的状态的函数。需要注意的是，闭包对于外层词法域变量是&lt;strong&gt;引用&lt;/strong&gt;的，也即，在闭包外部的变量修改可能会影响闭包内部的值，通过以下例子进行说明：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;f&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;nb&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}()&lt;/span&gt;	&lt;span class=&#34;c1&#34;&gt;//等价于定义之后调用一次f(), 输出1
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;
+&lt;span class=&#34;nf&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;	&lt;span class=&#34;c1&#34;&gt;// 2
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;
+&lt;span class=&#34;nf&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;	&lt;span class=&#34;c1&#34;&gt;// 3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;每次调用&lt;code&gt;f&lt;/code&gt;时都会对x解引用取值，因为闭包内保存的是x的地址。&lt;/p&gt;
+&lt;h2 id=&#34;进阶实例&#34;&gt;进阶实例&lt;/h2&gt;
+&lt;p&gt;接下来给出一个较为复杂的例子，涉及到了闭包的循环引用，借此可以加深对闭包的特性的理解：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;funcSlice&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;funcSlice&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;append&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;funcSlice&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+		&lt;span class=&#34;nb&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+	&lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;funcSlice&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]()&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;读者可以先思考一下这段代码最后会输出什么。&lt;/p&gt;
+&lt;p&gt;5&lt;/p&gt;
+&lt;p&gt;4&lt;/p&gt;
+&lt;p&gt;3&lt;/p&gt;
+&lt;p&gt;2&lt;/p&gt;
+&lt;p&gt;1&lt;/p&gt;
+&lt;p&gt;0&lt;/p&gt;
+&lt;p&gt;这段代码最后的输出结果为&lt;code&gt;3 3 3&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;感觉有点不理解了？这是正常的，让我们分析一下这段代码。&lt;/p&gt;
+&lt;p&gt;首先是对&lt;code&gt;funcSlice&lt;/code&gt;这个slice变量的声明，通过一个for循环，每次都在其末尾添加一个闭包，闭包内是将变量&lt;code&gt;i&lt;/code&gt;输出。&lt;/p&gt;
+&lt;p&gt;看到这个闭包的定义，是不是与之前那个输出&lt;code&gt;x&lt;/code&gt;的函数一样？所以这里的&lt;code&gt;i&lt;/code&gt;也是一个引用，闭包内实际上保存着的是&lt;code&gt;i&lt;/code&gt;的地址，只不过在调用闭包函数时，自动解引用取了其保存的值，可以这样修改这段代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;funcSlice&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;funcSlice&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;append&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;funcSlice&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+		&lt;span class=&#34;nb&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+	&lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;funcSlice&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]()&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;看到的输出结果为&lt;code&gt;0xc0000ac1d0 0xc0000ac1d0 0xc0000ac1d0&lt;/code&gt;，即每一次声明这个闭包得到的&lt;code&gt;i&lt;/code&gt;的地址是一样的，故最后&lt;code&gt;i&lt;/code&gt;的输出结果都是第一个for循环结束后&lt;code&gt;i&lt;/code&gt;被赋予的值&lt;code&gt;3&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;那么如果要让输出结果为&lt;code&gt;1 2 3&lt;/code&gt;有什么方法呢？下面给出两种解决方案，这两种解决方案也是遇到大多数闭包引用问题时可以使用的方法。&lt;/p&gt;
+&lt;h3 id=&#34;一声明新变量&#34;&gt;一、声明新变量&lt;/h3&gt;
+&lt;p&gt;在返回的闭包内声明新变量：&lt;code&gt;Output := i&lt;/code&gt;，并输出&lt;code&gt;j&lt;/code&gt;，这样输出的就不再是对&lt;code&gt;i&lt;/code&gt;的引用而是&lt;code&gt;Output&lt;/code&gt;的值。修改后的代码为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;funcSlice&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;funcSlice&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;append&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;funcSlice&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;Output&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;
+		&lt;span class=&#34;nb&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+	&lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;funcSlice&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]()&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;二声明新函数并传参&#34;&gt;二、声明新函数并传参&lt;/h3&gt;
+&lt;p&gt;将代码修改为:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;funcSlice&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+		&lt;span class=&#34;nx&#34;&gt;funcSlice&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;append&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;funcSlice&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+			&lt;span class=&#34;nb&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+		&lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;	&lt;span class=&#34;c1&#34;&gt;//闭包
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;p&#34;&gt;}(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;	&lt;span class=&#34;c1&#34;&gt;//闭包并调用
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;funcSlice&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]()&lt;/span&gt;	&lt;span class=&#34;c1&#34;&gt;//调用
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;现在 &lt;code&gt;println(i)&lt;/code&gt; 使用的 &lt;code&gt;i&lt;/code&gt; 是通过函数参数传递进来的，并且 Go 语言的函数参数是按值传递的。&lt;/p&gt;
+&lt;p&gt;所以相当于在这个新的匿名函数内声明了三个变量，被三个闭包函数独立引用。原理跟第一种方法是一样的。&lt;/p&gt;
+&lt;h2 id=&#34;思考题&#34;&gt;思考题&lt;/h2&gt;
+&lt;p&gt;希望通过本篇博客读者能对Go语言中的闭包有一定的掌握。&lt;/p&gt;
+&lt;p&gt;可以自行尝试使用闭包是实现一个Fibonacci函数，其返回值为一个闭包，能返回连续的Fibonacci数。&lt;/p&gt;
+&lt;h2 id=&#34;参考链接&#34;&gt;参考链接&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.sulinehk.com/post/golang-closure-details/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Go语言闭包详解&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>LeetCode 剑指Offer 10-I</title>
         <link>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-10-i/</link>
         <pubDate>Sun, 03 Jan 2021 14:23:11 +0800</pubDate>
@@ -146,7 +263,7 @@ F(N) = F(N - 1) + F(N - 2), 其中 N &amp;gt; 1.
 &lt;p&gt;本文是用于记录作者在Go语言的学习过程中经历的种种，方便日后复习，也为他人提供些许的经验参考。&lt;/p&gt;
 &lt;p&gt;本文开始于作者大三寒假时期，对于数据结构、算法、计算机网络等知识都有一定的了解，也有过一定的项目经验，故一些较为基础的知识不再予以记录，如若读者遇到了难以理解的部分，可以上网自行寻找相关的资料，若仍然无法理解，请联系作者加以解释。也欢迎各位对本文中出现的错误以及不足之处予以指正。&lt;/p&gt;
 &lt;p&gt;转载请注明出处。&lt;/p&gt;
-&lt;h2 id=&#34;go语言语法基础&#34;&gt;Go语言语法基础&lt;/h2&gt;
+&lt;h2 id=&#34;go语言语法&#34;&gt;Go语言语法&lt;/h2&gt;
 &lt;h3 id=&#34;函数&#34;&gt;函数&lt;/h3&gt;
 &lt;h4 id=&#34;函数定义&#34;&gt;函数定义&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
@@ -294,7 +411,7 @@ F(N) = F(N - 1) + F(N - 2), 其中 N &amp;gt; 1.
 &lt;h2 id=&#34;go语言的ide&#34;&gt;GO语言的IDE&lt;/h2&gt;
 &lt;p&gt;一个好的IDE可以使代码的编写事半功倍。本文作者使用的IDE为JetBrains推出的GoLand，平时对于小型代码的编写也会使用Visual Studio Code配上Go语言插件直接进行编写。&lt;/p&gt;
 &lt;p&gt;两个软件的下载安装配置工作请读者自行学习，本文不再赘述。&lt;/p&gt;
-&lt;h2 id=&#34;go语言的语法基础&#34;&gt;GO语言的语法基础&lt;/h2&gt;
+&lt;h2 id=&#34;go语言的语法&#34;&gt;GO语言的语法&lt;/h2&gt;
 &lt;p&gt;Go语言作为21世纪的C语言，许多语法特性与C语言类似，如需要对每个变量的类型都进行声明等，本文不对Go语言的语法基础细节做过多的说明，对于一些基本的语法使用只需参照官方文档或是任意一本参考书即可，本文只对作者学习过程中遇到的较为难以理解或是复杂的概念做一个记录说明。&lt;/p&gt;
 &lt;h3 id=&#34;变量与常量声明&#34;&gt;变量与常量声明&lt;/h3&gt;
 &lt;p&gt;Go的常量声明使用&lt;code&gt;const&lt;/code&gt;关键字：&lt;code&gt;const identifier [type] = value&lt;/code&gt;&lt;/p&gt;
