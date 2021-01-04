@@ -1,53 +1,47 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='LeetCode刷题笔记&amp;ndash;剑指Offer 03 题目：数组中重复的数字 找出数组中重复的数字。
-在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
- 示例 1：
- 输入：
-[2, 3, 1, 0, 2, 5, 3]
-输出：
-2 或 3
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='LeetCode刷题笔记&amp;ndash;剑指Offer 04 题目：二维数组中的查找 题目链接。
+在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+ 示例
+ 现有矩阵 matrix 如下：
+[ [1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30] ] 给定 target = 5，返回 true。
+给定 target = 20，返回 false。
 限制：
-2 &amp;lt;= n &amp;lt;= 100000
-题解 本题为基础题，难度不高，看到题目即可想到最为简单的暴力哈希解法，不过其实还存在更优解法，下面给予讨论。
-哈希表 直接使用一个map存放数字是否出现过，遍历整个slice，若数字对应的value为true则返回该数字，否则将其value置为true。
-func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val := range nums { if(stat[val]){ return val }else{ stat[val] = true } } return -1 } 执行用时: 48 ms
-内存消耗: 8.9 MB'><title>LeetCode 剑指Offer 03</title>
+0 &amp;lt;= n &amp;lt;= 1000
+0 &amp;lt;= m &amp;lt;= 1000
+题解 这道题最简单的做法就是遍历整个数组，每一个元素都拿来比较，找到了就返回true，遍历完之后还没找到就返回false，但这种方法的时间复杂度为O(NM)，且并未利用数组内元素递增的特点，
+对于这道题我们先将数组画出来，可以发现对于任意一个元素，总是要大于它的左下方的元素。'><title>LeetCode 剑指Offer 04</title>
 
-<link rel='canonical' href='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-03/'>
+<link rel='canonical' href='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-04/'>
 
-<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='LeetCode 剑指Offer 03'>
-<meta property='og:description' content='LeetCode刷题笔记&amp;ndash;剑指Offer 03 题目：数组中重复的数字 找出数组中重复的数字。
-在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
- 示例 1：
- 输入：
-[2, 3, 1, 0, 2, 5, 3]
-输出：
-2 或 3
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='LeetCode 剑指Offer 04'>
+<meta property='og:description' content='LeetCode刷题笔记&amp;ndash;剑指Offer 04 题目：二维数组中的查找 题目链接。
+在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+ 示例
+ 现有矩阵 matrix 如下：
+[ [1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30] ] 给定 target = 5，返回 true。
+给定 target = 20，返回 false。
 限制：
-2 &amp;lt;= n &amp;lt;= 100000
-题解 本题为基础题，难度不高，看到题目即可想到最为简单的暴力哈希解法，不过其实还存在更优解法，下面给予讨论。
-哈希表 直接使用一个map存放数字是否出现过，遍历整个slice，若数字对应的value为true则返回该数字，否则将其value置为true。
-func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val := range nums { if(stat[val]){ return val }else{ stat[val] = true } } return -1 } 执行用时: 48 ms
-内存消耗: 8.9 MB'>
-<meta property='og:url' content='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-03/'>
+0 &amp;lt;= n &amp;lt;= 1000
+0 &amp;lt;= m &amp;lt;= 1000
+题解 这道题最简单的做法就是遍历整个数组，每一个元素都拿来比较，找到了就返回true，遍历完之后还没找到就返回false，但这种方法的时间复杂度为O(NM)，且并未利用数组内元素递增的特点，
+对于这道题我们先将数组画出来，可以发现对于任意一个元素，总是要大于它的左下方的元素。'>
+<meta property='og:url' content='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-04/'>
 <meta property='og:site_name' content='Lavch&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Go' /><meta property='article:tag' content='LeetCode' /><meta property='article:tag' content='算法' /><meta property='article:tag' content='剑指Offer' /><meta property='article:published_time' content='2021-01-03T11:49:10&#43;08:00'/><meta property='article:modified_time' content='2021-01-03T11:49:10&#43;08:00'/>
-<meta name="twitter:title" content="LeetCode 剑指Offer 03">
-<meta name="twitter:description" content="LeetCode刷题笔记&amp;ndash;剑指Offer 03 题目：数组中重复的数字 找出数组中重复的数字。
-在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
- 示例 1：
- 输入：
-[2, 3, 1, 0, 2, 5, 3]
-输出：
-2 或 3
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Go' /><meta property='article:tag' content='LeetCode' /><meta property='article:tag' content='算法' /><meta property='article:tag' content='剑指Offer' /><meta property='article:published_time' content='2021-01-04T19:39:31&#43;08:00'/><meta property='article:modified_time' content='2021-01-04T19:39:31&#43;08:00'/>
+<meta name="twitter:title" content="LeetCode 剑指Offer 04">
+<meta name="twitter:description" content="LeetCode刷题笔记&amp;ndash;剑指Offer 04 题目：二维数组中的查找 题目链接。
+在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+ 示例
+ 现有矩阵 matrix 如下：
+[ [1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30] ] 给定 target = 5，返回 true。
+给定 target = 20，返回 false。
 限制：
-2 &amp;lt;= n &amp;lt;= 100000
-题解 本题为基础题，难度不高，看到题目即可想到最为简单的暴力哈希解法，不过其实还存在更优解法，下面给予讨论。
-哈希表 直接使用一个map存放数字是否出现过，遍历整个slice，若数字对应的value为true则返回该数字，否则将其value置为true。
-func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val := range nums { if(stat[val]){ return val }else{ stat[val] = true } } return -1 } 执行用时: 48 ms
-内存消耗: 8.9 MB">
+0 &amp;lt;= n &amp;lt;= 1000
+0 &amp;lt;= m &amp;lt;= 1000
+题解 这道题最简单的做法就是遍历整个数组，每一个元素都拿来比较，找到了就返回true，遍历完之后还没找到就返回false，但这种方法的时间复杂度为O(NM)，且并未利用数组内元素递增的特点，
+对于这道题我们先将数组画出来，可以发现对于任意一个元素，总是要大于它的左下方的元素。">
     </head>
     <body class="">
     <script>
@@ -233,7 +227,7 @@ func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val :
     
 
     <h2 class="article-title">
-        <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-03/">LeetCode 剑指Offer 03</a>
+        <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-04/">LeetCode 剑指Offer 04</a>
     </h2>
 
     <footer class="article-time">
@@ -245,70 +239,37 @@ func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val :
 
 
 
-        <time class="article-time--published">Jan 03, 2021</time>
+        <time class="article-time--published">Jan 04, 2021</time>
     </footer></div>
 </header>
 
     <section class="article-content">
-    <h1 id="leetcode刷题笔记--剑指offer-03">LeetCode刷题笔记&ndash;剑指Offer 03</h1>
-<h2 id="题目数组中重复的数字">题目：数组中重复的数字</h2>
-<p><a class="link" href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/"  target="_blank" rel="noopener"
-    >找出数组中重复的数字</a>。</p>
-<p>在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p>
+    <h1 id="leetcode刷题笔记--剑指offer-04">LeetCode刷题笔记&ndash;剑指Offer 04</h1>
+<h2 id="题目二维数组中的查找">题目：二维数组中的查找</h2>
+<p><a class="link" href="https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/"  target="_blank" rel="noopener"
+    >题目链接</a>。</p>
+<p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
 <blockquote>
-<p>示例 1：</p>
+<p>示例</p>
 </blockquote>
-<p><strong>输入</strong>：</p>
-<p>[2, 3, 1, 0, 2, 5, 3]</p>
-<p><strong>输出</strong>：</p>
-<p>2 或 3</p>
+<p>现有矩阵 matrix 如下：</p>
+<pre><code>[
+  [1,   4,  7, 11, 15],
+  [2,   5,  8, 12, 19],
+  [3,   6,  9, 16, 22],
+  [10, 13, 14, 17, 24],
+  [18, 21, 23, 26, 30]
+]
+</code></pre><p>给定 target = <code>5</code>，返回 <code>true</code>。</p>
+<p>给定 target = <code>20</code>，返回 <code>false</code>。</p>
 <p><strong>限制</strong>：</p>
-<p>2 &lt;= n &lt;= 100000</p>
+<p>0 &lt;= n &lt;= 1000</p>
+<p>0 &lt;= m &lt;= 1000</p>
 <h2 id="题解">题解</h2>
-<p>本题为基础题，难度不高，看到题目即可想到最为简单的暴力哈希解法，不过其实还存在更优解法，下面给予讨论。</p>
-<h3 id="哈希表">哈希表</h3>
-<p>直接使用一个map存放数字是否出现过，遍历整个slice，若数字对应的value为true则返回该数字，否则将其value置为true。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">findRepeatNumber</span><span class="p">(</span><span class="nx">nums</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
-    <span class="nx">stat</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span> <span class="kt">bool</span><span class="p">)</span>
-    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">val</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">nums</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">stat</span><span class="p">[</span><span class="nx">val</span><span class="p">]){</span>
-            <span class="k">return</span> <span class="nx">val</span>
-        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-            <span class="nx">stat</span><span class="p">[</span><span class="nx">val</span><span class="p">]</span> <span class="p">=</span> <span class="kc">true</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-<span class="p">}</span>
-</code></pre></div><p>执行用时: 48 ms</p>
-<p>内存消耗: 8.9 MB</p>
-<h3 id="改进哈希法">改进哈希法</h3>
-<p>由于数组的长度为n，而所有数字都在 0～n-1 的范围内，所以只需要构建一个大小为n的数组temp，nums内的值就是temp的下标，每次遍历到都将其对应的值加一，当该下标对应的值大于1的时候返回该下标。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">findRepeatNumber</span><span class="p">(</span><span class="nx">nums</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
-    <span class="nx">n</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">nums</span><span class="p">)</span>
-    <span class="nx">temp</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span>
-    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="p">&lt;</span><span class="nx">n</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">{</span>
-        <span class="nx">temp</span><span class="p">[</span><span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">]]</span><span class="o">++</span>
-        <span class="k">if</span> <span class="nx">temp</span><span class="p">[</span><span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">]]</span> <span class="p">&gt;</span> <span class="mi">1</span><span class="p">{</span>
-            <span class="k">return</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-<span class="p">}</span>
-</code></pre></div><p>执行用时: 36 ms</p>
-<p>内存消耗: 8 MB</p>
-<h3 id="排序遍历">排序+遍历</h3>
-<p>由于只需要找到重复数字，所以可以将nums内的元素排序后对其遍历，将当前数字与下一个数字进行比较，若相等则找到了重复数字，直接返回该值。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">findRepeatNumber</span><span class="p">(</span><span class="nx">nums</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
-    <span class="nx">sort</span><span class="p">.</span><span class="nf">Ints</span><span class="p">(</span><span class="nx">nums</span><span class="p">)</span>
-    <span class="k">for</span> <span class="nx">sub</span><span class="p">,</span> <span class="nx">val</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">nums</span><span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">val</span> <span class="o">==</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">sub</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]){</span>
-            <span class="k">return</span> <span class="nx">val</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-<span class="p">}</span>
-</code></pre></div><p>执行用时: 56 ms</p>
-<p>内存消耗: 8.7 MB</p>
+<p>这道题最简单的做法就是遍历整个数组，每一个元素都拿来比较，找到了就返回<code>true</code>，遍历完之后还没找到就返回<code>false</code>，但这种方法的时间复杂度为O(NM)，且并未利用数组内元素递增的特点，</p>
+<p>对于这道题我们先将数组画出来，可以发现对于任意一个元素，总是要大于它的左下方的元素。</p>
+<p><!-- raw HTML omitted --></p>
+<p><img src="1.png" alt="image"  /></p>
 
 </section>
 
@@ -354,24 +315,24 @@ func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val :
                 
                     
 <article class="">
-    <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-04/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">LeetCode 剑指Offer 04</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="">
     <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-10-i/">
         
         
 
         <div class="article-details">
             <h2 class="article-title">LeetCode 剑指Offer 10-I</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-03/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LeetCode 剑指Offer 03</h2>
         </div>
     </a>
 </article>
@@ -511,8 +472,8 @@ func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val :
                     
                     
                     <li class="nav-item">
-                        <a class="nav-link text-left" href="#leetcode%e5%88%b7%e9%a2%98%e7%ac%94%e8%ae%b0--%e5%89%91%e6%8c%87offer-03">
-                            LeetCode刷题笔记–剑指Offer 03
+                        <a class="nav-link text-left" href="#leetcode%e5%88%b7%e9%a2%98%e7%ac%94%e8%ae%b0--%e5%89%91%e6%8c%87offer-04">
+                            LeetCode刷题笔记–剑指Offer 04
                         </a>
                     </li>
                     
@@ -533,8 +494,8 @@ func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val :
                     
                     
                     <li class="nav-item">
-                        <a class="nav-link text-left" href="#%e9%a2%98%e7%9b%ae%e6%95%b0%e7%bb%84%e4%b8%ad%e9%87%8d%e5%a4%8d%e7%9a%84%e6%95%b0%e5%ad%97">
-                            题目：数组中重复的数字
+                        <a class="nav-link text-left" href="#%e9%a2%98%e7%9b%ae%e4%ba%8c%e7%bb%b4%e6%95%b0%e7%bb%84%e4%b8%ad%e7%9a%84%e6%9f%a5%e6%89%be">
+                            题目：二维数组中的查找
                         </a>
                     </li>
                     
@@ -563,90 +524,6 @@ func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val :
                     </li>
                     
                     
-                </ul>
-                
-                </ul>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                <ul class="nav">
-                    
-                <ul class="nav">
-                    
-                <ul class="nav">
-                    
-                    
-                    <li class="nav-item">
-                        <a class="nav-link text-left" href="#%e5%93%88%e5%b8%8c%e8%a1%a8">
-                            哈希表
-                        </a>
-                    </li>
-                    
-                    
-                </ul>
-                
-                </ul>
-                
-                </ul>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                <ul class="nav">
-                    
-                <ul class="nav">
-                    
-                <ul class="nav">
-                    
-                    
-                    <li class="nav-item">
-                        <a class="nav-link text-left" href="#%e6%94%b9%e8%bf%9b%e5%93%88%e5%b8%8c%e6%b3%95">
-                            改进哈希法
-                        </a>
-                    </li>
-                    
-                    
-                </ul>
-                
-                </ul>
-                
-                </ul>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                <ul class="nav">
-                    
-                <ul class="nav">
-                    
-                <ul class="nav">
-                    
-                    
-                    <li class="nav-item">
-                        <a class="nav-link text-left" href="#%e6%8e%92%e5%ba%8f%e9%81%8d%e5%8e%86">
-                            排序&#43;遍历
-                        </a>
-                    </li>
-                    
-                    
-                </ul>
-                
                 </ul>
                 
                 </ul>
