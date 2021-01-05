@@ -6,14 +6,34 @@
     <description>Recent content in Go on Lavch&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 Jan 2021 21:54:24 +0800</lastBuildDate><atom:link href="https://lashz.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Jan 2021 11:24:07 +0800</lastBuildDate><atom:link href="https://lashz.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LeetCode 剑指Offer 06</title>
+      <link>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-06/</link>
+      <pubDate>Tue, 05 Jan 2021 11:24:07 +0800</pubDate>
+      
+      <guid>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-06/</guid>
+      <description>LeetCode刷题笔记&amp;ndash;剑指Offer 06 题目：从尾到头打印链表 题目链接。
+输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。
+ 示例
+ 输入：
+head = [1, 3, 2]
+输出：
+[2, 3, 1]
+限制:
+0 &amp;lt;= 链表长度 &amp;lt;= 10000
+题解 本题最容易想到的就是使用一个栈，利用栈先进后出的特性将链表内的值都放入，然后再从栈中取出放入数组内，即可实现倒序输出。不过由于Go语言并无现成的栈的数据结构，且要自己实现显得整到题目的代码较为臃肿，故可以使用别的方法。下面给出我的两种思路（其实归根结底还是用的栈）
+利用defer和匿名函数 虽然Go语言中并无现成的栈的数据结构，但是Go语言的defer的执行顺序为先进后出（关于defer的介绍可以参考博主的这篇博客，关于匿名函数和闭包的介绍可以参考博主的这篇博客），因此我们可以利用这个特性，循环到链表的每一个节点时，都通过defer调用一个匿名函数，匿名函数的功能为将该节点的值加到数组尾部。当函数执行到return语句时，就按照倒序将链表的值放入了数组中。需要注意的一点是，使用这种方式时，函数的返回值必须命名，否则执行完return语句后函数将返回一个空值，而不会把所有defer执行完成后的数组返回。下面给出代码：
+/** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func reversePrint(head *ListNode) (list []int) { for ; head != nil; head = head.Next { temp := head.Val defer func() { list = append(list, temp) }() } return } 执行用时: 4 ms</description>
+    </item>
+    
     <item>
       <title>LeetCode 剑指Offer 05</title>
       <link>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-05/</link>
       <pubDate>Mon, 04 Jan 2021 21:54:24 +0800</pubDate>
       
       <guid>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-05/</guid>
-      <description>LeetCode刷题笔记&amp;ndash;剑指Offer 05 题目：二维数组中的查找 题目链接。
+      <description>LeetCode刷题笔记&amp;ndash;剑指Offer 05 题目：把数字翻译成字符串 题目链接。
 请实现一个函数，把字符串 s 中的每个空格替换成&amp;quot;%20&amp;quot;。
  示例
  输入：
