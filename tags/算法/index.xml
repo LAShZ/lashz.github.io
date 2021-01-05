@@ -6,7 +6,32 @@
     <description>Recent content in 算法 on Lavch&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Jan 2021 11:24:07 +0800</lastBuildDate><atom:link href="https://lashz.github.io/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Jan 2021 19:50:31 +0800</lastBuildDate><atom:link href="https://lashz.github.io/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LeetCode 剑指Offer 07</title>
+      <link>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-07/</link>
+      <pubDate>Tue, 05 Jan 2021 19:50:31 +0800</pubDate>
+      
+      <guid>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-07/</guid>
+      <description>LeetCode刷题笔记&amp;ndash;剑指Offer 07 题目：重建二叉树 题目链接。
+输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。
+ 示例
+ 输入：
+前序遍历 preorder = [3,9,20,15,7]
+中序遍历 inorder = [9,3,15,20,7]
+输出：
+ 3 / \ 9 20 / \ 15 7 限制:
+0 &amp;lt;= 节点个数 &amp;lt;= 5000
+题解 本题难度不高，主要是对于二叉树的遍历方式的掌握。
+前序遍历是先遍历根节点，然后遍历左子树，最后遍历右子树。
+中序遍历是先遍历左子树，然后遍历根节点，最后遍历右子树。
+后续遍历是先遍历左子树，然后遍历右子树，最后遍历根节点。
+所以，可以通过前序遍历，找到二叉树的根节点，再通过找到的根节点，在中序遍历序列中，将树在根节点的前后划分为左子树和右子树，最后对子树进行递归或是迭代，直到将所有节点都插入树内。
+以给出的示例为例，首先通过前序遍历序列的第一个值preorder[0] = 3知道根节点为3，然后在中序遍历序列中找到值为3的节点inorder[1]，这样就知道了左子树的节点为[9]，右子树的节点为[15,20,7]。因为preorder[0]为根节点，且由中序遍历可知，左子树加上根节点的节点数序号为index = 1（从0开始计数），所以在前序遍历序列中，左子树的节点为preorder[1: index+1]或是inorder[:index]，右子树的节点为preorder[1+1: ]或是inorder[index+1:]。
+下面给出递归和迭代两种方法的代码。
+递归法 /** * Definition for a binary tree node. * type TreeNode struct { * Val int * Left *TreeNode * Right *TreeNode * } */ func buildTree(preorder []int, inorder []int) *TreeNode { if len(preorder)==0{ return nil } root := &amp;amp;TreeNode{Val:preorder[0]}	// 建树  var index int for i := range inorder{ if inorder[i]==preorder[0]{	// 找到根节点  index = i break } } root.</description>
+    </item>
+    
     <item>
       <title>LeetCode 剑指Offer 06</title>
       <link>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-06/</link>

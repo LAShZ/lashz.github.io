@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='LeetCode刷题笔记&amp;ndash;剑指Offer 07 题目：重建二叉树 题目链接。
+输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。
+ 示例
+ 输入：
+前序遍历 preorder = [3,9,20,15,7]
+中序遍历 inorder = [9,3,15,20,7]
+输出：
+ 3 / \ 9 20 / \ 15 7 限制:
+0 &amp;lt;= 节点个数 &amp;lt;= 5000
+题解 本题难度不高，主要是对于二叉树的遍历方式的掌握。
+前序遍历是先遍历根节点，然后遍历左子树，最后遍历右子树。
+中序遍历是先遍历左子树，然后遍历根节点，最后遍历右子树。
+后续遍历是先遍历左子树，然后遍历右子树，最后遍历根节点。
+所以，可以通过前序遍历，找到二叉树的根节点，再通过找到的根节点，在中序遍历序列中，将树在根节点的前后划分为左子树和右子树，最后对子树进行递归或是迭代，直到将所有节点都插入树内。
+以给出的示例为例，首先通过前序遍历序列的第一个值preorder[0] = 3知道根节点为3，然后在中序遍历序列中找到值为3的节点inorder[1]，这样就知道了左子树的节点为[9]，右子树的节点为[15,20,7]。因为preorder[0]为根节点，且由中序遍历可知，左子树加上根节点的节点数序号为index = 1（从0开始计数），所以在前序遍历序列中，左子树的节点为preorder[1: index&#43;1]或是inorder[:index]，右子树的节点为preorder[1&#43;1: ]或是inorder[index&#43;1:]。
+下面给出递归和迭代两种方法的代码。
+递归法 /** * Definition for a binary tree node. * type TreeNode struct { * Val int * Left *TreeNode * Right *TreeNode * } */ func buildTree(preorder []int, inorder []int) *TreeNode { if len(preorder)==0{ return nil } root := &amp;amp;TreeNode{Val:preorder[0]}	// 建树  var index int for i := range inorder{ if inorder[i]==preorder[0]{	// 找到根节点  index = i break } } root.'><title>LeetCode 剑指Offer 07</title>
+
+<link rel='canonical' href='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-07/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='LeetCode 剑指Offer 07'>
+<meta property='og:description' content='LeetCode刷题笔记&amp;ndash;剑指Offer 07 题目：重建二叉树 题目链接。
+输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。
+ 示例
+ 输入：
+前序遍历 preorder = [3,9,20,15,7]
+中序遍历 inorder = [9,3,15,20,7]
+输出：
+ 3 / \ 9 20 / \ 15 7 限制:
+0 &amp;lt;= 节点个数 &amp;lt;= 5000
+题解 本题难度不高，主要是对于二叉树的遍历方式的掌握。
+前序遍历是先遍历根节点，然后遍历左子树，最后遍历右子树。
+中序遍历是先遍历左子树，然后遍历根节点，最后遍历右子树。
+后续遍历是先遍历左子树，然后遍历右子树，最后遍历根节点。
+所以，可以通过前序遍历，找到二叉树的根节点，再通过找到的根节点，在中序遍历序列中，将树在根节点的前后划分为左子树和右子树，最后对子树进行递归或是迭代，直到将所有节点都插入树内。
+以给出的示例为例，首先通过前序遍历序列的第一个值preorder[0] = 3知道根节点为3，然后在中序遍历序列中找到值为3的节点inorder[1]，这样就知道了左子树的节点为[9]，右子树的节点为[15,20,7]。因为preorder[0]为根节点，且由中序遍历可知，左子树加上根节点的节点数序号为index = 1（从0开始计数），所以在前序遍历序列中，左子树的节点为preorder[1: index&#43;1]或是inorder[:index]，右子树的节点为preorder[1&#43;1: ]或是inorder[index&#43;1:]。
+下面给出递归和迭代两种方法的代码。
+递归法 /** * Definition for a binary tree node. * type TreeNode struct { * Val int * Left *TreeNode * Right *TreeNode * } */ func buildTree(preorder []int, inorder []int) *TreeNode { if len(preorder)==0{ return nil } root := &amp;amp;TreeNode{Val:preorder[0]}	// 建树  var index int for i := range inorder{ if inorder[i]==preorder[0]{	// 找到根节点  index = i break } } root.'>
+<meta property='og:url' content='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-07/'>
+<meta property='og:site_name' content='Lavch&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Go' /><meta property='article:tag' content='LeetCode' /><meta property='article:tag' content='算法' /><meta property='article:tag' content='剑指Offer' /><meta property='article:published_time' content='2021-01-05T19:50:31&#43;08:00'/><meta property='article:modified_time' content='2021-01-05T19:50:31&#43;08:00'/>
+<meta name="twitter:title" content="LeetCode 剑指Offer 07">
+<meta name="twitter:description" content="LeetCode刷题笔记&amp;ndash;剑指Offer 07 题目：重建二叉树 题目链接。
+输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。
+ 示例
+ 输入：
+前序遍历 preorder = [3,9,20,15,7]
+中序遍历 inorder = [9,3,15,20,7]
+输出：
+ 3 / \ 9 20 / \ 15 7 限制:
+0 &amp;lt;= 节点个数 &amp;lt;= 5000
+题解 本题难度不高，主要是对于二叉树的遍历方式的掌握。
+前序遍历是先遍历根节点，然后遍历左子树，最后遍历右子树。
+中序遍历是先遍历左子树，然后遍历根节点，最后遍历右子树。
+后续遍历是先遍历左子树，然后遍历右子树，最后遍历根节点。
+所以，可以通过前序遍历，找到二叉树的根节点，再通过找到的根节点，在中序遍历序列中，将树在根节点的前后划分为左子树和右子树，最后对子树进行递归或是迭代，直到将所有节点都插入树内。
+以给出的示例为例，首先通过前序遍历序列的第一个值preorder[0] = 3知道根节点为3，然后在中序遍历序列中找到值为3的节点inorder[1]，这样就知道了左子树的节点为[9]，右子树的节点为[15,20,7]。因为preorder[0]为根节点，且由中序遍历可知，左子树加上根节点的节点数序号为index = 1（从0开始计数），所以在前序遍历序列中，左子树的节点为preorder[1: index&#43;1]或是inorder[:index]，右子树的节点为preorder[1&#43;1: ]或是inorder[index&#43;1:]。
+下面给出递归和迭代两种方法的代码。
+递归法 /** * Definition for a binary tree node. * type TreeNode struct { * Val int * Left *TreeNode * Right *TreeNode * } */ func buildTree(preorder []int, inorder []int) *TreeNode { if len(preorder)==0{ return nil } root := &amp;amp;TreeNode{Val:preorder[0]}	// 建树  var index int for i := range inorder{ if inorder[i]==preorder[0]{	// 找到根节点  index = i break } } root.">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/user_hud926b55af9d691145430398cd251787b_10961_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🧠</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://lashz.github.io/">Lavch&#39;s blog</a></h1>
+        <h2 class="site-description">To the time to life, rather than to life in time.</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://lashz.github.io/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" >
+                刷题笔记
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-07/">LeetCode 剑指Offer 07</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jan 05, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="leetcode刷题笔记--剑指offer-07">LeetCode刷题笔记&ndash;剑指Offer 07</h1>
+<h2 id="题目重建二叉树">题目：重建二叉树</h2>
+<p><a class="link" href="https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/"  target="_blank" rel="noopener"
+    >题目链接</a>。</p>
+<p>输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</p>
+<blockquote>
+<p>示例</p>
+</blockquote>
+<p><strong>输入</strong>：</p>
+<p>前序遍历 preorder = [3,9,20,15,7]</p>
+<p>中序遍历 inorder = [9,3,15,20,7]</p>
+<p><strong>输出</strong>：</p>
+<pre><code>    3
+   / \
+  9  20
+    /  \
+   15   7
+</code></pre><p><strong>限制</strong>:</p>
+<p>0 &lt;= 节点个数 &lt;= 5000</p>
+<h2 id="题解">题解</h2>
+<p>本题难度不高，主要是对于二叉树的遍历方式的掌握。</p>
+<p><strong>前序遍历</strong>是先遍历<code>根</code>节点，然后遍历<code>左</code>子树，最后遍历<code>右</code>子树。</p>
+<p><strong>中序遍历</strong>是先遍历<code>左</code>子树，然后遍历<code>根</code>节点，最后遍历<code>右</code>子树。</p>
+<p><strong>后续遍历</strong>是先遍历<code>左</code>子树，然后遍历<code>右</code>子树，最后遍历<code>根</code>节点。</p>
+<p>所以，可以通过前序遍历，找到二叉树的根节点，再通过找到的根节点，在中序遍历序列中，将树在根节点的前后划分为左子树和右子树，最后对子树进行递归或是迭代，直到将所有节点都插入树内。</p>
+<p>以给出的示例为例，首先通过前序遍历序列的第一个值preorder[0] = 3知道根节点为3，然后在中序遍历序列中找到值为3的节点inorder[1]，这样就知道了左子树的节点为[9]，右子树的节点为[15,20,7]。因为preorder[0]为根节点，且由中序遍历可知，左子树加上根节点的节点数序号为index = 1（从0开始计数），所以在前序遍历序列中，<code>左</code>子树的节点为<code>preorder[1: index+1]</code>或是<code>inorder[:index]</code>，<code>右</code>子树的节点为<code>preorder[1+1: ]</code>或是<code>inorder[index+1:]</code>。</p>
+<p>下面给出递归和迭代两种方法的代码。</p>
+<h3 id="递归法">递归法</h3>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="cm">/**
+</span><span class="cm"> * Definition for a binary tree node.
+</span><span class="cm"> * type TreeNode struct {
+</span><span class="cm"> *     Val int
+</span><span class="cm"> *     Left *TreeNode
+</span><span class="cm"> *     Right *TreeNode
+</span><span class="cm"> * }
+</span><span class="cm"> */</span>
+<span class="kd">func</span> <span class="nf">buildTree</span><span class="p">(</span><span class="nx">preorder</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">inorder</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span><span class="nx">TreeNode</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">preorder</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">{</span>
+        <span class="k">return</span> <span class="kc">nil</span>
+    <span class="p">}</span>
+    <span class="nx">root</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">TreeNode</span><span class="p">{</span><span class="nx">Val</span><span class="p">:</span><span class="nx">preorder</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span>	<span class="c1">// 建树
+</span><span class="c1"></span>    
+    <span class="kd">var</span> <span class="nx">index</span> <span class="kt">int</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">inorder</span><span class="p">{</span>
+        <span class="k">if</span> <span class="nx">inorder</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="o">==</span><span class="nx">preorder</span><span class="p">[</span><span class="mi">0</span><span class="p">]{</span>	<span class="c1">// 找到根节点
+</span><span class="c1"></span>            <span class="nx">index</span> <span class="p">=</span> <span class="nx">i</span>
+            <span class="k">break</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">root</span><span class="p">.</span><span class="nx">Left</span> <span class="p">=</span> <span class="nf">buildTree</span><span class="p">(</span><span class="nx">preorder</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="nx">index</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="nx">inorder</span><span class="p">[:</span><span class="nx">index</span><span class="p">])</span>	<span class="c1">// 左子树递归
+</span><span class="c1"></span>    <span class="nx">root</span><span class="p">.</span><span class="nx">Right</span> <span class="p">=</span> <span class="nf">buildTree</span><span class="p">(</span><span class="nx">preorder</span><span class="p">[</span><span class="nx">index</span><span class="o">+</span><span class="mi">1</span><span class="p">:],</span><span class="nx">inorder</span><span class="p">[</span><span class="nx">index</span><span class="o">+</span><span class="mi">1</span><span class="p">:])</span>	<span class="c1">// 右子树递归
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nx">root</span>
+<span class="p">}</span>
+</code></pre></div><p>递归法使用的是DFS，用示例的输入演示整个递归的过程如下图所示，数字代表插入子树的顺序：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/LAShZ/blog-pic-repo@main//img/%E5%89%91%E6%8C%87Offer07-1.png" alt="image"  /></p>
+<h3 id="迭代法">迭代法</h3>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="cm">/**
+</span><span class="cm"> * Definition for a binary tree node.
+</span><span class="cm"> * type TreeNode struct {
+</span><span class="cm"> *     Val int
+</span><span class="cm"> *     Left *TreeNode
+</span><span class="cm"> *     Right *TreeNode
+</span><span class="cm"> * }
+</span><span class="cm"> */</span>
+<span class="kd">func</span> <span class="nf">buildTree</span><span class="p">(</span><span class="nx">preorder</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">inorder</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span><span class="nx">TreeNode</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">preorder</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="kc">nil</span>
+	<span class="p">}</span>
+	<span class="kd">var</span> <span class="nx">stack</span> <span class="p">[]</span><span class="o">*</span><span class="nx">TreeNode</span>	<span class="c1">//储存节点的栈
+</span><span class="c1"></span>	<span class="nx">root</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">TreeNode</span><span class="p">{</span><span class="nx">Val</span><span class="p">:</span> <span class="nx">preorder</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span>
+	<span class="nx">cur</span> <span class="o">:=</span> <span class="nx">root</span>
+	<span class="k">for</span> <span class="nx">pre</span><span class="p">,</span> <span class="nx">in</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">pre</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">preorder</span><span class="p">);</span> <span class="nx">pre</span><span class="o">++</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="nx">cur</span><span class="p">.</span><span class="nx">Val</span> <span class="o">!=</span> <span class="nx">inorder</span><span class="p">[</span><span class="nx">in</span><span class="p">]</span> <span class="p">{</span>	<span class="c1">// 当前节点不是叶子节点
+</span><span class="c1"></span>			<span class="nx">stack</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">stack</span><span class="p">,</span> <span class="nx">cur</span><span class="p">)</span>	<span class="c1">// 节点入栈
+</span><span class="c1"></span>			<span class="nx">cur</span><span class="p">.</span><span class="nx">Left</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">TreeNode</span><span class="p">{</span><span class="nx">Val</span><span class="p">:</span> <span class="nx">preorder</span><span class="p">[</span><span class="nx">pre</span><span class="p">]}</span>	<span class="c1">// 插入左子树
+</span><span class="c1"></span>			<span class="nx">cur</span> <span class="p">=</span> <span class="nx">cur</span><span class="p">.</span><span class="nx">Left</span>	<span class="c1">// 向下层移动
+</span><span class="c1"></span>		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>	<span class="c1">// 已经碰到了叶子节点
+</span><span class="c1"></span>			<span class="nx">in</span><span class="o">++</span>	<span class="c1">// 将该叶子节点从给出的序列中删除
+</span><span class="c1"></span>			<span class="k">for</span> <span class="nb">len</span><span class="p">(</span><span class="nx">stack</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">stack</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">stack</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="nx">Val</span> <span class="o">==</span> <span class="nx">inorder</span><span class="p">[</span><span class="nx">in</span><span class="p">]</span> <span class="p">{</span>	<span class="c1">// 退回到上一个有叶子节点的根节点
+</span><span class="c1"></span>				<span class="nx">in</span><span class="o">++</span>
+				<span class="nx">cur</span> <span class="p">=</span> <span class="nx">stack</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">stack</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+				<span class="nx">stack</span> <span class="p">=</span> <span class="nx">stack</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="nx">stack</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+			<span class="p">}</span>
+			<span class="nx">cur</span><span class="p">.</span><span class="nx">Right</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">TreeNode</span><span class="p">{</span><span class="nx">Val</span><span class="p">:</span> <span class="nx">preorder</span><span class="p">[</span><span class="nx">pre</span><span class="p">]}</span>	<span class="c1">// 插入右子树
+</span><span class="c1"></span>			<span class="nx">cur</span> <span class="p">=</span> <span class="nx">cur</span><span class="p">.</span><span class="nx">Right</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">root</span>
+<span class="p">}</span>
+</code></pre></div><p>迭代法出现在字节跳动面试题中。使用的方法是DFS，一路向下将节点插入树内，直到找到叶子节点，然后退回至有右叶子的第一个根节点，再对右子树DFS。用示例的输入演示整个迭代的过程如下图所示，数字代表插入节点的顺序：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/LAShZ/blog-pic-repo@main//img/%E5%89%91%E6%8C%87Offer07-2.png" alt="iamge"  /></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/go/">Go</a>
+        
+            <a href="/tags/leetcode/">LeetCode</a>
+        
+            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+        
+            <a href="/tags/%E5%89%91%E6%8C%87offer/">剑指Offer</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-06/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LeetCode 剑指Offer 06</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-05/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LeetCode 剑指Offer 05</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-04/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LeetCode 剑指Offer 04</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-10-i/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LeetCode 剑指Offer 10-I</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-03/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LeetCode 剑指Offer 03</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="LAShZ/lavch-utterances-comments"
+        issue-term="title"
+        theme="github-light" 
+        
+        label="✨💬✨comments"
+        
+        crossorigin="anonymous" 
+        async>
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Lavch&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+    
+        
+
+
+    
+    
+    
+     
+        
+        <div class="toc">
+
+            <div class="page-header"><strong>- CATALOG -</strong></div>
+
+            <div id="page-scrollspy" class="toc-nav">
+
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#leetcode%e5%88%b7%e9%a2%98%e7%ac%94%e8%ae%b0--%e5%89%91%e6%8c%87offer-07">
+                            LeetCode刷题笔记–剑指Offer 07
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#%e9%a2%98%e7%9b%ae%e9%87%8d%e5%bb%ba%e4%ba%8c%e5%8f%89%e6%a0%91">
+                            题目：重建二叉树
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#%e9%a2%98%e8%a7%a3">
+                            题解
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#%e9%80%92%e5%bd%92%e6%b3%95">
+                            递归法
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#%e8%bf%ad%e4%bb%a3%e6%b3%95">
+                            迭代法
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+
+            </div>
+
+        </div>
+        
+
+        
+    
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
