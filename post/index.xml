@@ -6,7 +6,37 @@
     <description>Recent content in Posts on Lavch&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Jan 2021 19:50:31 +0800</lastBuildDate><atom:link href="https://lashz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Jan 2021 23:27:26 +0800</lastBuildDate><atom:link href="https://lashz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LeetCode 剑指Offer 10-II</title>
+      <link>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-10-ii/</link>
+      <pubDate>Wed, 06 Jan 2021 23:27:26 +0800</pubDate>
+      
+      <guid>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-10-ii/</guid>
+      <description>LeetCode刷题笔记&amp;ndash;剑指Offer 10-II 题目：青蛙跳台阶问题 题目链接。
+一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。
+答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。
+ 示例 1：
+ 输入：
+n = 2
+输出：
+2
+ 示例2：
+ 输入:
+n = 7
+输出:
+21
+ 示例3：
+ 输入:
+n = 0
+输出:
+1
+限制：
+0 &amp;lt;= n &amp;lt;= 100
+题解 本题是Fibonacci数列的变种题，只需理解，对于第n级台阶，可以一次跳上1级到，也可以一次跳上2级到，所以递推公式为f(n) = f(n-1) + f(n-2)，且由于n = 0时输出为1，所以f(0) = f(1) = 1。下面给出代码：
+func numWays(n int) int { a,b:=1,1 for i:=1;i&amp;lt;=n;i++{ a,b=b,(a+b)%(1e9+7) } return a } 执行用时: 0 ms</description>
+    </item>
+    
     <item>
       <title>LeetCode 剑指Offer 07</title>
       <link>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-07/</link>

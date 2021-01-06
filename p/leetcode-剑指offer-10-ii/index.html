@@ -1,53 +1,80 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='LeetCode刷题笔记&amp;ndash;剑指Offer 03 题目：数组中重复的数字 找出数组中重复的数字。
-在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='LeetCode刷题笔记&amp;ndash;剑指Offer 10-II 题目：青蛙跳台阶问题 题目链接。
+一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。
+答案需要取模 1e9&#43;7（1000000007），如计算初始结果为：1000000008，请返回 1。
  示例 1：
  输入：
-[2, 3, 1, 0, 2, 5, 3]
+n = 2
 输出：
-2 或 3
+2
+ 示例2：
+ 输入:
+n = 7
+输出:
+21
+ 示例3：
+ 输入:
+n = 0
+输出:
+1
 限制：
-2 &amp;lt;= n &amp;lt;= 100000
-题解 本题为基础题，难度不高，看到题目即可想到最为简单的暴力哈希解法，不过其实还存在更优解法，下面给予讨论。
-哈希表 直接使用一个map存放数字是否出现过，遍历整个slice，若数字对应的value为true则返回该数字，否则将其value置为true。
-func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val := range nums { if(stat[val]){ return val }else{ stat[val] = true } } return -1 } 执行用时: 48 ms
-内存消耗: 8.9 MB'><title>LeetCode 剑指Offer 03</title>
+0 &amp;lt;= n &amp;lt;= 100
+题解 本题是Fibonacci数列的变种题，只需理解，对于第n级台阶，可以一次跳上1级到，也可以一次跳上2级到，所以递推公式为f(n) = f(n-1) &#43; f(n-2)，且由于n = 0时输出为1，所以f(0) = f(1) = 1。下面给出代码：
+func numWays(n int) int { a,b:=1,1 for i:=1;i&amp;lt;=n;i&#43;&#43;{ a,b=b,(a&#43;b)%(1e9&#43;7) } return a } 执行用时: 0 ms'><title>LeetCode 剑指Offer 10-II</title>
 
-<link rel='canonical' href='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-03/'>
+<link rel='canonical' href='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-10-ii/'>
 
-<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='LeetCode 剑指Offer 03'>
-<meta property='og:description' content='LeetCode刷题笔记&amp;ndash;剑指Offer 03 题目：数组中重复的数字 找出数组中重复的数字。
-在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='LeetCode 剑指Offer 10-II'>
+<meta property='og:description' content='LeetCode刷题笔记&amp;ndash;剑指Offer 10-II 题目：青蛙跳台阶问题 题目链接。
+一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。
+答案需要取模 1e9&#43;7（1000000007），如计算初始结果为：1000000008，请返回 1。
  示例 1：
  输入：
-[2, 3, 1, 0, 2, 5, 3]
+n = 2
 输出：
-2 或 3
+2
+ 示例2：
+ 输入:
+n = 7
+输出:
+21
+ 示例3：
+ 输入:
+n = 0
+输出:
+1
 限制：
-2 &amp;lt;= n &amp;lt;= 100000
-题解 本题为基础题，难度不高，看到题目即可想到最为简单的暴力哈希解法，不过其实还存在更优解法，下面给予讨论。
-哈希表 直接使用一个map存放数字是否出现过，遍历整个slice，若数字对应的value为true则返回该数字，否则将其value置为true。
-func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val := range nums { if(stat[val]){ return val }else{ stat[val] = true } } return -1 } 执行用时: 48 ms
-内存消耗: 8.9 MB'>
-<meta property='og:url' content='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-03/'>
+0 &amp;lt;= n &amp;lt;= 100
+题解 本题是Fibonacci数列的变种题，只需理解，对于第n级台阶，可以一次跳上1级到，也可以一次跳上2级到，所以递推公式为f(n) = f(n-1) &#43; f(n-2)，且由于n = 0时输出为1，所以f(0) = f(1) = 1。下面给出代码：
+func numWays(n int) int { a,b:=1,1 for i:=1;i&amp;lt;=n;i&#43;&#43;{ a,b=b,(a&#43;b)%(1e9&#43;7) } return a } 执行用时: 0 ms'>
+<meta property='og:url' content='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-10-ii/'>
 <meta property='og:site_name' content='Lavch&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Go' /><meta property='article:tag' content='LeetCode' /><meta property='article:tag' content='算法' /><meta property='article:tag' content='剑指Offer' /><meta property='article:published_time' content='2021-01-03T11:49:10&#43;08:00'/><meta property='article:modified_time' content='2021-01-03T11:49:10&#43;08:00'/>
-<meta name="twitter:title" content="LeetCode 剑指Offer 03">
-<meta name="twitter:description" content="LeetCode刷题笔记&amp;ndash;剑指Offer 03 题目：数组中重复的数字 找出数组中重复的数字。
-在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Go' /><meta property='article:tag' content='LeetCode' /><meta property='article:tag' content='算法' /><meta property='article:tag' content='剑指Offer' /><meta property='article:published_time' content='2021-01-06T23:27:26&#43;08:00'/><meta property='article:modified_time' content='2021-01-06T23:27:26&#43;08:00'/>
+<meta name="twitter:title" content="LeetCode 剑指Offer 10-II">
+<meta name="twitter:description" content="LeetCode刷题笔记&amp;ndash;剑指Offer 10-II 题目：青蛙跳台阶问题 题目链接。
+一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。
+答案需要取模 1e9&#43;7（1000000007），如计算初始结果为：1000000008，请返回 1。
  示例 1：
  输入：
-[2, 3, 1, 0, 2, 5, 3]
+n = 2
 输出：
-2 或 3
+2
+ 示例2：
+ 输入:
+n = 7
+输出:
+21
+ 示例3：
+ 输入:
+n = 0
+输出:
+1
 限制：
-2 &amp;lt;= n &amp;lt;= 100000
-题解 本题为基础题，难度不高，看到题目即可想到最为简单的暴力哈希解法，不过其实还存在更优解法，下面给予讨论。
-哈希表 直接使用一个map存放数字是否出现过，遍历整个slice，若数字对应的value为true则返回该数字，否则将其value置为true。
-func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val := range nums { if(stat[val]){ return val }else{ stat[val] = true } } return -1 } 执行用时: 48 ms
-内存消耗: 8.9 MB">
+0 &amp;lt;= n &amp;lt;= 100
+题解 本题是Fibonacci数列的变种题，只需理解，对于第n级台阶，可以一次跳上1级到，也可以一次跳上2级到，所以递推公式为f(n) = f(n-1) &#43; f(n-2)，且由于n = 0时输出为1，所以f(0) = f(1) = 1。下面给出代码：
+func numWays(n int) int { a,b:=1,1 for i:=1;i&amp;lt;=n;i&#43;&#43;{ a,b=b,(a&#43;b)%(1e9&#43;7) } return a } 执行用时: 0 ms">
     </head>
     <body class="">
     <script>
@@ -233,7 +260,7 @@ func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val :
     
 
     <h2 class="article-title">
-        <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-03/">LeetCode 剑指Offer 03</a>
+        <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-10-ii/">LeetCode 剑指Offer 10-II</a>
     </h2>
 
     <footer class="article-time">
@@ -245,70 +272,51 @@ func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val :
 
 
 
-        <time class="article-time--published">Jan 03, 2021</time>
+        <time class="article-time--published">Jan 06, 2021</time>
     </footer></div>
 </header>
 
     <section class="article-content">
-    <h1 id="leetcode刷题笔记--剑指offer-03">LeetCode刷题笔记&ndash;剑指Offer 03</h1>
-<h2 id="题目数组中重复的数字">题目：数组中重复的数字</h2>
-<p><a class="link" href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/"  target="_blank" rel="noopener"
-    >找出数组中重复的数字</a>。</p>
-<p>在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p>
+    <h1 id="leetcode刷题笔记--剑指offer-10-ii">LeetCode刷题笔记&ndash;剑指Offer 10-II</h1>
+<h2 id="题目青蛙跳台阶问题">题目：青蛙跳台阶问题</h2>
+<p><a class="link" href="https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/"  target="_blank" rel="noopener"
+    >题目链接</a>。</p>
+<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。</p>
+<p>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p>
 <blockquote>
 <p>示例 1：</p>
 </blockquote>
 <p><strong>输入</strong>：</p>
-<p>[2, 3, 1, 0, 2, 5, 3]</p>
+<p>n = 2</p>
 <p><strong>输出</strong>：</p>
-<p>2 或 3</p>
+<p>2</p>
+<blockquote>
+<p>示例2：</p>
+</blockquote>
+<p><strong>输入</strong>:</p>
+<p>n = 7</p>
+<p><strong>输出</strong>:</p>
+<p>21</p>
+<blockquote>
+<p>示例3：</p>
+</blockquote>
+<p><strong>输入</strong>:</p>
+<p>n = 0</p>
+<p><strong>输出</strong>:</p>
+<p>1</p>
 <p><strong>限制</strong>：</p>
-<p>2 &lt;= n &lt;= 100000</p>
+<p>0  &lt;= n &lt;= 100</p>
 <h2 id="题解">题解</h2>
-<p>本题为基础题，难度不高，看到题目即可想到最为简单的暴力哈希解法，不过其实还存在更优解法，下面给予讨论。</p>
-<h3 id="哈希表">哈希表</h3>
-<p>直接使用一个map存放数字是否出现过，遍历整个slice，若数字对应的value为true则返回该数字，否则将其value置为true。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">findRepeatNumber</span><span class="p">(</span><span class="nx">nums</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
-    <span class="nx">stat</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span> <span class="kt">bool</span><span class="p">)</span>
-    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">val</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">nums</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">stat</span><span class="p">[</span><span class="nx">val</span><span class="p">]){</span>
-            <span class="k">return</span> <span class="nx">val</span>
-        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-            <span class="nx">stat</span><span class="p">[</span><span class="nx">val</span><span class="p">]</span> <span class="p">=</span> <span class="kc">true</span>
-        <span class="p">}</span>
+<p>本题是Fibonacci数列的变种题，只需理解，对于第n级台阶，可以一次跳上1级到，也可以一次跳上2级到，所以递推公式为<code>f(n) = f(n-1) + f(n-2)</code>，且由于n = 0时输出为1，所以f(0) = f(1) = 1。下面给出代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">numWays</span><span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="o">:=</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span>
+    <span class="k">for</span> <span class="nx">i</span><span class="o">:=</span><span class="mi">1</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;=</span><span class="nx">n</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">{</span>
+        <span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">=</span><span class="nx">b</span><span class="p">,(</span><span class="nx">a</span><span class="o">+</span><span class="nx">b</span><span class="p">)</span><span class="o">%</span><span class="p">(</span><span class="mf">1e9</span><span class="o">+</span><span class="mi">7</span><span class="p">)</span>
     <span class="p">}</span>
-    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="nx">a</span>
 <span class="p">}</span>
-</code></pre></div><p>执行用时: 48 ms</p>
-<p>内存消耗: 8.9 MB</p>
-<h3 id="改进哈希法">改进哈希法</h3>
-<p>由于数组的长度为n，而所有数字都在 0～n-1 的范围内，所以只需要构建一个大小为n的数组temp，nums内的值就是temp的下标，每次遍历到都将其对应的值加一，当该下标对应的值大于1的时候返回该下标。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">findRepeatNumber</span><span class="p">(</span><span class="nx">nums</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
-    <span class="nx">n</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">nums</span><span class="p">)</span>
-    <span class="nx">temp</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span>
-    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="p">&lt;</span><span class="nx">n</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">{</span>
-        <span class="nx">temp</span><span class="p">[</span><span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">]]</span><span class="o">++</span>
-        <span class="k">if</span> <span class="nx">temp</span><span class="p">[</span><span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">]]</span> <span class="p">&gt;</span> <span class="mi">1</span><span class="p">{</span>
-            <span class="k">return</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-<span class="p">}</span>
-</code></pre></div><p>执行用时: 36 ms</p>
-<p>内存消耗: 8 MB</p>
-<h3 id="排序遍历">排序+遍历</h3>
-<p>由于只需要找到重复数字，所以可以将nums内的元素排序后对其遍历，将当前数字与下一个数字进行比较，若相等则找到了重复数字，直接返回该值。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">findRepeatNumber</span><span class="p">(</span><span class="nx">nums</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
-    <span class="nx">sort</span><span class="p">.</span><span class="nf">Ints</span><span class="p">(</span><span class="nx">nums</span><span class="p">)</span>
-    <span class="k">for</span> <span class="nx">sub</span><span class="p">,</span> <span class="nx">val</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">nums</span><span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">val</span> <span class="o">==</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">sub</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]){</span>
-            <span class="k">return</span> <span class="nx">val</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-<span class="p">}</span>
-</code></pre></div><p>执行用时: 56 ms</p>
-<p>内存消耗: 8.7 MB</p>
+</code></pre></div><p>执行用时: 0 ms</p>
+<p>内存消耗: 1.9 MB</p>
 
 </section>
 
@@ -354,18 +362,6 @@ func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val :
                 
                     
 <article class="">
-    <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-10-ii/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">LeetCode 剑指Offer 10-II</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="">
     <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-07/">
         
         
@@ -408,6 +404,18 @@ func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val :
 
         <div class="article-details">
             <h2 class="article-title">LeetCode 剑指Offer 04</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-10-i/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LeetCode 剑指Offer 10-I</h2>
         </div>
     </a>
 </article>
@@ -547,8 +555,8 @@ func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val :
                     
                     
                     <li class="nav-item">
-                        <a class="nav-link text-left" href="#leetcode%e5%88%b7%e9%a2%98%e7%ac%94%e8%ae%b0--%e5%89%91%e6%8c%87offer-03">
-                            LeetCode刷题笔记–剑指Offer 03
+                        <a class="nav-link text-left" href="#leetcode%e5%88%b7%e9%a2%98%e7%ac%94%e8%ae%b0--%e5%89%91%e6%8c%87offer-10-ii">
+                            LeetCode刷题笔记–剑指Offer 10-II
                         </a>
                     </li>
                     
@@ -569,8 +577,8 @@ func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val :
                     
                     
                     <li class="nav-item">
-                        <a class="nav-link text-left" href="#%e9%a2%98%e7%9b%ae%e6%95%b0%e7%bb%84%e4%b8%ad%e9%87%8d%e5%a4%8d%e7%9a%84%e6%95%b0%e5%ad%97">
-                            题目：数组中重复的数字
+                        <a class="nav-link text-left" href="#%e9%a2%98%e7%9b%ae%e9%9d%92%e8%9b%99%e8%b7%b3%e5%8f%b0%e9%98%b6%e9%97%ae%e9%a2%98">
+                            题目：青蛙跳台阶问题
                         </a>
                     </li>
                     
@@ -599,90 +607,6 @@ func findRepeatNumber(nums []int) int { stat := make(map[int] bool) for _, val :
                     </li>
                     
                     
-                </ul>
-                
-                </ul>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                <ul class="nav">
-                    
-                <ul class="nav">
-                    
-                <ul class="nav">
-                    
-                    
-                    <li class="nav-item">
-                        <a class="nav-link text-left" href="#%e5%93%88%e5%b8%8c%e8%a1%a8">
-                            哈希表
-                        </a>
-                    </li>
-                    
-                    
-                </ul>
-                
-                </ul>
-                
-                </ul>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                <ul class="nav">
-                    
-                <ul class="nav">
-                    
-                <ul class="nav">
-                    
-                    
-                    <li class="nav-item">
-                        <a class="nav-link text-left" href="#%e6%94%b9%e8%bf%9b%e5%93%88%e5%b8%8c%e6%b3%95">
-                            改进哈希法
-                        </a>
-                    </li>
-                    
-                    
-                </ul>
-                
-                </ul>
-                
-                </ul>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                <ul class="nav">
-                    
-                <ul class="nav">
-                    
-                <ul class="nav">
-                    
-                    
-                    <li class="nav-item">
-                        <a class="nav-link text-left" href="#%e6%8e%92%e5%ba%8f%e9%81%8d%e5%8e%86">
-                            排序&#43;遍历
-                        </a>
-                    </li>
-                    
-                    
-                </ul>
-                
                 </ul>
                 
                 </ul>
