@@ -15,7 +15,7 @@
 中序遍历是先遍历左子树，然后遍历根节点，最后遍历右子树。
 后续遍历是先遍历左子树，然后遍历右子树，最后遍历根节点。
 所以，可以通过前序遍历，找到二叉树的根节点，再通过找到的根节点，在中序遍历序列中，将树在根节点的前后划分为左子树和右子树，最后对子树进行递归或是迭代，直到将所有节点都插入树内。
-以给出的示例为例，首先通过前序遍历序列的第一个值preorder[0] = 3知道根节点为3，然后在中序遍历序列中找到值为3的节点inorder[1]，这样就知道了左子树的节点为[9]，右子树的节点为[15,20,7]。因为preorder[0]为根节点，且由中序遍历可知，左子树加上根节点的节点数序号为index = 1（从0开始计数），所以在前序遍历序列中，左子树的节点为preorder[1: index&#43;1]或是inorder[:index]，右子树的节点为preorder[1&#43;1: ]或是inorder[index&#43;1:]。
+以给出的示例为例，首先通过前序遍历序列的第一个值preorder[0] = 3知道根节点为3，然后在中序遍历序列中找到值为3的节点inorder[1]，这样就知道了左子树的节点为[9]，右子树的节点为[15,20,7]。因为preorder[0]为根节点，且由中序遍历可知，左子树加上根节点的节点数序号为index = 1（从0开始计数），所以左子树的节点为preorder[1: index&#43;1]或是inorder[:index]，右子树的节点为preorder[index&#43;1: ]或是inorder[index&#43;1:]。
 下面给出递归和迭代两种方法的代码。
 递归法 /** * Definition for a binary tree node. * type TreeNode struct { * Val int * Left *TreeNode * Right *TreeNode * } */ func buildTree(preorder []int, inorder []int) *TreeNode { if len(preorder)==0{ return nil } root := &amp;amp;TreeNode{Val:preorder[0]}	// 建树  var index int for i := range inorder{ if inorder[i]==preorder[0]{	// 找到根节点  index = i break } } root.'><title>LeetCode 剑指Offer 07</title>
 
@@ -36,7 +36,7 @@
 中序遍历是先遍历左子树，然后遍历根节点，最后遍历右子树。
 后续遍历是先遍历左子树，然后遍历右子树，最后遍历根节点。
 所以，可以通过前序遍历，找到二叉树的根节点，再通过找到的根节点，在中序遍历序列中，将树在根节点的前后划分为左子树和右子树，最后对子树进行递归或是迭代，直到将所有节点都插入树内。
-以给出的示例为例，首先通过前序遍历序列的第一个值preorder[0] = 3知道根节点为3，然后在中序遍历序列中找到值为3的节点inorder[1]，这样就知道了左子树的节点为[9]，右子树的节点为[15,20,7]。因为preorder[0]为根节点，且由中序遍历可知，左子树加上根节点的节点数序号为index = 1（从0开始计数），所以在前序遍历序列中，左子树的节点为preorder[1: index&#43;1]或是inorder[:index]，右子树的节点为preorder[1&#43;1: ]或是inorder[index&#43;1:]。
+以给出的示例为例，首先通过前序遍历序列的第一个值preorder[0] = 3知道根节点为3，然后在中序遍历序列中找到值为3的节点inorder[1]，这样就知道了左子树的节点为[9]，右子树的节点为[15,20,7]。因为preorder[0]为根节点，且由中序遍历可知，左子树加上根节点的节点数序号为index = 1（从0开始计数），所以左子树的节点为preorder[1: index&#43;1]或是inorder[:index]，右子树的节点为preorder[index&#43;1: ]或是inorder[index&#43;1:]。
 下面给出递归和迭代两种方法的代码。
 递归法 /** * Definition for a binary tree node. * type TreeNode struct { * Val int * Left *TreeNode * Right *TreeNode * } */ func buildTree(preorder []int, inorder []int) *TreeNode { if len(preorder)==0{ return nil } root := &amp;amp;TreeNode{Val:preorder[0]}	// 建树  var index int for i := range inorder{ if inorder[i]==preorder[0]{	// 找到根节点  index = i break } } root.'>
 <meta property='og:url' content='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-07/'>
@@ -57,7 +57,7 @@
 中序遍历是先遍历左子树，然后遍历根节点，最后遍历右子树。
 后续遍历是先遍历左子树，然后遍历右子树，最后遍历根节点。
 所以，可以通过前序遍历，找到二叉树的根节点，再通过找到的根节点，在中序遍历序列中，将树在根节点的前后划分为左子树和右子树，最后对子树进行递归或是迭代，直到将所有节点都插入树内。
-以给出的示例为例，首先通过前序遍历序列的第一个值preorder[0] = 3知道根节点为3，然后在中序遍历序列中找到值为3的节点inorder[1]，这样就知道了左子树的节点为[9]，右子树的节点为[15,20,7]。因为preorder[0]为根节点，且由中序遍历可知，左子树加上根节点的节点数序号为index = 1（从0开始计数），所以在前序遍历序列中，左子树的节点为preorder[1: index&#43;1]或是inorder[:index]，右子树的节点为preorder[1&#43;1: ]或是inorder[index&#43;1:]。
+以给出的示例为例，首先通过前序遍历序列的第一个值preorder[0] = 3知道根节点为3，然后在中序遍历序列中找到值为3的节点inorder[1]，这样就知道了左子树的节点为[9]，右子树的节点为[15,20,7]。因为preorder[0]为根节点，且由中序遍历可知，左子树加上根节点的节点数序号为index = 1（从0开始计数），所以左子树的节点为preorder[1: index&#43;1]或是inorder[:index]，右子树的节点为preorder[index&#43;1: ]或是inorder[index&#43;1:]。
 下面给出递归和迭代两种方法的代码。
 递归法 /** * Definition for a binary tree node. * type TreeNode struct { * Val int * Left *TreeNode * Right *TreeNode * } */ func buildTree(preorder []int, inorder []int) *TreeNode { if len(preorder)==0{ return nil } root := &amp;amp;TreeNode{Val:preorder[0]}	// 建树  var index int for i := range inorder{ if inorder[i]==preorder[0]{	// 找到根节点  index = i break } } root.">
     </head>
@@ -287,7 +287,7 @@
 <p><strong>中序遍历</strong>是先遍历<code>左</code>子树，然后遍历<code>根</code>节点，最后遍历<code>右</code>子树。</p>
 <p><strong>后续遍历</strong>是先遍历<code>左</code>子树，然后遍历<code>右</code>子树，最后遍历<code>根</code>节点。</p>
 <p>所以，可以通过前序遍历，找到二叉树的根节点，再通过找到的根节点，在中序遍历序列中，将树在根节点的前后划分为左子树和右子树，最后对子树进行递归或是迭代，直到将所有节点都插入树内。</p>
-<p>以给出的示例为例，首先通过前序遍历序列的第一个值preorder[0] = 3知道根节点为3，然后在中序遍历序列中找到值为3的节点inorder[1]，这样就知道了左子树的节点为[9]，右子树的节点为[15,20,7]。因为preorder[0]为根节点，且由中序遍历可知，左子树加上根节点的节点数序号为index = 1（从0开始计数），所以在前序遍历序列中，<code>左</code>子树的节点为<code>preorder[1: index+1]</code>或是<code>inorder[:index]</code>，<code>右</code>子树的节点为<code>preorder[1+1: ]</code>或是<code>inorder[index+1:]</code>。</p>
+<p>以给出的示例为例，首先通过前序遍历序列的第一个值preorder[0] = 3知道根节点为3，然后在中序遍历序列中找到值为3的节点inorder[1]，这样就知道了左子树的节点为[9]，右子树的节点为[15,20,7]。因为preorder[0]为根节点，且由中序遍历可知，左子树加上根节点的节点数序号为index = 1（从0开始计数），所以<code>左</code>子树的节点为<code>preorder[1: index+1]</code>或是<code>inorder[:index]</code>，<code>右</code>子树的节点为<code>preorder[index+1: ]</code>或是<code>inorder[index+1:]</code>。</p>
 <p>下面给出递归和迭代两种方法的代码。</p>
 <h3 id="递归法">递归法</h3>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="cm">/**
@@ -352,7 +352,7 @@
 	<span class="k">return</span> <span class="nx">root</span>
 <span class="p">}</span>
 </code></pre></div><p>迭代法出现在字节跳动面试题中。使用的方法是DFS，一路向下将节点插入树内，直到找到叶子节点，然后退回至有右叶子的第一个根节点，再对右子树DFS。用示例的输入演示整个迭代的过程如下图所示，数字代表插入节点的顺序：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/LAShZ/blog-pic-repo@main//img/%E5%89%91%E6%8C%87Offer07-2.png" alt="iamge"  /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/LAShZ/blog-pic-repo@main/img/%E5%89%91%E6%8C%87Offer07-2.png" alt="iamge"  /></p>
 
 </section>
 
