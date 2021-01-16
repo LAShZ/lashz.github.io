@@ -6,7 +6,56 @@
     <description>Recent content in LeetCode on Lavch&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 06 Jan 2021 23:27:26 +0800</lastBuildDate><atom:link href="https://lashz.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 16 Jan 2021 16:44:25 +0800</lastBuildDate><atom:link href="https://lashz.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LeetCode 剑指Offer 12</title>
+      <link>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-12/</link>
+      <pubDate>Sat, 16 Jan 2021 16:44:25 +0800</pubDate>
+      
+      <guid>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-12/</guid>
+      <description>LeetCode刷题笔记&amp;ndash;剑指Offer 12 题目：矩阵中的路径 题目链接。
+请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。
+[[&amp;ldquo;a&amp;rdquo;,&amp;quot;b&amp;quot;,&amp;ldquo;c&amp;rdquo;,&amp;ldquo;e&amp;rdquo;], [&amp;ldquo;s&amp;rdquo;,&amp;quot;f&amp;quot;,&amp;quot;c&amp;quot;,&amp;ldquo;s&amp;rdquo;], [&amp;ldquo;a&amp;rdquo;,&amp;ldquo;d&amp;rdquo;,&amp;quot;e&amp;quot;,&amp;ldquo;e&amp;rdquo;]]
+但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。
+ 示例 1：
+ 输入：
+board = [[&amp;ldquo;A&amp;rdquo;,&amp;ldquo;B&amp;rdquo;,&amp;ldquo;C&amp;rdquo;,&amp;ldquo;E&amp;rdquo;],[&amp;ldquo;S&amp;rdquo;,&amp;ldquo;F&amp;rdquo;,&amp;ldquo;C&amp;rdquo;,&amp;ldquo;S&amp;rdquo;],[&amp;ldquo;A&amp;rdquo;,&amp;ldquo;D&amp;rdquo;,&amp;ldquo;E&amp;rdquo;,&amp;ldquo;E&amp;rdquo;]], word = &amp;ldquo;ABCCED&amp;rdquo;
+输出：
+true
+ 示例2：
+ 输入:
+board = [[&amp;ldquo;a&amp;rdquo;,&amp;ldquo;b&amp;rdquo;],[&amp;ldquo;c&amp;rdquo;,&amp;ldquo;d&amp;rdquo;]], word = &amp;ldquo;abcd&amp;rdquo;
+输出:
+false
+限制：
+1 &amp;lt;= board.length &amp;lt;= 200
+1 &amp;lt;= board[i].length &amp;lt;= 200
+题解 本题为经典的DFS，只需注意要将已经选过的字符设置为空字符即可。具体的算法过程见代码注释：
+func exist(board [][]byte, word string) bool { col := len(board[0]) line := len(board) for i := 0; i &amp;lt; line; i++ { for j := 0; j &amp;lt; col; j++ { //找到第一个值，然后DFS递归查找整条路径  if dfs(board, word , i, j, 0) { return true } } } return false } func dfs(board [][]byte, word string, i int, j int, k int) bool { //找到最后一个数，返回true 	if k == len(word) { return true } //i, j超范围 	if i &amp;lt; 0 || j &amp;lt; 0 || i &amp;gt;= len(board) || j &amp;gt;= len(board[0]) { return false } //进入DFS深度优先搜索  //先把正在遍历的该值重新赋值，如果在该值的周围都搜索不到目标字符，则再把该值还原  //如果在数组中找到第一个字符，则进入下一个字符的查找 	if board[i][j] == word[k] { temp := board[i][j] board[i][j] = &amp;#39; &amp;#39; //递归在周围寻找 	if dfs(board, word, i+1, j, k+1) || dfs(board, word, i, j+1, k+1) || dfs(board, word, i-1, j, k+1) || dfs(board, word, i, j-1, k+1) { return true }else { //没有找到目标字符，还原之前重新赋值的board[i][j] 	board[i][j] = temp } } return false } 执行用时: 4 ms</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 剑指Offer 11</title>
+      <link>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-11/</link>
+      <pubDate>Sat, 16 Jan 2021 16:44:04 +0800</pubDate>
+      
+      <guid>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-11/</guid>
+      <description>LeetCode刷题笔记&amp;ndash;剑指Offer 11 题目：旋转数组的最小数字 题目链接。
+把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一个旋转，该数组的最小值为1。
+ 示例 1：
+ 输入：
+[3, 4, 5 , 1, 2]
+输出：
+1
+ 示例2：
+ 输入:
+[2, 2, 2, 0 , 1]
+输出:
+0
+题解 本题最容易想到的解法为直接遍历整个数组，找到第一个小于前一个元素的值的元素，若都相等则返回第一个元素即可，代码如下：
+func minArray(numbers []int) int { if len(numbers) == 0 { return -1 } for seq:= 1; seq &amp;lt; len(numbers); seq++ { if numbers[seq] &amp;lt; numbers[seq-1]{ return numbers[seq] } } return numbers[0] } 执行用时: 4 ms</description>
+    </item>
+    
     <item>
       <title>LeetCode 剑指Offer 10-II</title>
       <link>https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-10-ii/</link>

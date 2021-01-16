@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='LeetCode刷题笔记&amp;ndash;剑指Offer 12 题目：矩阵中的路径 题目链接。
+请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。
+[[&amp;ldquo;a&amp;rdquo;,&amp;quot;b&amp;quot;,&amp;ldquo;c&amp;rdquo;,&amp;ldquo;e&amp;rdquo;], [&amp;ldquo;s&amp;rdquo;,&amp;quot;f&amp;quot;,&amp;quot;c&amp;quot;,&amp;ldquo;s&amp;rdquo;], [&amp;ldquo;a&amp;rdquo;,&amp;ldquo;d&amp;rdquo;,&amp;quot;e&amp;quot;,&amp;ldquo;e&amp;rdquo;]]
+但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。
+ 示例 1：
+ 输入：
+board = [[&amp;ldquo;A&amp;rdquo;,&amp;ldquo;B&amp;rdquo;,&amp;ldquo;C&amp;rdquo;,&amp;ldquo;E&amp;rdquo;],[&amp;ldquo;S&amp;rdquo;,&amp;ldquo;F&amp;rdquo;,&amp;ldquo;C&amp;rdquo;,&amp;ldquo;S&amp;rdquo;],[&amp;ldquo;A&amp;rdquo;,&amp;ldquo;D&amp;rdquo;,&amp;ldquo;E&amp;rdquo;,&amp;ldquo;E&amp;rdquo;]], word = &amp;ldquo;ABCCED&amp;rdquo;
+输出：
+true
+ 示例2：
+ 输入:
+board = [[&amp;ldquo;a&amp;rdquo;,&amp;ldquo;b&amp;rdquo;],[&amp;ldquo;c&amp;rdquo;,&amp;ldquo;d&amp;rdquo;]], word = &amp;ldquo;abcd&amp;rdquo;
+输出:
+false
+限制：
+1 &amp;lt;= board.length &amp;lt;= 200
+1 &amp;lt;= board[i].length &amp;lt;= 200
+题解 本题为经典的DFS，只需注意要将已经选过的字符设置为空字符即可。具体的算法过程见代码注释：
+func exist(board [][]byte, word string) bool { col := len(board[0]) line := len(board) for i := 0; i &amp;lt; line; i&#43;&#43; { for j := 0; j &amp;lt; col; j&#43;&#43; { //找到第一个值，然后DFS递归查找整条路径  if dfs(board, word , i, j, 0) { return true } } } return false } func dfs(board [][]byte, word string, i int, j int, k int) bool { //找到最后一个数，返回true 	if k == len(word) { return true } //i, j超范围 	if i &amp;lt; 0 || j &amp;lt; 0 || i &amp;gt;= len(board) || j &amp;gt;= len(board[0]) { return false } //进入DFS深度优先搜索  //先把正在遍历的该值重新赋值，如果在该值的周围都搜索不到目标字符，则再把该值还原  //如果在数组中找到第一个字符，则进入下一个字符的查找 	if board[i][j] == word[k] { temp := board[i][j] board[i][j] = &amp;#39; &amp;#39; //递归在周围寻找 	if dfs(board, word, i&#43;1, j, k&#43;1) || dfs(board, word, i, j&#43;1, k&#43;1) || dfs(board, word, i-1, j, k&#43;1) || dfs(board, word, i, j-1, k&#43;1) { return true }else { //没有找到目标字符，还原之前重新赋值的board[i][j] 	board[i][j] = temp } } return false } 执行用时: 4 ms'><title>LeetCode 剑指Offer 12</title>
+
+<link rel='canonical' href='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-12/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='LeetCode 剑指Offer 12'>
+<meta property='og:description' content='LeetCode刷题笔记&amp;ndash;剑指Offer 12 题目：矩阵中的路径 题目链接。
+请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。
+[[&amp;ldquo;a&amp;rdquo;,&amp;quot;b&amp;quot;,&amp;ldquo;c&amp;rdquo;,&amp;ldquo;e&amp;rdquo;], [&amp;ldquo;s&amp;rdquo;,&amp;quot;f&amp;quot;,&amp;quot;c&amp;quot;,&amp;ldquo;s&amp;rdquo;], [&amp;ldquo;a&amp;rdquo;,&amp;ldquo;d&amp;rdquo;,&amp;quot;e&amp;quot;,&amp;ldquo;e&amp;rdquo;]]
+但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。
+ 示例 1：
+ 输入：
+board = [[&amp;ldquo;A&amp;rdquo;,&amp;ldquo;B&amp;rdquo;,&amp;ldquo;C&amp;rdquo;,&amp;ldquo;E&amp;rdquo;],[&amp;ldquo;S&amp;rdquo;,&amp;ldquo;F&amp;rdquo;,&amp;ldquo;C&amp;rdquo;,&amp;ldquo;S&amp;rdquo;],[&amp;ldquo;A&amp;rdquo;,&amp;ldquo;D&amp;rdquo;,&amp;ldquo;E&amp;rdquo;,&amp;ldquo;E&amp;rdquo;]], word = &amp;ldquo;ABCCED&amp;rdquo;
+输出：
+true
+ 示例2：
+ 输入:
+board = [[&amp;ldquo;a&amp;rdquo;,&amp;ldquo;b&amp;rdquo;],[&amp;ldquo;c&amp;rdquo;,&amp;ldquo;d&amp;rdquo;]], word = &amp;ldquo;abcd&amp;rdquo;
+输出:
+false
+限制：
+1 &amp;lt;= board.length &amp;lt;= 200
+1 &amp;lt;= board[i].length &amp;lt;= 200
+题解 本题为经典的DFS，只需注意要将已经选过的字符设置为空字符即可。具体的算法过程见代码注释：
+func exist(board [][]byte, word string) bool { col := len(board[0]) line := len(board) for i := 0; i &amp;lt; line; i&#43;&#43; { for j := 0; j &amp;lt; col; j&#43;&#43; { //找到第一个值，然后DFS递归查找整条路径  if dfs(board, word , i, j, 0) { return true } } } return false } func dfs(board [][]byte, word string, i int, j int, k int) bool { //找到最后一个数，返回true 	if k == len(word) { return true } //i, j超范围 	if i &amp;lt; 0 || j &amp;lt; 0 || i &amp;gt;= len(board) || j &amp;gt;= len(board[0]) { return false } //进入DFS深度优先搜索  //先把正在遍历的该值重新赋值，如果在该值的周围都搜索不到目标字符，则再把该值还原  //如果在数组中找到第一个字符，则进入下一个字符的查找 	if board[i][j] == word[k] { temp := board[i][j] board[i][j] = &amp;#39; &amp;#39; //递归在周围寻找 	if dfs(board, word, i&#43;1, j, k&#43;1) || dfs(board, word, i, j&#43;1, k&#43;1) || dfs(board, word, i-1, j, k&#43;1) || dfs(board, word, i, j-1, k&#43;1) { return true }else { //没有找到目标字符，还原之前重新赋值的board[i][j] 	board[i][j] = temp } } return false } 执行用时: 4 ms'>
+<meta property='og:url' content='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-12/'>
+<meta property='og:site_name' content='Lavch&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Go' /><meta property='article:tag' content='LeetCode' /><meta property='article:tag' content='算法' /><meta property='article:tag' content='剑指Offer' /><meta property='article:published_time' content='2021-01-16T16:44:25&#43;08:00'/><meta property='article:modified_time' content='2021-01-16T16:44:25&#43;08:00'/>
+<meta name="twitter:title" content="LeetCode 剑指Offer 12">
+<meta name="twitter:description" content="LeetCode刷题笔记&amp;ndash;剑指Offer 12 题目：矩阵中的路径 题目链接。
+请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。
+[[&amp;ldquo;a&amp;rdquo;,&amp;quot;b&amp;quot;,&amp;ldquo;c&amp;rdquo;,&amp;ldquo;e&amp;rdquo;], [&amp;ldquo;s&amp;rdquo;,&amp;quot;f&amp;quot;,&amp;quot;c&amp;quot;,&amp;ldquo;s&amp;rdquo;], [&amp;ldquo;a&amp;rdquo;,&amp;ldquo;d&amp;rdquo;,&amp;quot;e&amp;quot;,&amp;ldquo;e&amp;rdquo;]]
+但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。
+ 示例 1：
+ 输入：
+board = [[&amp;ldquo;A&amp;rdquo;,&amp;ldquo;B&amp;rdquo;,&amp;ldquo;C&amp;rdquo;,&amp;ldquo;E&amp;rdquo;],[&amp;ldquo;S&amp;rdquo;,&amp;ldquo;F&amp;rdquo;,&amp;ldquo;C&amp;rdquo;,&amp;ldquo;S&amp;rdquo;],[&amp;ldquo;A&amp;rdquo;,&amp;ldquo;D&amp;rdquo;,&amp;ldquo;E&amp;rdquo;,&amp;ldquo;E&amp;rdquo;]], word = &amp;ldquo;ABCCED&amp;rdquo;
+输出：
+true
+ 示例2：
+ 输入:
+board = [[&amp;ldquo;a&amp;rdquo;,&amp;ldquo;b&amp;rdquo;],[&amp;ldquo;c&amp;rdquo;,&amp;ldquo;d&amp;rdquo;]], word = &amp;ldquo;abcd&amp;rdquo;
+输出:
+false
+限制：
+1 &amp;lt;= board.length &amp;lt;= 200
+1 &amp;lt;= board[i].length &amp;lt;= 200
+题解 本题为经典的DFS，只需注意要将已经选过的字符设置为空字符即可。具体的算法过程见代码注释：
+func exist(board [][]byte, word string) bool { col := len(board[0]) line := len(board) for i := 0; i &amp;lt; line; i&#43;&#43; { for j := 0; j &amp;lt; col; j&#43;&#43; { //找到第一个值，然后DFS递归查找整条路径  if dfs(board, word , i, j, 0) { return true } } } return false } func dfs(board [][]byte, word string, i int, j int, k int) bool { //找到最后一个数，返回true 	if k == len(word) { return true } //i, j超范围 	if i &amp;lt; 0 || j &amp;lt; 0 || i &amp;gt;= len(board) || j &amp;gt;= len(board[0]) { return false } //进入DFS深度优先搜索  //先把正在遍历的该值重新赋值，如果在该值的周围都搜索不到目标字符，则再把该值还原  //如果在数组中找到第一个字符，则进入下一个字符的查找 	if board[i][j] == word[k] { temp := board[i][j] board[i][j] = &amp;#39; &amp;#39; //递归在周围寻找 	if dfs(board, word, i&#43;1, j, k&#43;1) || dfs(board, word, i, j&#43;1, k&#43;1) || dfs(board, word, i-1, j, k&#43;1) || dfs(board, word, i, j-1, k&#43;1) { return true }else { //没有找到目标字符，还原之前重新赋值的board[i][j] 	board[i][j] = temp } } return false } 执行用时: 4 ms">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/user_hud926b55af9d691145430398cd251787b_10961_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🧠</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://lashz.github.io/">Lavch&#39;s blog</a></h1>
+        <h2 class="site-description">To the time to life, rather than to life in time.</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://lashz.github.io/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" >
+                刷题笔记
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-12/">LeetCode 剑指Offer 12</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jan 16, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="leetcode刷题笔记--剑指offer-12">LeetCode刷题笔记&ndash;剑指Offer 12</h1>
+<h2 id="题目矩阵中的路径">题目：矩阵中的路径</h2>
+<p><a class="link" href="https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/"  target="_blank" rel="noopener"
+    >题目链接</a>。</p>
+<p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。</p>
+<p>[[&ldquo;a&rdquo;,&quot;<strong>b</strong>&quot;,&ldquo;c&rdquo;,&ldquo;e&rdquo;],
+[&ldquo;s&rdquo;,&quot;<strong>f</strong>&quot;,&quot;<strong>c</strong>&quot;,&ldquo;s&rdquo;],
+[&ldquo;a&rdquo;,&ldquo;d&rdquo;,&quot;<strong>e</strong>&quot;,&ldquo;e&rdquo;]]</p>
+<p>但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。</p>
+<blockquote>
+<p>示例 1：</p>
+</blockquote>
+<p><strong>输入</strong>：</p>
+<p>board = [[&ldquo;A&rdquo;,&ldquo;B&rdquo;,&ldquo;C&rdquo;,&ldquo;E&rdquo;],[&ldquo;S&rdquo;,&ldquo;F&rdquo;,&ldquo;C&rdquo;,&ldquo;S&rdquo;],[&ldquo;A&rdquo;,&ldquo;D&rdquo;,&ldquo;E&rdquo;,&ldquo;E&rdquo;]], word = &ldquo;ABCCED&rdquo;</p>
+<p><strong>输出</strong>：</p>
+<p>true</p>
+<blockquote>
+<p>示例2：</p>
+</blockquote>
+<p><strong>输入</strong>:</p>
+<p>board = [[&ldquo;a&rdquo;,&ldquo;b&rdquo;],[&ldquo;c&rdquo;,&ldquo;d&rdquo;]], word = &ldquo;abcd&rdquo;</p>
+<p><strong>输出</strong>:</p>
+<p>false</p>
+<p><strong>限制</strong>：</p>
+<p>1 &lt;= board.length &lt;= 200</p>
+<p>1 &lt;= board[i].length &lt;= 200</p>
+<h2 id="题解">题解</h2>
+<p>本题为经典的DFS，只需注意要将已经选过的字符设置为空字符即可。具体的算法过程见代码注释：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">exist</span><span class="p">(</span><span class="nx">board</span> <span class="p">[][]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">word</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+	<span class="nx">col</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">board</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="nx">line</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">board</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">line</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="nx">j</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="p">&lt;</span> <span class="nx">col</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span> <span class="p">{</span>
+            <span class="c1">//找到第一个值，然后DFS递归查找整条路径
+</span><span class="c1"></span>            <span class="k">if</span> <span class="nf">dfs</span><span class="p">(</span><span class="nx">board</span><span class="p">,</span> <span class="nx">word</span> <span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="kc">true</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">false</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">dfs</span><span class="p">(</span><span class="nx">board</span> <span class="p">[][]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">word</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">i</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">j</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">k</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="c1">//找到最后一个数，返回true
+</span><span class="c1"></span>	<span class="k">if</span> <span class="nx">k</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="kc">true</span>
+	<span class="p">}</span>
+
+    <span class="c1">//i, j超范围
+</span><span class="c1"></span>	<span class="k">if</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">j</span> <span class="p">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">board</span><span class="p">)</span> <span class="o">||</span> <span class="nx">j</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">board</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="kc">false</span>
+	<span class="p">}</span>
+
+    <span class="c1">//进入DFS深度优先搜索
+</span><span class="c1"></span>    <span class="c1">//先把正在遍历的该值重新赋值，如果在该值的周围都搜索不到目标字符，则再把该值还原
+</span><span class="c1"></span>    <span class="c1">//如果在数组中找到第一个字符，则进入下一个字符的查找
+</span><span class="c1"></span>	<span class="k">if</span> <span class="nx">board</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span> <span class="o">==</span> <span class="nx">word</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="p">{</span>
+		<span class="nx">temp</span> <span class="o">:=</span> <span class="nx">board</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span>
+		<span class="nx">board</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="sc">&#39; &#39;</span>
+        <span class="c1">//递归在周围寻找
+</span><span class="c1"></span>		<span class="k">if</span> <span class="nf">dfs</span><span class="p">(</span><span class="nx">board</span><span class="p">,</span> <span class="nx">word</span><span class="p">,</span> <span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nx">j</span><span class="p">,</span> <span class="nx">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">||</span>
+		<span class="nf">dfs</span><span class="p">(</span><span class="nx">board</span><span class="p">,</span> <span class="nx">word</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nx">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">||</span>
+		<span class="nf">dfs</span><span class="p">(</span><span class="nx">board</span><span class="p">,</span> <span class="nx">word</span><span class="p">,</span> <span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nx">j</span><span class="p">,</span> <span class="nx">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">||</span>
+		<span class="nf">dfs</span><span class="p">(</span><span class="nx">board</span><span class="p">,</span> <span class="nx">word</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nx">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="kc">true</span>
+		<span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+            <span class="c1">//没有找到目标字符，还原之前重新赋值的board[i][j]
+</span><span class="c1"></span>			<span class="nx">board</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="nx">temp</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="kc">false</span>
+<span class="p">}</span>
+</code></pre></div><p>执行用时: 4 ms</p>
+<p>内存消耗: 3.2 MB</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/go/">Go</a>
+        
+            <a href="/tags/leetcode/">LeetCode</a>
+        
+            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+        
+            <a href="/tags/%E5%89%91%E6%8C%87offer/">剑指Offer</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-11/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LeetCode 剑指Offer 11</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-10-ii/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LeetCode 剑指Offer 10-II</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-09/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LeetCode 剑指offer 09</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-07/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LeetCode 剑指Offer 07</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-06/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LeetCode 剑指Offer 06</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="LAShZ/lavch-utterances-comments"
+        issue-term="title"
+        theme="github-light" 
+        
+        label="✨💬✨comments"
+        
+        crossorigin="anonymous" 
+        async>
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Lavch&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+    
+        
+
+
+    
+    
+    
+     
+        
+        <div class="toc">
+
+            <div class="page-header"><strong>- CATALOG -</strong></div>
+
+            <div id="page-scrollspy" class="toc-nav">
+
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#leetcode%e5%88%b7%e9%a2%98%e7%ac%94%e8%ae%b0--%e5%89%91%e6%8c%87offer-12">
+                            LeetCode刷题笔记–剑指Offer 12
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#%e9%a2%98%e7%9b%ae%e7%9f%a9%e9%98%b5%e4%b8%ad%e7%9a%84%e8%b7%af%e5%be%84">
+                            题目：矩阵中的路径
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#%e9%a2%98%e8%a7%a3">
+                            题解
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+
+            </div>
+
+        </div>
+        
+
+        
+    
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
