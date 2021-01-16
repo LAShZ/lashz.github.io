@@ -3,7 +3,9 @@
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='LeetCode刷题笔记&amp;ndash;剑指Offer 12 题目：矩阵中的路径 题目链接。
 请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。
-[[&amp;ldquo;a&amp;rdquo;,&amp;quot;b&amp;quot;,&amp;ldquo;c&amp;rdquo;,&amp;ldquo;e&amp;rdquo;], [&amp;ldquo;s&amp;rdquo;,&amp;quot;f&amp;quot;,&amp;quot;c&amp;quot;,&amp;ldquo;s&amp;rdquo;], [&amp;ldquo;a&amp;rdquo;,&amp;ldquo;d&amp;rdquo;,&amp;quot;e&amp;quot;,&amp;ldquo;e&amp;rdquo;]]
+[[&amp;ldquo;a&amp;rdquo;,&amp;quot;b&amp;quot;,&amp;ldquo;c&amp;rdquo;,&amp;ldquo;e&amp;rdquo;],
+[&amp;ldquo;s&amp;rdquo;,&amp;quot;f&amp;quot;,&amp;quot;c&amp;quot;,&amp;ldquo;s&amp;rdquo;],
+[&amp;ldquo;a&amp;rdquo;,&amp;ldquo;d&amp;rdquo;,&amp;quot;e&amp;quot;,&amp;ldquo;e&amp;rdquo;]]
 但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。
  示例 1：
  输入：
@@ -26,7 +28,9 @@ func exist(board [][]byte, word string) bool { col := len(board[0]) line := len(
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='LeetCode 剑指Offer 12'>
 <meta property='og:description' content='LeetCode刷题笔记&amp;ndash;剑指Offer 12 题目：矩阵中的路径 题目链接。
 请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。
-[[&amp;ldquo;a&amp;rdquo;,&amp;quot;b&amp;quot;,&amp;ldquo;c&amp;rdquo;,&amp;ldquo;e&amp;rdquo;], [&amp;ldquo;s&amp;rdquo;,&amp;quot;f&amp;quot;,&amp;quot;c&amp;quot;,&amp;ldquo;s&amp;rdquo;], [&amp;ldquo;a&amp;rdquo;,&amp;ldquo;d&amp;rdquo;,&amp;quot;e&amp;quot;,&amp;ldquo;e&amp;rdquo;]]
+[[&amp;ldquo;a&amp;rdquo;,&amp;quot;b&amp;quot;,&amp;ldquo;c&amp;rdquo;,&amp;ldquo;e&amp;rdquo;],
+[&amp;ldquo;s&amp;rdquo;,&amp;quot;f&amp;quot;,&amp;quot;c&amp;quot;,&amp;ldquo;s&amp;rdquo;],
+[&amp;ldquo;a&amp;rdquo;,&amp;ldquo;d&amp;rdquo;,&amp;quot;e&amp;quot;,&amp;ldquo;e&amp;rdquo;]]
 但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。
  示例 1：
  输入：
@@ -49,7 +53,9 @@ func exist(board [][]byte, word string) bool { col := len(board[0]) line := len(
 <meta name="twitter:title" content="LeetCode 剑指Offer 12">
 <meta name="twitter:description" content="LeetCode刷题笔记&amp;ndash;剑指Offer 12 题目：矩阵中的路径 题目链接。
 请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。
-[[&amp;ldquo;a&amp;rdquo;,&amp;quot;b&amp;quot;,&amp;ldquo;c&amp;rdquo;,&amp;ldquo;e&amp;rdquo;], [&amp;ldquo;s&amp;rdquo;,&amp;quot;f&amp;quot;,&amp;quot;c&amp;quot;,&amp;ldquo;s&amp;rdquo;], [&amp;ldquo;a&amp;rdquo;,&amp;ldquo;d&amp;rdquo;,&amp;quot;e&amp;quot;,&amp;ldquo;e&amp;rdquo;]]
+[[&amp;ldquo;a&amp;rdquo;,&amp;quot;b&amp;quot;,&amp;ldquo;c&amp;rdquo;,&amp;ldquo;e&amp;rdquo;],
+[&amp;ldquo;s&amp;rdquo;,&amp;quot;f&amp;quot;,&amp;quot;c&amp;quot;,&amp;ldquo;s&amp;rdquo;],
+[&amp;ldquo;a&amp;rdquo;,&amp;ldquo;d&amp;rdquo;,&amp;quot;e&amp;quot;,&amp;ldquo;e&amp;rdquo;]]
 但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。
  示例 1：
  输入：
@@ -273,9 +279,9 @@ func exist(board [][]byte, word string) bool { col := len(board[0]) line := len(
 <p><a class="link" href="https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/"  target="_blank" rel="noopener"
     >题目链接</a>。</p>
 <p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。</p>
-<p>[[&ldquo;a&rdquo;,&quot;<strong>b</strong>&quot;,&ldquo;c&rdquo;,&ldquo;e&rdquo;],
-[&ldquo;s&rdquo;,&quot;<strong>f</strong>&quot;,&quot;<strong>c</strong>&quot;,&ldquo;s&rdquo;],
-[&ldquo;a&rdquo;,&ldquo;d&rdquo;,&quot;<strong>e</strong>&quot;,&ldquo;e&rdquo;]]</p>
+<p>[[&ldquo;a&rdquo;,&quot;<strong>b</strong>&quot;,&ldquo;c&rdquo;,&ldquo;e&rdquo;],</p>
+<p>[&ldquo;s&rdquo;,&quot;<strong>f</strong>&quot;,&quot;<strong>c</strong>&quot;,&ldquo;s&rdquo;],</p>
+<p>[&ldquo;a&rdquo;,&ldquo;d&rdquo;,&quot;<strong>e</strong>&quot;,&ldquo;e&rdquo;]]</p>
 <p>但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。</p>
 <blockquote>
 <p>示例 1：</p>

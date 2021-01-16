@@ -17,9 +17,9 @@
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;题目链接&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。&lt;/p&gt;
-&lt;p&gt;[[&amp;ldquo;a&amp;rdquo;,&amp;quot;&lt;strong&gt;b&lt;/strong&gt;&amp;quot;,&amp;ldquo;c&amp;rdquo;,&amp;ldquo;e&amp;rdquo;],
-[&amp;ldquo;s&amp;rdquo;,&amp;quot;&lt;strong&gt;f&lt;/strong&gt;&amp;quot;,&amp;quot;&lt;strong&gt;c&lt;/strong&gt;&amp;quot;,&amp;ldquo;s&amp;rdquo;],
-[&amp;ldquo;a&amp;rdquo;,&amp;ldquo;d&amp;rdquo;,&amp;quot;&lt;strong&gt;e&lt;/strong&gt;&amp;quot;,&amp;ldquo;e&amp;rdquo;]]&lt;/p&gt;
+&lt;p&gt;[[&amp;ldquo;a&amp;rdquo;,&amp;quot;&lt;strong&gt;b&lt;/strong&gt;&amp;quot;,&amp;ldquo;c&amp;rdquo;,&amp;ldquo;e&amp;rdquo;],&lt;/p&gt;
+&lt;p&gt;[&amp;ldquo;s&amp;rdquo;,&amp;quot;&lt;strong&gt;f&lt;/strong&gt;&amp;quot;,&amp;quot;&lt;strong&gt;c&lt;/strong&gt;&amp;quot;,&amp;ldquo;s&amp;rdquo;],&lt;/p&gt;
+&lt;p&gt;[&amp;ldquo;a&amp;rdquo;,&amp;ldquo;d&amp;rdquo;,&amp;quot;&lt;strong&gt;e&lt;/strong&gt;&amp;quot;,&amp;ldquo;e&amp;rdquo;]]&lt;/p&gt;
 &lt;p&gt;但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;示例 1：&lt;/p&gt;
