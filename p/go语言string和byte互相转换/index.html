@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Go语言string和[]byte互相转换 Go语言中有两种可以储存一串字符的类型，分别是字符串string和byte类型数组[]byte，但是他们直接并不能直接使用等于号赋值，也不能单纯的转换，而是要通过切片来进行转换。
+string转换成[]byte 可以直接使用[]byte(str)强制转换。
+package main import &amp;#34;fmt&amp;#34; func main() { var str string = &amp;#34;test&amp;#34; var data []byte = []byte(str) fmt.Println(&amp;#34;string: &amp;#34;, str)	// string:	test  fmt.Println(&amp;#34;[]byte: &amp;#34;, data)	// []byte:	[116 101 115 116] } 可以看到[]byte输出的结果正是string的各个字符对应的ASCII码。
+[]byte转换成string 要将byte数组转换成string不能直接转换，而需要将[]byte的切片转换。即使用string(数组名[:])进行转换。
+package main import &amp;#34;fmt&amp;#34; func main() { var data [5]byte data[0] = &amp;#39;T&amp;#39; data[1] = &amp;#39;E&amp;#39; data[2] = &amp;#39;S&amp;#39; data[3] = &amp;#39;T&amp;#39; var str string = string(data[:]) fmt.Println(&amp;#34;[]byte: &amp;#34;, data)	// []byte: [84 69 83 84 0] 	fmt.'><title>Go语言string和[]byte互相转换</title>
+
+<link rel='canonical' href='https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80string%E5%92%8Cbyte%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Go语言string和[]byte互相转换'>
+<meta property='og:description' content='Go语言string和[]byte互相转换 Go语言中有两种可以储存一串字符的类型，分别是字符串string和byte类型数组[]byte，但是他们直接并不能直接使用等于号赋值，也不能单纯的转换，而是要通过切片来进行转换。
+string转换成[]byte 可以直接使用[]byte(str)强制转换。
+package main import &amp;#34;fmt&amp;#34; func main() { var str string = &amp;#34;test&amp;#34; var data []byte = []byte(str) fmt.Println(&amp;#34;string: &amp;#34;, str)	// string:	test  fmt.Println(&amp;#34;[]byte: &amp;#34;, data)	// []byte:	[116 101 115 116] } 可以看到[]byte输出的结果正是string的各个字符对应的ASCII码。
+[]byte转换成string 要将byte数组转换成string不能直接转换，而需要将[]byte的切片转换。即使用string(数组名[:])进行转换。
+package main import &amp;#34;fmt&amp;#34; func main() { var data [5]byte data[0] = &amp;#39;T&amp;#39; data[1] = &amp;#39;E&amp;#39; data[2] = &amp;#39;S&amp;#39; data[3] = &amp;#39;T&amp;#39; var str string = string(data[:]) fmt.Println(&amp;#34;[]byte: &amp;#34;, data)	// []byte: [84 69 83 84 0] 	fmt.'>
+<meta property='og:url' content='https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80string%E5%92%8Cbyte%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2/'>
+<meta property='og:site_name' content='Lavch&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Go' /><meta property='article:tag' content='学习' /><meta property='article:published_time' content='2021-01-16T18:13:50&#43;08:00'/><meta property='article:modified_time' content='2021-01-16T18:13:50&#43;08:00'/>
+<meta name="twitter:title" content="Go语言string和[]byte互相转换">
+<meta name="twitter:description" content="Go语言string和[]byte互相转换 Go语言中有两种可以储存一串字符的类型，分别是字符串string和byte类型数组[]byte，但是他们直接并不能直接使用等于号赋值，也不能单纯的转换，而是要通过切片来进行转换。
+string转换成[]byte 可以直接使用[]byte(str)强制转换。
+package main import &amp;#34;fmt&amp;#34; func main() { var str string = &amp;#34;test&amp;#34; var data []byte = []byte(str) fmt.Println(&amp;#34;string: &amp;#34;, str)	// string:	test  fmt.Println(&amp;#34;[]byte: &amp;#34;, data)	// []byte:	[116 101 115 116] } 可以看到[]byte输出的结果正是string的各个字符对应的ASCII码。
+[]byte转换成string 要将byte数组转换成string不能直接转换，而需要将[]byte的切片转换。即使用string(数组名[:])进行转换。
+package main import &amp;#34;fmt&amp;#34; func main() { var data [5]byte data[0] = &amp;#39;T&amp;#39; data[1] = &amp;#39;E&amp;#39; data[2] = &amp;#39;S&amp;#39; data[3] = &amp;#39;T&amp;#39; var str string = string(data[:]) fmt.Println(&amp;#34;[]byte: &amp;#34;, data)	// []byte: [84 69 83 84 0] 	fmt.">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/user_hud926b55af9d691145430398cd251787b_10961_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🧠</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://lashz.github.io/">Lavch&#39;s blog</a></h1>
+        <h2 class="site-description">To the time to life, rather than to life in time.</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://lashz.github.io/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/go%E6%95%99%E7%A8%8B/" >
+                Go教程
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/go%E8%AF%AD%E8%A8%80string%E5%92%8Cbyte%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2/">Go语言string和[]byte互相转换</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jan 16, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="go语言string和byte互相转换">Go语言string和[]byte互相转换</h1>
+<p>Go语言中有两种可以储存一串字符的类型，分别是字符串<code>string</code>和byte类型数组<code>[]byte</code>，但是他们直接并不能直接使用等于号赋值，也不能单纯的转换，而是要通过切片来进行转换。</p>
+<h2 id="string转换成byte">string转换成[]byte</h2>
+<p>可以直接使用<code>[]byte(str)</code>强制转换。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">str</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&#34;test&#34;</span>
+	<span class="kd">var</span> <span class="nx">data</span> <span class="p">[]</span><span class="kt">byte</span> <span class="p">=</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;string: &#34;</span><span class="p">,</span> <span class="nx">str</span><span class="p">)</span>	<span class="c1">// string:	test
+</span><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;[]byte: &#34;</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>	<span class="c1">// []byte:	[116 101 115 116]
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>可以看到[]byte输出的结果正是string的各个字符对应的ASCII码。</p>
+<h2 id="byte转换成string">[]byte转换成string</h2>
+<p>要将byte数组转换成string不能直接转换，而需要将[]byte的切片转换。即使用<code>string(数组名[:])</code>进行转换。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">data</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="kt">byte</span>
+	<span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="sc">&#39;T&#39;</span>
+	<span class="nx">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="sc">&#39;E&#39;</span>
+	<span class="nx">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">=</span> <span class="sc">&#39;S&#39;</span>
+	<span class="nx">data</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="p">=</span> <span class="sc">&#39;T&#39;</span>
+	<span class="kd">var</span> <span class="nx">str</span> <span class="kt">string</span> <span class="p">=</span> <span class="nb">string</span><span class="p">(</span><span class="nx">data</span><span class="p">[:])</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;[]byte: &#34;</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>	<span class="c1">// []byte:  [84 69 83 84 0]
+</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;string: &#34;</span><span class="p">,</span> <span class="nx">str</span><span class="p">)</span>	<span class="c1">// string:  TEST
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><h2 id="实践环节">实践环节</h2>
+<p>将[][]byte类型的二维数组board初始化为[[&ldquo;A&rdquo;,&ldquo;B&rdquo;,&ldquo;C&rdquo;,&ldquo;E&rdquo;],[&ldquo;S&rdquo;,&ldquo;F&rdquo;,&ldquo;C&rdquo;,&ldquo;S&rdquo;],[&ldquo;A&rdquo;,&ldquo;D&rdquo;,&ldquo;E&rdquo;,&ldquo;E&rdquo;]]</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">board</span> <span class="o">:=</span> <span class="p">[][]</span><span class="kt">byte</span><span class="p">{[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;ABCE&#34;</span><span class="p">),[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;SFCS&#34;</span><span class="p">),[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;ADEE&#34;</span><span class="p">)}</span>
+</code></pre></div><p>由于Go语言需要所有变量（包括中间结果）都有确定的值，所以在声明过程中，需要先将(board[0])[]，(board[1])[]，(board[2])[]都赋予确定的值才能生成board，所以需要在定义内部就进行转换。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/go/">Go</a>
+        
+            <a href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/go%E8%AF%AD%E8%A8%80%E9%97%AD%E5%8C%85%E7%A0%94%E7%A9%B6/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Go语言闭包研究</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%BA%8C/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Go语言学习之旅(二)</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%B8%80/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Go语言学习之旅(一)</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="LAShZ/lavch-utterances-comments"
+        issue-term="title"
+        theme="github-light" 
+        
+        label="✨💬✨comments"
+        
+        crossorigin="anonymous" 
+        async>
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Lavch&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+    
+        
+
+
+    
+    
+    
+     
+        
+        <div class="toc">
+
+            <div class="page-header"><strong>- CATALOG -</strong></div>
+
+            <div id="page-scrollspy" class="toc-nav">
+
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#go%e8%af%ad%e8%a8%80string%e5%92%8cbyte%e4%ba%92%e7%9b%b8%e8%bd%ac%e6%8d%a2">
+                            Go语言string和[]byte互相转换
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#string%e8%bd%ac%e6%8d%a2%e6%88%90byte">
+                            string转换成[]byte
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#byte%e8%bd%ac%e6%8d%a2%e6%88%90string">
+                            []byte转换成string
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#%e5%ae%9e%e8%b7%b5%e7%8e%af%e8%8a%82">
+                            实践环节
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+
+            </div>
+
+        </div>
+        
+
+        
+    
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
