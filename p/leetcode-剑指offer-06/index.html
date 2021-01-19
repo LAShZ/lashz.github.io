@@ -1,50 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='LeetCode刷题笔记&amp;ndash;剑指Offer 06 题目：从尾到头打印链表 题目链接。
-输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。
- 示例
- 输入：
-head = [1, 3, 2]
-输出：
-[2, 3, 1]
-限制:
-0 &amp;lt;= 链表长度 &amp;lt;= 10000
-题解 本题最容易想到的就是使用一个栈，利用栈先进后出的特性将链表内的值都放入，然后再从栈中取出放入数组内，即可实现倒序输出。不过由于Go语言并无现成的栈的数据结构，且要自己实现显得整到题目的代码较为臃肿，故可以使用别的方法。下面给出我的两种思路（其实归根结底还是用的栈）
-利用defer和匿名函数 虽然Go语言中并无现成的栈的数据结构，但是Go语言的defer的执行顺序为先进后出（关于defer的介绍可以参考博主的这篇博客，关于匿名函数和闭包的介绍可以参考博主的这篇博客），因此我们可以利用这个特性，循环到链表的每一个节点时，都通过defer调用一个匿名函数，匿名函数的功能为将该节点的值加到数组尾部。当函数执行到return语句时，就按照倒序将链表的值放入了数组中。需要注意的一点是，使用这种方式时，函数的返回值必须命名，否则执行完return语句后函数将返回一个空值，而不会把所有defer执行完成后的数组返回。下面给出代码：
-/** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func reversePrint(head *ListNode) (list []int) { for ; head != nil; head = head.Next { temp := head.Val defer func() { list = append(list, temp) }() } return } 执行用时: 4 ms'><title>LeetCode 剑指Offer 06</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='从尾到头打印链表'><title>LeetCode 剑指Offer 06</title>
 
 <link rel='canonical' href='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-06/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='LeetCode 剑指Offer 06'>
-<meta property='og:description' content='LeetCode刷题笔记&amp;ndash;剑指Offer 06 题目：从尾到头打印链表 题目链接。
-输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。
- 示例
- 输入：
-head = [1, 3, 2]
-输出：
-[2, 3, 1]
-限制:
-0 &amp;lt;= 链表长度 &amp;lt;= 10000
-题解 本题最容易想到的就是使用一个栈，利用栈先进后出的特性将链表内的值都放入，然后再从栈中取出放入数组内，即可实现倒序输出。不过由于Go语言并无现成的栈的数据结构，且要自己实现显得整到题目的代码较为臃肿，故可以使用别的方法。下面给出我的两种思路（其实归根结底还是用的栈）
-利用defer和匿名函数 虽然Go语言中并无现成的栈的数据结构，但是Go语言的defer的执行顺序为先进后出（关于defer的介绍可以参考博主的这篇博客，关于匿名函数和闭包的介绍可以参考博主的这篇博客），因此我们可以利用这个特性，循环到链表的每一个节点时，都通过defer调用一个匿名函数，匿名函数的功能为将该节点的值加到数组尾部。当函数执行到return语句时，就按照倒序将链表的值放入了数组中。需要注意的一点是，使用这种方式时，函数的返回值必须命名，否则执行完return语句后函数将返回一个空值，而不会把所有defer执行完成后的数组返回。下面给出代码：
-/** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func reversePrint(head *ListNode) (list []int) { for ; head != nil; head = head.Next { temp := head.Val defer func() { list = append(list, temp) }() } return } 执行用时: 4 ms'>
+<meta property='og:description' content='从尾到头打印链表'>
 <meta property='og:url' content='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-06/'>
 <meta property='og:site_name' content='Lavch&#39;s blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Go' /><meta property='article:tag' content='LeetCode' /><meta property='article:tag' content='算法' /><meta property='article:tag' content='剑指Offer' /><meta property='article:published_time' content='2021-01-05T11:24:07&#43;08:00'/><meta property='article:modified_time' content='2021-01-05T11:24:07&#43;08:00'/>
 <meta name="twitter:title" content="LeetCode 剑指Offer 06">
-<meta name="twitter:description" content="LeetCode刷题笔记&amp;ndash;剑指Offer 06 题目：从尾到头打印链表 题目链接。
-输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。
- 示例
- 输入：
-head = [1, 3, 2]
-输出：
-[2, 3, 1]
-限制:
-0 &amp;lt;= 链表长度 &amp;lt;= 10000
-题解 本题最容易想到的就是使用一个栈，利用栈先进后出的特性将链表内的值都放入，然后再从栈中取出放入数组内，即可实现倒序输出。不过由于Go语言并无现成的栈的数据结构，且要自己实现显得整到题目的代码较为臃肿，故可以使用别的方法。下面给出我的两种思路（其实归根结底还是用的栈）
-利用defer和匿名函数 虽然Go语言中并无现成的栈的数据结构，但是Go语言的defer的执行顺序为先进后出（关于defer的介绍可以参考博主的这篇博客，关于匿名函数和闭包的介绍可以参考博主的这篇博客），因此我们可以利用这个特性，循环到链表的每一个节点时，都通过defer调用一个匿名函数，匿名函数的功能为将该节点的值加到数组尾部。当函数执行到return语句时，就按照倒序将链表的值放入了数组中。需要注意的一点是，使用这种方式时，函数的返回值必须命名，否则执行完return语句后函数将返回一个空值，而不会把所有defer执行完成后的数组返回。下面给出代码：
-/** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func reversePrint(head *ListNode) (list []int) { for ; head != nil; head = head.Next { temp := head.Val defer func() { list = append(list, temp) }() } return } 执行用时: 4 ms">
+<meta name="twitter:description" content="从尾到头打印链表">
     </head>
     <body class="">
     <script>
@@ -233,6 +200,10 @@ head = [1, 3, 2]
         <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-06/">LeetCode 剑指Offer 06</a>
     </h2>
 
+    
+    <h3 class="article-subtitle">
+        从尾到头打印链表
+    </h3>
     <footer class="article-time">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>

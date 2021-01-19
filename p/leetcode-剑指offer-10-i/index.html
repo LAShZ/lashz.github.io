@@ -1,68 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='LeetCode刷题笔记&amp;ndash;剑指Offer 10-I 题目：斐波那契数列 题目链接。
-写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项。斐波那契数列的定义如下：
-F(0) = 0, F(1) = 1 F(N) = F(N - 1) &#43; F(N - 2), 其中 N &amp;gt; 1. 斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。
-答案需要取模 1e9&#43;7（1000000007），如计算初始结果为：1000000008，请返回 1。
- 示例 1：
- 输入：
-n = 2
-输出：
-1
- 示例2：
- 输入:
-n = 5
-输出:
-5
-限制：
-0 &amp;lt;= n &amp;lt;= 100
-题解 本题也是很经典的基础题，可以使用递归与非递归的解法。也可以选择保存Fibonacci数列的所有值或是只保存所求值。下面给出代码：
-递归解法 var fibs [101]int	//保存Fibonacci数列中的各个元素值  func fib(n int) int { if fibs[n] !'><title>LeetCode 剑指Offer 10-I</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='斐波那契数列'><title>LeetCode 剑指Offer 10-I</title>
 
 <link rel='canonical' href='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-10-i/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='LeetCode 剑指Offer 10-I'>
-<meta property='og:description' content='LeetCode刷题笔记&amp;ndash;剑指Offer 10-I 题目：斐波那契数列 题目链接。
-写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项。斐波那契数列的定义如下：
-F(0) = 0, F(1) = 1 F(N) = F(N - 1) &#43; F(N - 2), 其中 N &amp;gt; 1. 斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。
-答案需要取模 1e9&#43;7（1000000007），如计算初始结果为：1000000008，请返回 1。
- 示例 1：
- 输入：
-n = 2
-输出：
-1
- 示例2：
- 输入:
-n = 5
-输出:
-5
-限制：
-0 &amp;lt;= n &amp;lt;= 100
-题解 本题也是很经典的基础题，可以使用递归与非递归的解法。也可以选择保存Fibonacci数列的所有值或是只保存所求值。下面给出代码：
-递归解法 var fibs [101]int	//保存Fibonacci数列中的各个元素值  func fib(n int) int { if fibs[n] !'>
+<meta property='og:description' content='斐波那契数列'>
 <meta property='og:url' content='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-10-i/'>
 <meta property='og:site_name' content='Lavch&#39;s blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Go' /><meta property='article:tag' content='LeetCode' /><meta property='article:tag' content='算法' /><meta property='article:tag' content='剑指Offer' /><meta property='article:published_time' content='2021-01-03T14:23:11&#43;08:00'/><meta property='article:modified_time' content='2021-01-03T14:23:11&#43;08:00'/>
 <meta name="twitter:title" content="LeetCode 剑指Offer 10-I">
-<meta name="twitter:description" content="LeetCode刷题笔记&amp;ndash;剑指Offer 10-I 题目：斐波那契数列 题目链接。
-写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项。斐波那契数列的定义如下：
-F(0) = 0, F(1) = 1 F(N) = F(N - 1) &#43; F(N - 2), 其中 N &amp;gt; 1. 斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。
-答案需要取模 1e9&#43;7（1000000007），如计算初始结果为：1000000008，请返回 1。
- 示例 1：
- 输入：
-n = 2
-输出：
-1
- 示例2：
- 输入:
-n = 5
-输出:
-5
-限制：
-0 &amp;lt;= n &amp;lt;= 100
-题解 本题也是很经典的基础题，可以使用递归与非递归的解法。也可以选择保存Fibonacci数列的所有值或是只保存所求值。下面给出代码：
-递归解法 var fibs [101]int	//保存Fibonacci数列中的各个元素值  func fib(n int) int { if fibs[n] !">
+<meta name="twitter:description" content="斐波那契数列">
     </head>
     <body class="">
     <script>
@@ -251,6 +200,10 @@ n = 5
         <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-10-i/">LeetCode 剑指Offer 10-I</a>
     </h2>
 
+    
+    <h3 class="article-subtitle">
+        斐波那契数列
+    </h3>
     <footer class="article-time">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>

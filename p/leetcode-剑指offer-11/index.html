@@ -1,56 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='LeetCode刷题笔记&amp;ndash;剑指Offer 11 题目：旋转数组的最小数字 题目链接。
-把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一个旋转，该数组的最小值为1。
- 示例 1：
- 输入：
-[3, 4, 5 , 1, 2]
-输出：
-1
- 示例2：
- 输入:
-[2, 2, 2, 0 , 1]
-输出:
-0
-题解 本题最容易想到的解法为直接遍历整个数组，找到第一个小于前一个元素的值的元素，若都相等则返回第一个元素即可，代码如下：
-func minArray(numbers []int) int { if len(numbers) == 0 { return -1 } for seq:= 1; seq &amp;lt; len(numbers); seq&#43;&#43; { if numbers[seq] &amp;lt; numbers[seq-1]{ return numbers[seq] } } return numbers[0] } 执行用时: 4 ms'><title>LeetCode 剑指Offer 11</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='旋转数组的最小数字'><title>LeetCode 剑指Offer 11</title>
 
 <link rel='canonical' href='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-11/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='LeetCode 剑指Offer 11'>
-<meta property='og:description' content='LeetCode刷题笔记&amp;ndash;剑指Offer 11 题目：旋转数组的最小数字 题目链接。
-把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一个旋转，该数组的最小值为1。
- 示例 1：
- 输入：
-[3, 4, 5 , 1, 2]
-输出：
-1
- 示例2：
- 输入:
-[2, 2, 2, 0 , 1]
-输出:
-0
-题解 本题最容易想到的解法为直接遍历整个数组，找到第一个小于前一个元素的值的元素，若都相等则返回第一个元素即可，代码如下：
-func minArray(numbers []int) int { if len(numbers) == 0 { return -1 } for seq:= 1; seq &amp;lt; len(numbers); seq&#43;&#43; { if numbers[seq] &amp;lt; numbers[seq-1]{ return numbers[seq] } } return numbers[0] } 执行用时: 4 ms'>
+<meta property='og:description' content='旋转数组的最小数字'>
 <meta property='og:url' content='https://lashz.github.io/p/leetcode-%E5%89%91%E6%8C%87offer-11/'>
 <meta property='og:site_name' content='Lavch&#39;s blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Go' /><meta property='article:tag' content='LeetCode' /><meta property='article:tag' content='算法' /><meta property='article:tag' content='剑指Offer' /><meta property='article:published_time' content='2021-01-16T16:44:04&#43;08:00'/><meta property='article:modified_time' content='2021-01-16T16:44:04&#43;08:00'/>
 <meta name="twitter:title" content="LeetCode 剑指Offer 11">
-<meta name="twitter:description" content="LeetCode刷题笔记&amp;ndash;剑指Offer 11 题目：旋转数组的最小数字 题目链接。
-把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一个旋转，该数组的最小值为1。
- 示例 1：
- 输入：
-[3, 4, 5 , 1, 2]
-输出：
-1
- 示例2：
- 输入:
-[2, 2, 2, 0 , 1]
-输出:
-0
-题解 本题最容易想到的解法为直接遍历整个数组，找到第一个小于前一个元素的值的元素，若都相等则返回第一个元素即可，代码如下：
-func minArray(numbers []int) int { if len(numbers) == 0 { return -1 } for seq:= 1; seq &amp;lt; len(numbers); seq&#43;&#43; { if numbers[seq] &amp;lt; numbers[seq-1]{ return numbers[seq] } } return numbers[0] } 执行用时: 4 ms">
+<meta name="twitter:description" content="旋转数组的最小数字">
     </head>
     <body class="">
     <script>
@@ -239,6 +200,10 @@ func minArray(numbers []int) int { if len(numbers) == 0 { return -1 } for seq:= 
         <a href="/p/leetcode-%E5%89%91%E6%8C%87offer-11/">LeetCode 剑指Offer 11</a>
     </h2>
 
+    
+    <h3 class="article-subtitle">
+        旋转数组的最小数字
+    </h3>
     <footer class="article-time">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
