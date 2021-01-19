@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Go语言Array和Slice的区别 Go语言中有着两个很容易混淆的概念: 数组Array和切片Slice。本篇文章将就这两个数据结构的相似与区别进行分析。
+Array Go语言中的Array即为数据的一种集合，需要在声明时指定容量和初值，且一旦声明就长度固定了，访问时按照索引进行访问。通过内置函数len可以获取数组中的元素个数。
+初始化 数组在初始化时必须指定大小和初值，不过Go语言为我们提供了一些更为灵活的方式进行初始化。例如：使用...来自动获取长度；未指定值时，用0赋予初值；指定指定元素的初值等。下面给出一些数组初始化的方式示例。
+var arr [5]int	//声明了一个大小为5的数组，默认初始化值为[0,0,0,0,0] arr := [5]int{1}	//声明并初始化了一个大小为5的数组的第一个元素，初始化后值为[1,0,0,0,0] arr := [...]int{1,2,3}	//通过...自动获取数组长度，根据初始化的值的数量将大小初始化为3，初始化后值为[1,2,3] arr := [...]int{4:1}	//指定序号为4的元素的值为1，通过...自动获取长度为5，初始化后值为[0,0,0,0,1] 函数参数 Go语言数组作为函数参数时，必须指定参数数组的大小，且传入的数组大小必须与指定的大小一致，数组为按值传递的，函数内对数组的值的改变不影响初始数组:
+package main import &amp;#34;fmt&amp;#34; //PrintArray print the value of array func PrintArray(arr [5]int) { arr[0] = 5 fmt.Println(arr) } func main() { a := [...]int{4:1} PrintArray(a)	// [5,0,0,0,1]  fmt.Println(a)	// [0,0,0,0,1] } Slice 切片是Go语言中极为重要的一种数据类型，可以理解为动态长度的数组（虽然实际上Slice结构内包含了一个数组），访问时可以按照数组的方式访问，也可以通过切片操作访问。Slice有三个属性：指针、长度和容量。指针即Slice名，指向的为数组中第一个可以由Slice访问的元素；长度指当前slice中的元素个数，不能超过slice的容量；容量为slice能包含的最大元素数量，但实际上当容量不足时，会自动扩充为原来的两倍。通过内置函数len和cap可以获取slice的长度和容量。
+初始化 Slice在初始化时需要初始化指针，长度和容量，容量未指定时将自动初始化为长度的大小。可以通过直接获取数组的引用、获取数组/slice的切片构建或是make函数初始化数组。下面给出一些slice初始化的方式示例。
+s := []int{1,2,3}	//通过数组的引用初始化，值为[1,2,3],长度和容量为3  arr := [5]int{1,2,3,4,5} s := arr[0:3]	//通过数组的切片初始化，值为[1,2,3]，长度为3，容量为5  s := make([]int, 3)	//通过make函数初始化，值为[0,0,0]，长度和容量为3  s := make([]int, 3, 5)	//通过make函数初始化，值为[0,0,0]，长度为3，容量为5 其中特别需要注意的是通过切片方式初始化。若是通过对slice的切片进行初始化，实际上初始化之后的结构如下图所示：'><title>Go语言Array和Slice的区别</title>
+
+<link rel='canonical' href='https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80array%E5%92%8Cslice%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Go语言Array和Slice的区别'>
+<meta property='og:description' content='Go语言Array和Slice的区别 Go语言中有着两个很容易混淆的概念: 数组Array和切片Slice。本篇文章将就这两个数据结构的相似与区别进行分析。
+Array Go语言中的Array即为数据的一种集合，需要在声明时指定容量和初值，且一旦声明就长度固定了，访问时按照索引进行访问。通过内置函数len可以获取数组中的元素个数。
+初始化 数组在初始化时必须指定大小和初值，不过Go语言为我们提供了一些更为灵活的方式进行初始化。例如：使用...来自动获取长度；未指定值时，用0赋予初值；指定指定元素的初值等。下面给出一些数组初始化的方式示例。
+var arr [5]int	//声明了一个大小为5的数组，默认初始化值为[0,0,0,0,0] arr := [5]int{1}	//声明并初始化了一个大小为5的数组的第一个元素，初始化后值为[1,0,0,0,0] arr := [...]int{1,2,3}	//通过...自动获取数组长度，根据初始化的值的数量将大小初始化为3，初始化后值为[1,2,3] arr := [...]int{4:1}	//指定序号为4的元素的值为1，通过...自动获取长度为5，初始化后值为[0,0,0,0,1] 函数参数 Go语言数组作为函数参数时，必须指定参数数组的大小，且传入的数组大小必须与指定的大小一致，数组为按值传递的，函数内对数组的值的改变不影响初始数组:
+package main import &amp;#34;fmt&amp;#34; //PrintArray print the value of array func PrintArray(arr [5]int) { arr[0] = 5 fmt.Println(arr) } func main() { a := [...]int{4:1} PrintArray(a)	// [5,0,0,0,1]  fmt.Println(a)	// [0,0,0,0,1] } Slice 切片是Go语言中极为重要的一种数据类型，可以理解为动态长度的数组（虽然实际上Slice结构内包含了一个数组），访问时可以按照数组的方式访问，也可以通过切片操作访问。Slice有三个属性：指针、长度和容量。指针即Slice名，指向的为数组中第一个可以由Slice访问的元素；长度指当前slice中的元素个数，不能超过slice的容量；容量为slice能包含的最大元素数量，但实际上当容量不足时，会自动扩充为原来的两倍。通过内置函数len和cap可以获取slice的长度和容量。
+初始化 Slice在初始化时需要初始化指针，长度和容量，容量未指定时将自动初始化为长度的大小。可以通过直接获取数组的引用、获取数组/slice的切片构建或是make函数初始化数组。下面给出一些slice初始化的方式示例。
+s := []int{1,2,3}	//通过数组的引用初始化，值为[1,2,3],长度和容量为3  arr := [5]int{1,2,3,4,5} s := arr[0:3]	//通过数组的切片初始化，值为[1,2,3]，长度为3，容量为5  s := make([]int, 3)	//通过make函数初始化，值为[0,0,0]，长度和容量为3  s := make([]int, 3, 5)	//通过make函数初始化，值为[0,0,0]，长度为3，容量为5 其中特别需要注意的是通过切片方式初始化。若是通过对slice的切片进行初始化，实际上初始化之后的结构如下图所示：'>
+<meta property='og:url' content='https://lashz.github.io/p/go%E8%AF%AD%E8%A8%80array%E5%92%8Cslice%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+<meta property='og:site_name' content='Lavch&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Go' /><meta property='article:tag' content='学习' /><meta property='article:published_time' content='2021-01-17T12:23:06&#43;08:00'/><meta property='article:modified_time' content='2021-01-17T12:23:06&#43;08:00'/>
+<meta name="twitter:title" content="Go语言Array和Slice的区别">
+<meta name="twitter:description" content="Go语言Array和Slice的区别 Go语言中有着两个很容易混淆的概念: 数组Array和切片Slice。本篇文章将就这两个数据结构的相似与区别进行分析。
+Array Go语言中的Array即为数据的一种集合，需要在声明时指定容量和初值，且一旦声明就长度固定了，访问时按照索引进行访问。通过内置函数len可以获取数组中的元素个数。
+初始化 数组在初始化时必须指定大小和初值，不过Go语言为我们提供了一些更为灵活的方式进行初始化。例如：使用...来自动获取长度；未指定值时，用0赋予初值；指定指定元素的初值等。下面给出一些数组初始化的方式示例。
+var arr [5]int	//声明了一个大小为5的数组，默认初始化值为[0,0,0,0,0] arr := [5]int{1}	//声明并初始化了一个大小为5的数组的第一个元素，初始化后值为[1,0,0,0,0] arr := [...]int{1,2,3}	//通过...自动获取数组长度，根据初始化的值的数量将大小初始化为3，初始化后值为[1,2,3] arr := [...]int{4:1}	//指定序号为4的元素的值为1，通过...自动获取长度为5，初始化后值为[0,0,0,0,1] 函数参数 Go语言数组作为函数参数时，必须指定参数数组的大小，且传入的数组大小必须与指定的大小一致，数组为按值传递的，函数内对数组的值的改变不影响初始数组:
+package main import &amp;#34;fmt&amp;#34; //PrintArray print the value of array func PrintArray(arr [5]int) { arr[0] = 5 fmt.Println(arr) } func main() { a := [...]int{4:1} PrintArray(a)	// [5,0,0,0,1]  fmt.Println(a)	// [0,0,0,0,1] } Slice 切片是Go语言中极为重要的一种数据类型，可以理解为动态长度的数组（虽然实际上Slice结构内包含了一个数组），访问时可以按照数组的方式访问，也可以通过切片操作访问。Slice有三个属性：指针、长度和容量。指针即Slice名，指向的为数组中第一个可以由Slice访问的元素；长度指当前slice中的元素个数，不能超过slice的容量；容量为slice能包含的最大元素数量，但实际上当容量不足时，会自动扩充为原来的两倍。通过内置函数len和cap可以获取slice的长度和容量。
+初始化 Slice在初始化时需要初始化指针，长度和容量，容量未指定时将自动初始化为长度的大小。可以通过直接获取数组的引用、获取数组/slice的切片构建或是make函数初始化数组。下面给出一些slice初始化的方式示例。
+s := []int{1,2,3}	//通过数组的引用初始化，值为[1,2,3],长度和容量为3  arr := [5]int{1,2,3,4,5} s := arr[0:3]	//通过数组的切片初始化，值为[1,2,3]，长度为3，容量为5  s := make([]int, 3)	//通过make函数初始化，值为[0,0,0]，长度和容量为3  s := make([]int, 3, 5)	//通过make函数初始化，值为[0,0,0]，长度为3，容量为5 其中特别需要注意的是通过切片方式初始化。若是通过对slice的切片进行初始化，实际上初始化之后的结构如下图所示：">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/user_hud926b55af9d691145430398cd251787b_10961_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🧠</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://lashz.github.io/">Lavch&#39;s blog</a></h1>
+        <h2 class="site-description">To the time to life, rather than to life in time.</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://lashz.github.io/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/go%E6%95%99%E7%A8%8B/" >
+                Go教程
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/go%E8%AF%AD%E8%A8%80array%E5%92%8Cslice%E7%9A%84%E5%8C%BA%E5%88%AB/">Go语言Array和Slice的区别</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jan 17, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="go语言array和slice的区别">Go语言Array和Slice的区别</h1>
+<p>Go语言中有着两个很容易混淆的概念: 数组<code>Array</code>和切片<code>Slice</code>。本篇文章将就这两个数据结构的相似与区别进行分析。</p>
+<h2 id="array">Array</h2>
+<p>Go语言中的Array即为数据的一种集合，需要在声明时指定容量和初值，且一旦声明就<strong>长度固定</strong>了，访问时按照索引进行访问。通过内置函数<code>len</code>可以获取数组中的元素个数。</p>
+<h3 id="初始化">初始化</h3>
+<p>数组在初始化时必须指定大小和初值，不过Go语言为我们提供了一些更为灵活的方式进行初始化。例如：使用<code>...</code>来自动获取长度；未指定值时，用0赋予初值；指定指定元素的初值等。下面给出一些数组初始化的方式示例。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">arr</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="kt">int</span>	<span class="c1">//声明了一个大小为5的数组，默认初始化值为[0,0,0,0,0]
+</span><span class="c1"></span><span class="nx">arr</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span>	<span class="c1">//声明并初始化了一个大小为5的数组的第一个元素，初始化后值为[1,0,0,0,0]
+</span><span class="c1"></span><span class="nx">arr</span> <span class="o">:=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">}</span>	<span class="c1">//通过...自动获取数组长度，根据初始化的值的数量将大小初始化为3，初始化后值为[1,2,3]
+</span><span class="c1"></span><span class="nx">arr</span> <span class="o">:=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">4</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>	<span class="c1">//指定序号为4的元素的值为1，通过...自动获取长度为5，初始化后值为[0,0,0,0,1]
+</span></code></pre></div><h3 id="函数参数">函数参数</h3>
+<p>Go语言数组作为函数参数时，必须指定参数数组的大小，且传入的数组大小必须与指定的大小一致，数组为<strong>按值传递</strong>的，函数内对数组的值的改变不影响初始数组:</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="c1">//PrintArray print the value of array
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">PrintArray</span><span class="p">(</span><span class="nx">arr</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="mi">5</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">a</span> <span class="o">:=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">4</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+	<span class="nf">PrintArray</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>	<span class="c1">// [5,0,0,0,1]
+</span><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>	<span class="c1">// [0,0,0,0,1]
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><h2 id="slice">Slice</h2>
+<p>切片是Go语言中极为重要的一种数据类型，可以理解为<strong>动态长度</strong>的数组（虽然实际上Slice结构内包含了一个数组），访问时可以按照数组的方式访问，也可以通过<code>切片</code>操作访问。Slice有三个属性：指针、长度和容量。指针即Slice名，指向的为数组中第一个可以由Slice访问的元素；长度指当前slice中的元素个数，不能超过slice的容量；容量为slice能包含的最大元素数量，但实际上当容量不足时，会自动扩充为原来的两倍。通过内置函数<code>len</code>和<code>cap</code>可以获取slice的长度和容量。</p>
+<h3 id="初始化-1">初始化</h3>
+<p>Slice在初始化时需要初始化指针，长度和容量，容量未指定时将自动初始化为长度的大小。可以通过直接获取数组的引用、获取数组/slice的切片构建或是make函数初始化数组。下面给出一些slice初始化的方式示例。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">s</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">}</span>	<span class="c1">//通过数组的引用初始化，值为[1,2,3],长度和容量为3
+</span><span class="c1"></span>
+<span class="nx">arr</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span>
+<span class="nx">s</span> <span class="o">:=</span> <span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>	<span class="c1">//通过数组的切片初始化，值为[1,2,3]，长度为3，容量为5
+</span><span class="c1"></span>
+<span class="nx">s</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>	<span class="c1">//通过make函数初始化，值为[0,0,0]，长度和容量为3
+</span><span class="c1"></span>
+<span class="nx">s</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>	<span class="c1">//通过make函数初始化，值为[0,0,0]，长度为3，容量为5
+</span></code></pre></div><p>其中特别需要注意的是通过切片方式初始化。若是通过对slice的切片进行初始化，实际上初始化之后的结构如下图所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/LAShZ/blog-pic-repo@main/img/go-array-slice.png" alt=""  /></p>
+<p>此时x的值为[2,3,5,7,11]，y的值为[3,5,7]，且两个slice的指针指向的是<strong>同一个数组</strong>，也即x中的元素的值的改变将会导致y中的值也一起改变。</p>
+<blockquote>
+<p><em>这样的初始化方式可能会导致内存被<strong>过度占用</strong>，如只需要使用一个极大的数组中的几个元素，但是由于需要指向整个数组，所以整个数组在GC时都无法被释放，一直占用内存空间。故使用切片操作进行初始化时，最好使用<code>append</code>函数将切片出来的数据复制到一个新的slice中，从而避免内存占用陷阱。</em></p>
+</blockquote>
+<h3 id="函数参数-1">函数参数</h3>
+<p>Go语言Slice作为函数参数传递时为<strong>按引用传递</strong>的，函数内对slice内元素的修改将导致函数外的值也发生改变，不过由于传入函数的是一个指针的副本，所以对该指针的修改不会导致原来的指针的变化（例如append函数不会改变原来的slice的值）。具体可以根据下面的代码进行理解：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="c1">//PrintSlice print the value of slice
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">PrintSlice</span><span class="p">(</span><span class="nx">s</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">s</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+	<span class="nx">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">s</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span>
+	<span class="nx">s1</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;s:&#34;</span><span class="p">,</span><span class="nx">s</span><span class="p">)</span>	<span class="c1">//s: [1,2,3,4,5]
+</span><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;s1:&#34;</span><span class="p">,</span><span class="nx">s1</span><span class="p">)</span>	<span class="c1">//s1: [1,2,3]
+</span><span class="c1"></span>	<span class="nf">PrintSlice</span><span class="p">(</span><span class="nx">s1</span><span class="p">)</span>	<span class="c1">//[-1,2,3,4]
+</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;s:&#34;</span><span class="p">,</span><span class="nx">s</span><span class="p">)</span>	<span class="c1">//[-1,2,3,4,5]
+</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;s1:&#34;</span><span class="p">,</span><span class="nx">s1</span><span class="p">)</span>	<span class="c1">//[-1,2,3]
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><h2 id="总结">总结</h2>
+<ul>
+<li>数组长度不能改变，初始化后长度就是固定的；切片的长度是不固定的，可以追加元素，在追加时可能使切片的容量增大。</li>
+<li>结构不同，数组是一串固定数据，切片描述的是截取数组的一部分数据，从概念上说是一个结构体。</li>
+<li>初始化方式不同，如上。另外在声明时的时候：声明数组时，方括号内写明了数组的长度或使用<code>...</code>自动计算长度，而声明<code>slice</code>时，方括号内没有任何字符。</li>
+<li>unsafe.sizeof的取值不同，unsafe.sizeof(slice)返回的大小是切片的描述符，不管slice里的元素有多少，返回的数据都是24字节。unsafe.sizeof(arr)的值是在随着arr的元素的个数的增加而增加，是数组所存储的数据内存的大小。</li>
+<li>函数调用时的传递方式不同，数组按值传递，slice按引用传递。</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/go/">Go</a>
+        
+            <a href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/go%E8%AF%AD%E8%A8%80string%E5%92%8Cbyte%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Go语言string和[]byte互相转换</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/go%E8%AF%AD%E8%A8%80%E9%97%AD%E5%8C%85%E7%A0%94%E7%A9%B6/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Go语言闭包研究</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%BA%8C/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Go语言学习之旅(二)</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85%E4%B8%80/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Go语言学习之旅(一)</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="LAShZ/lavch-utterances-comments"
+        issue-term="title"
+        theme="github-light" 
+        
+        label="✨💬✨comments"
+        
+        crossorigin="anonymous" 
+        async>
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Lavch&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+    
+        
+
+
+    
+    
+    
+     
+        
+        <div class="toc">
+
+            <div class="page-header"><strong> - CATALOG - </strong></div>
+
+            <div id="page-scrollspy" class="toc-nav">
+
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#go%e8%af%ad%e8%a8%80array%e5%92%8cslice%e7%9a%84%e5%8c%ba%e5%88%ab">
+                            Go语言Array和Slice的区别
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#array">
+                            Array
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#%e5%88%9d%e5%a7%8b%e5%8c%96">
+                            初始化
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#%e5%87%bd%e6%95%b0%e5%8f%82%e6%95%b0">
+                            函数参数
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#slice">
+                            Slice
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#%e5%88%9d%e5%a7%8b%e5%8c%96-1">
+                            初始化
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#%e5%87%bd%e6%95%b0%e5%8f%82%e6%95%b0-1">
+                            函数参数
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <ul class="nav">
+                    
+                <ul class="nav">
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-left" href="#%e6%80%bb%e7%bb%93">
+                            总结
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                
+                </ul>
+                
+                
+                
+                
+
+            </div>
+
+        </div>
+        
+
+        
+    
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
