@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Go语言Array和Slice的区别 - Lavch&#39;s Blog</title><meta name="Description" content="Go语言中有着两个很容易混淆的概念: 数组Array和切片Slice。本篇文章将就这两个数据结构的相似与区别进行分析。"><meta property="og:title" content="Go语言Array和Slice的区别" />
+<meta property="og:description" content="Go语言中有着两个很容易混淆的概念: 数组Array和切片Slice。本篇文章将就这两个数据结构的相似与区别进行分析。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lashz.github.io/go%E8%AF%AD%E8%A8%80array%E5%92%8Cslice%E7%9A%84%E5%8C%BA%E5%88%AB/" />
+<meta property="og:image" content="https://lashz.github.io/logo.png"/>
+<meta property="article:published_time" content="2021-01-17T12:23:06+08:00" />
+<meta property="article:modified_time" content="2021-01-17T12:23:06+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lashz.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Go语言Array和Slice的区别"/>
+<meta name="twitter:description" content="Go语言中有着两个很容易混淆的概念: 数组Array和切片Slice。本篇文章将就这两个数据结构的相似与区别进行分析。"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://lashz.github.io/go%E8%AF%AD%E8%A8%80array%E5%92%8Cslice%E7%9A%84%E5%8C%BA%E5%88%AB/" /><link rel="prev" href="https://lashz.github.io/go%E8%AF%AD%E8%A8%80string%E5%92%8Cbyte%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Go语言Array和Slice的区别",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lashz.github.io\/go%E8%AF%AD%E8%A8%80array%E5%92%8Cslice%E7%9A%84%E5%8C%BA%E5%88%AB\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/lashz.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "Go, 学习","wordcount":  1889 ,
+        "url": "https:\/\/lashz.github.io\/go%E8%AF%AD%E8%A8%80array%E5%92%8Cslice%E7%9A%84%E5%8C%BA%E5%88%AB\/","datePublished": "2021-01-17T12:23:06+08:00","dateModified": "2021-01-17T12:23:06+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Lavch","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/lashz.github.io\/images\/user.jpg",
+                    "width":  150 ,
+                    "height":  150 
+                }},"author": {
+                "@type": "Person",
+                "name": "Lavch"
+            },"description": "Go语言中有着两个很容易混淆的概念: 数组Array和切片Slice。本篇文章将就这两个数据结构的相似与区别进行分析。"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Lavch&#39;s Blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Lavch&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LAShZ" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/go%E8%AF%AD%E8%A8%80array%E5%92%8Cslice%E7%9A%84%E5%8C%BA%E5%88%AB/" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Lavch&#39;s Blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Lavch&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LAShZ" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/go%E8%AF%AD%E8%A8%80array%E5%92%8Cslice%E7%9A%84%E5%8C%BA%E5%88%AB/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Go语言Array和Slice的区别</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lavch</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/go%E6%95%99%E7%A8%8B/"><i class="far fa-folder fa-fw"></i>Go教程</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-17">2021-01-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1889 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#array">Array</a>
+      <ul>
+        <li><a href="#初始化">初始化</a></li>
+        <li><a href="#函数参数">函数参数</a></li>
+      </ul>
+    </li>
+    <li><a href="#slice">Slice</a>
+      <ul>
+        <li><a href="#初始化-1">初始化</a></li>
+        <li><a href="#函数参数-1">函数参数</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="go语言array和slice的区别">Go语言Array和Slice的区别</h1>
+<p>Go语言中有着两个很容易混淆的概念: 数组<code>Array</code>和切片<code>Slice</code>。本篇文章将就这两个数据结构的相似与区别进行分析。</p>
+<h2 id="array">Array</h2>
+<p>Go语言中的Array即为数据的一种集合，需要在声明时指定容量和初值，且一旦声明就<strong>长度固定</strong>了，访问时按照索引进行访问。通过内置函数<code>len</code>可以获取数组中的元素个数。</p>
+<h3 id="初始化">初始化</h3>
+<p>数组在初始化时必须指定大小和初值，不过Go语言为我们提供了一些更为灵活的方式进行初始化。例如：使用<code>...</code>来自动获取长度；未指定值时，用0赋予初值；指定指定元素的初值等。下面给出一些数组初始化的方式示例。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">arr</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="kt">int</span>	<span class="c1">//声明了一个大小为5的数组，默认初始化值为[0,0,0,0,0]
+</span><span class="c1"></span><span class="nx">arr</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span>	<span class="c1">//声明并初始化了一个大小为5的数组的第一个元素，初始化后值为[1,0,0,0,0]
+</span><span class="c1"></span><span class="nx">arr</span> <span class="o">:=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">}</span>	<span class="c1">//通过...自动获取数组长度，根据初始化的值的数量将大小初始化为3，初始化后值为[1,2,3]
+</span><span class="c1"></span><span class="nx">arr</span> <span class="o">:=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">4</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>	<span class="c1">//指定序号为4的元素的值为1，通过...自动获取长度为5，初始化后值为[0,0,0,0,1]
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="函数参数">函数参数</h3>
+<p>Go语言数组作为函数参数时，必须指定参数数组的大小，且传入的数组大小必须与指定的大小一致，数组为<strong>按值传递</strong>的，函数内对数组的值的改变不影响初始数组:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="c1">//PrintArray print the value of array
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">PrintArray</span><span class="p">(</span><span class="nx">arr</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="mi">5</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">a</span> <span class="o">:=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">4</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+	<span class="nf">PrintArray</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>	<span class="c1">// [5,0,0,0,1]
+</span><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>	<span class="c1">// [0,0,0,0,1]
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="slice">Slice</h2>
+<p>切片是Go语言中极为重要的一种数据类型，可以理解为<strong>动态长度</strong>的数组（虽然实际上Slice结构内包含了一个数组），访问时可以按照数组的方式访问，也可以通过<code>切片</code>操作访问。Slice有三个属性：指针、长度和容量。指针即Slice名，指向的为数组中第一个可以由Slice访问的元素；长度指当前slice中的元素个数，不能超过slice的容量；容量为slice能包含的最大元素数量，但实际上当容量不足时，会自动扩充为原来的两倍。通过内置函数<code>len</code>和<code>cap</code>可以获取slice的长度和容量。</p>
+<h3 id="初始化-1">初始化</h3>
+<p>Slice在初始化时需要初始化指针，长度和容量，容量未指定时将自动初始化为长度的大小。可以通过直接获取数组的引用、获取数组/slice的切片构建或是make函数初始化数组。下面给出一些slice初始化的方式示例。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">s</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">}</span>	<span class="c1">//通过数组的引用初始化，值为[1,2,3],长度和容量为3
+</span><span class="c1"></span>
+<span class="nx">arr</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span>
+<span class="nx">s</span> <span class="o">:=</span> <span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>	<span class="c1">//通过数组的切片初始化，值为[1,2,3]，长度为3，容量为5
+</span><span class="c1"></span>
+<span class="nx">s</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>	<span class="c1">//通过make函数初始化，值为[0,0,0]，长度和容量为3
+</span><span class="c1"></span>
+<span class="nx">s</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>	<span class="c1">//通过make函数初始化，值为[0,0,0]，长度为3，容量为5
+</span></code></pre></td></tr></table>
+</div>
+</div><p>其中特别需要注意的是通过切片方式初始化。若是通过对slice的切片进行初始化，实际上初始化之后的结构如下图所示：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/LAShZ/blog-pic-repo@main/img/go-array-slice.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/LAShZ/blog-pic-repo@main/img/go-array-slice.png, https://cdn.jsdelivr.net/gh/LAShZ/blog-pic-repo@main/img/go-array-slice.png 1.5x, https://cdn.jsdelivr.net/gh/LAShZ/blog-pic-repo@main/img/go-array-slice.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/LAShZ/blog-pic-repo@main/img/go-array-slice.png"
+        title="https://cdn.jsdelivr.net/gh/LAShZ/blog-pic-repo@main/img/go-array-slice.png" /></p>
+<p>此时x的值为[2,3,5,7,11]，y的值为[3,5,7]，且两个slice的指针指向的是<strong>同一个数组</strong>，也即x中的元素的值的改变将会导致y中的值也一起改变。</p>
+<blockquote>
+<p><em>这样的初始化方式可能会导致内存被<strong>过度占用</strong>，如只需要使用一个极大的数组中的几个元素，但是由于需要指向整个数组，所以整个数组在GC时都无法被释放，一直占用内存空间。故使用切片操作进行初始化时，最好使用<code>append</code>函数将切片出来的数据复制到一个新的slice中，从而避免内存占用陷阱。</em></p>
+</blockquote>
+<h3 id="函数参数-1">函数参数</h3>
+<p>Go语言Slice作为函数参数传递时为<strong>按引用传递</strong>的，函数内对slice内元素的修改将导致函数外的值也发生改变，不过由于传入函数的是一个指针的副本，所以对该指针的修改不会导致原来的指针的变化（例如append函数不会改变原来的slice的值）。具体可以根据下面的代码进行理解：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="c1">//PrintSlice print the value of slice
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">PrintSlice</span><span class="p">(</span><span class="nx">s</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">s</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+	<span class="nx">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">s</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span>
+	<span class="nx">s1</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;s:&#34;</span><span class="p">,</span><span class="nx">s</span><span class="p">)</span>	<span class="c1">//s: [1,2,3,4,5]
+</span><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;s1:&#34;</span><span class="p">,</span><span class="nx">s1</span><span class="p">)</span>	<span class="c1">//s1: [1,2,3]
+</span><span class="c1"></span>	<span class="nf">PrintSlice</span><span class="p">(</span><span class="nx">s1</span><span class="p">)</span>	<span class="c1">//[-1,2,3,4]
+</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;s:&#34;</span><span class="p">,</span><span class="nx">s</span><span class="p">)</span>	<span class="c1">//[-1,2,3,4,5]
+</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;s1:&#34;</span><span class="p">,</span><span class="nx">s1</span><span class="p">)</span>	<span class="c1">//[-1,2,3]
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="总结">总结</h2>
+<ul>
+<li>数组长度不能改变，初始化后长度就是固定的；切片的长度是不固定的，可以追加元素，在追加时可能使切片的容量增大。</li>
+<li>结构不同，数组是一串固定数据，切片描述的是截取数组的一部分数据，从概念上说是一个结构体。</li>
+<li>初始化方式不同，如上。另外在声明时的时候：声明数组时，方括号内写明了数组的长度或使用<code>...</code>自动计算长度，而声明<code>slice</code>时，方括号内没有任何字符。</li>
+<li>unsafe.sizeof的取值不同，unsafe.sizeof(slice)返回的大小是切片的描述符，不管slice里的元素有多少，返回的数据都是24字节。unsafe.sizeof(arr)的值是在随着arr的元素的个数的增加而增加，是数组所存储的数据内存的大小。</li>
+<li>函数调用时的传递方式不同，数组按值传递，slice按引用传递。</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-01-17</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/go%E8%AF%AD%E8%A8%80array%E5%92%8Cslice%E7%9A%84%E5%8C%BA%E5%88%AB/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://lashz.github.io/go%E8%AF%AD%E8%A8%80array%E5%92%8Cslice%E7%9A%84%E5%8C%BA%E5%88%AB/" data-title="Go语言Array和Slice的区别" data-hashtags="Go,学习"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://lashz.github.io/go%E8%AF%AD%E8%A8%80array%E5%92%8Cslice%E7%9A%84%E5%8C%BA%E5%88%AB/" data-hashtag="Go"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://lashz.github.io/go%E8%AF%AD%E8%A8%80array%E5%92%8Cslice%E7%9A%84%E5%8C%BA%E5%88%AB/" data-title="Go语言Array和Slice的区别"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://lashz.github.io/go%E8%AF%AD%E8%A8%80array%E5%92%8Cslice%E7%9A%84%E5%8C%BA%E5%88%AB/" data-title="Go语言Array和Slice的区别"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://lashz.github.io/go%E8%AF%AD%E8%A8%80array%E5%92%8Cslice%E7%9A%84%E5%8C%BA%E5%88%AB/" data-title="Go语言Array和Slice的区别"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go/">Go</a>,&nbsp;<a href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/go%E8%AF%AD%E8%A8%80string%E5%92%8Cbyte%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2/" class="prev" rel="prev" title="Go语言string和[]byte互相转换"><i class="fas fa-angle-left fa-fw"></i>Go语言string和[]byte互相转换</a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Lavch</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"title","label":"✨💬✨comments","lightTheme":"github-light","repo":"LAShZ/lavch-utterances-comments"}},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
