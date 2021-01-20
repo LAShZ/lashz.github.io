@@ -1,0 +1,50 @@
+/* Place your custom SCSS in HUGO_SITE_FOLDER/assets/scss/custom.scss */
+
+li {
+    list-style: none;
+}
+
+/* toc style */
+.toc {
+    position: sticky;
+    height: 20%;
+    width: 20%;
+    top: 20%;
+    color: var(--card-text-color-main);
+    background-color: var(--card-background);
+    border-radius: 5px;
+    padding-bottom: 1rem;
+    box-shadow: var(--shadow-l1);
+}
+
+.toc .page-header {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.toc-nav ul {
+    display:block;
+    line-height: 2rem;
+    padding: 0;
+    padding-left: 1rem;
+}
+
+/* ignore h1 header */
+.toc-nav ul ul ul {
+    margin-left: 0rem;
+}
+
+.toc-nav .nav-link {
+    color: var(--card-text-color-main);
+}
+
+
+/* Media Queries */
+@media (max-width: 1080px) {
+    main {
+        max-width: 100%;
+    }
+    .toc {
+        display: none;
+    }
+}
