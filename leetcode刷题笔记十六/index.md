@@ -76,4 +76,31 @@ func deleteNode(head *ListNode, val int) *ListNode {
 >
 > 内存消耗: 2.8 MB
 
+也可以采用递归的形式，每一次都只考虑头节点，然后将当前头节点的子链表递归，下面给出递归代码
 
+```go
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+
+func deleteNode(head *ListNode, val int) *ListNode {
+    if head == nil {
+        return nil
+    }
+
+    if head.Val == val {
+        return head.Next
+    }
+
+    head.Next = deleteNode(head.Next, val)
+    return head
+}
+```
+
+> 执行用时: 4 ms
+>
+> 内存消耗: 3 MB
