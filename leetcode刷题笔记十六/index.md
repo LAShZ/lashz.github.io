@@ -1,10 +1,10 @@
-# LeetCode 剑指Offer 17
+# LeetCode 剑指Offer 18
 
 <!--more-->
 
-# LeetCode刷题笔记--剑指Offer 17
+# LeetCode刷题笔记--剑指Offer 18
 
-## 题目：打印从1到最大的n位数
+## 题目：删除链表的节点
 
 [题目链接](https://leetcode-cn.com/problems/shan-chu-lian-biao-de-jie-dian-lcof/)
 
