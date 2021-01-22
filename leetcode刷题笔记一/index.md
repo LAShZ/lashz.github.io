@@ -1,6 +1,6 @@
 # LeetCode 剑指Offer 03
 
-
+<!--more-->
 # LeetCode刷题笔记--剑指Offer 03
 
 ## 题目：数组中重复的数字

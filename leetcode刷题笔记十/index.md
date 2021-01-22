@@ -1,6 +1,6 @@
 # LeetCode 剑指Offer 12
 
-
+<!--more-->
 # LeetCode刷题笔记--剑指Offer 12
 
 ## 题目：矩阵中的路径

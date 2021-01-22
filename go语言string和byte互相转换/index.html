@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Go语言string和[]byte互相转换 - Lavch&#39;s Blog</title><meta name="Description" content="Go语言中有两种可以储存一串字符的类型，分别是字符串string和byte类型数组[]byte，本文就他们的转换方式进行了说明"><meta property="og:title" content="Go语言string和[]byte互相转换" />
-<meta property="og:description" content="Go语言中有两种可以储存一串字符的类型，分别是字符串string和byte类型数组[]byte，本文就他们的转换方式进行了说明" />
+        <title>Go语言string和[]byte互相转换 - Lavch&#39;s Blog</title><meta name="Description" content="Go语言中有两种可以储存一串字符的类型，分别是字符串string和byte类型数组[]byte，本文就他们的转换方式进行了说明."><meta property="og:title" content="Go语言string和[]byte互相转换" />
+<meta property="og:description" content="Go语言中有两种可以储存一串字符的类型，分别是字符串string和byte类型数组[]byte，本文就他们的转换方式进行了说明." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lashz.github.io/go%E8%AF%AD%E8%A8%80string%E5%92%8Cbyte%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2/" />
 <meta property="og:image" content="https://lashz.github.io/logo.png"/>
@@ -16,7 +16,7 @@
 <meta name="twitter:image" content="https://lashz.github.io/logo.png"/>
 
 <meta name="twitter:title" content="Go语言string和[]byte互相转换"/>
-<meta name="twitter:description" content="Go语言中有两种可以储存一串字符的类型，分别是字符串string和byte类型数组[]byte，本文就他们的转换方式进行了说明"/>
+<meta name="twitter:description" content="Go语言中有两种可以储存一串字符的类型，分别是字符串string和byte类型数组[]byte，本文就他们的转换方式进行了说明."/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://lashz.github.io/go%E8%AF%AD%E8%A8%80string%E5%92%8Cbyte%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2/" /><link rel="prev" href="https://lashz.github.io/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E5%8D%81/" /><link rel="next" href="https://lashz.github.io/go%E8%AF%AD%E8%A8%80array%E5%92%8Cslice%E7%9A%84%E5%8C%BA%E5%88%AB/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
     {
@@ -43,7 +43,7 @@
                 }},"author": {
                 "@type": "Person",
                 "name": "Lavch"
-            },"description": "Go语言中有两种可以储存一串字符的类型，分别是字符串string和byte类型数组[]byte，本文就他们的转换方式进行了说明"
+            },"description": "Go语言中有两种可以储存一串字符的类型，分别是字符串string和byte类型数组[]byte，本文就他们的转换方式进行了说明."
     }
     </script></head>
     <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
@@ -115,7 +115,7 @@
 <main class="main">
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Go语言string和[]byte互相转换</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lavch</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/go%E6%95%99%E7%A8%8B/"><i class="far fa-folder fa-fw"></i>Go教程</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-16">2021-01-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 705 字&nbsp;
@@ -209,8 +209,7 @@
 <pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">board</span> <span class="o">:=</span> <span class="p">[][]</span><span class="kt">byte</span><span class="p">{[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;ABCE&#34;</span><span class="p">),[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;SFCS&#34;</span><span class="p">),[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;ADEE&#34;</span><span class="p">)}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>由于Go语言需要所有变量（包括中间结果）都有确定的值，所以在声明过程中，需要先将(board[0])[]，(board[1])[]，(board[2])[]都赋予确定的值才能生成board，所以需要在定义内部就进行转换。</p>
-</div><div class="post-footer" id="post-footer">
+</div><p>由于Go语言需要所有变量（包括中间结果）都有确定的值，所以在声明过程中，需要先将(board[0])[]，(board[1])[]，(board[2])[]都赋予确定的值才能生成board，所以需要在定义内部就进行转换。</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">

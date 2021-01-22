@@ -1,6 +1,6 @@
 # LeetCode 剑指Offer 07
 
-
+<!--more-->
 # LeetCode刷题笔记--剑指Offer 07
 
 ## 题目：重建二叉树

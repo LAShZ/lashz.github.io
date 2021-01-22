@@ -1,6 +1,6 @@
 # LeetCode 剑指Offer 06
 
-
+<!--more-->
 # LeetCode刷题笔记--剑指Offer 06
 
 ## 题目：从尾到头打印链表

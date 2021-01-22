@@ -1,6 +1,6 @@
 # LeetCode 剑指Offer 10-I
 
-
+<!--more-->
 # LeetCode刷题笔记--剑指Offer 10-I
 
 ## 题目：斐波那契数列

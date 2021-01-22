@@ -1,6 +1,6 @@
 # LeetCode 剑指offer 09
 
-
+<!--more-->
 # LeetCode刷题笔记--剑指Offer 09
 
 ## 题目：用两个栈实现队列

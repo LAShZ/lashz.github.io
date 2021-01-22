@@ -1,6 +1,6 @@
 # LeetCode 剑指Offer 10-II
 
-
+<!--more-->
 # LeetCode刷题笔记--剑指Offer 10-II
 
 ## 题目：青蛙跳台阶问题

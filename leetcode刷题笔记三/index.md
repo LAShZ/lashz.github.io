@@ -1,6 +1,6 @@
 # LeetCode 剑指Offer 04
 
-
+<!--more-->
 # LeetCode刷题笔记--剑指Offer 04
 
 ## 题目：二维数组中的查找
