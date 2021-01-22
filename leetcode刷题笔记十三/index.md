@@ -74,3 +74,34 @@ func hammingWeight(num uint32) int {
 > 执行用时: 0 ms
 >
 > 内存消耗: 1.9 MB
+
+看到一个牛逼的[解法](https://leetcode-cn.com/problems/er-jin-zhi-zhong-1de-ge-shu-lcof/solution/mian-shi-ti-15-er-jin-zhi-zhong-1de-ge-shu-wei-yun/)：
+
+(n−1) 解析： 二进制数字n最右边的1变成0，此1右边的0都变成1。
+
+n \& (n - 1)解析： 二进制数字n最右边的1变成0，其余不变。
+
+故只需要:
+
+1. 初始化数量统计变量 res。
+2. 循环消去最右边的1：当 n = 0 时跳出。
+   1. res += 1 ： 统计变量加1；
+   2. n &= n - 1 ： 消去数字n最右边的1 。
+3. 返回统计数量 res 。
+
+```go
+func hammingWeight(num uint32) int {
+    sum := 0
+    for num != 0 {
+        sum++
+        num &= num-1
+    }
+    return sum
+}
+```
+
+> 执行用时: 0 ms
+>
+> 内存消耗: 1.9 MB
+
+该解法时间复杂度要优于第一种解法。
