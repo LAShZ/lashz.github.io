@@ -2,8 +2,6 @@
 
 <!--more-->
 
-# LeetCode刷题笔记--剑指Offer 17
-
 ## 题目：打印从1到最大的n位数
 
 [题目链接](https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/)

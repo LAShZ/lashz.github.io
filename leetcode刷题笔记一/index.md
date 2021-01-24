@@ -1,8 +1,6 @@
 # LeetCode 剑指Offer 03
 
 <!--more-->
-# LeetCode刷题笔记--剑指Offer 03
-
 ## 题目：数组中重复的数字
 
 [找出数组中重复的数字](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/)。

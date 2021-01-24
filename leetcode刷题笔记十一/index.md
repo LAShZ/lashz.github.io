@@ -2,8 +2,6 @@
 
 <!--more-->
 
-# LeetCode刷题笔记--剑指Offer 13
-
 ## 题目：机器人的运动范围
 
 [题目链接](https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/)。

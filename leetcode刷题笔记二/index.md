@@ -1,8 +1,6 @@
 # LeetCode 剑指Offer 10-I
 
 <!--more-->
-# LeetCode刷题笔记--剑指Offer 10-I
-
 ## 题目：斐波那契数列
 
 [题目链接](https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/)。

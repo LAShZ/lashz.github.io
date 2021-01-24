@@ -1,8 +1,6 @@
 # LeetCode 剑指Offer 06
 
 <!--more-->
-# LeetCode刷题笔记--剑指Offer 06
-
 ## 题目：从尾到头打印链表
 
 [题目链接](https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/)。

@@ -2,8 +2,6 @@
 
 <!--more-->
 
-# LeetCode刷题笔记--剑指Offer 16
-
 ## 题目：数值的整数次方
 
 [题目链接](https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/)

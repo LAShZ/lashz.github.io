@@ -32,7 +32,7 @@
                             "url": "https:\/\/lashz.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "Go, LeetCode, 算法, 剑指Offer","wordcount":  1077 ,
+                        }],"genre": "posts","keywords": "Go, LeetCode, 算法, 剑指Offer","wordcount":  1050 ,
         "url": "https:\/\/lashz.github.io\/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C\/","datePublished": "2021-01-22T15:09:40+08:00","dateModified": "2021-01-22T15:09:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Lavch","logo": {
@@ -118,7 +118,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">LeetCode 剑指Offer 14</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lavch</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>刷题笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-22">2021-01-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1077 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-22">2021-01-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1050 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -137,8 +137,7 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="leetcode刷题笔记--剑指offer-14">LeetCode刷题笔记&ndash;剑指Offer 14</h1>
-<h2 id="题目剪绳子i--剪绳子ii">题目：剪绳子I &amp;&amp; 剪绳子II</h2>
+            </div><div class="content" id="content"><h2 id="题目剪绳子i--剪绳子ii">题目：剪绳子I &amp;&amp; 剪绳子II</h2>
 <p>题目链接:</p>
 <p><a href="https://leetcode-cn.com/problems/jian-sheng-zi-lcof/" target="_blank" rel="noopener noreffer">剪绳子I</a></p>
 <p><a href="https://leetcode-cn.com/problems/jian-sheng-zi-ii-lcof/" target="_blank" rel="noopener noreffer">剪绳子II</a></p>
@@ -174,7 +173,7 @@ $$</p>
 <h3 id="推导">推导</h3>
 <p>由均值不等式：
 $$
-\frac{n_1+n_2+&hellip;+n_a}{a} \ge \sqrt[{a}]{n_1n_2&hellip;n_a}
+\frac{n_1+n_2+&hellip;+n_a}{a} \geqslant \sqrt[{a}]{n_1n_2&hellip;n_a}
 $$
 可以知道当$ n_1=n_2=&hellip;=n_a $时乘积最大，此时每一段绳子的长度都为$ \frac{n}{a} $，乘积为$ x^a $。且由：
 $$

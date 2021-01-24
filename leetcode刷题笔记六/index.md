@@ -1,8 +1,6 @@
 # LeetCode 剑指Offer 07
 
 <!--more-->
-# LeetCode刷题笔记--剑指Offer 07
-
 ## 题目：重建二叉树
 
 [题目链接](https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/)。

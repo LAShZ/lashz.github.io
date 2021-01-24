@@ -1,8 +1,6 @@
 # LeetCode 剑指offer 09
 
 <!--more-->
-# LeetCode刷题笔记--剑指Offer 09
-
 ## 题目：用两个栈实现队列
 
 [题目链接](https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/)。

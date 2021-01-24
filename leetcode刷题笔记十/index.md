@@ -1,8 +1,6 @@
 # LeetCode 剑指Offer 12
 
 <!--more-->
-# LeetCode刷题笔记--剑指Offer 12
-
 ## 题目：矩阵中的路径
 
 [题目链接](https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/)。

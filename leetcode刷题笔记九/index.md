@@ -1,8 +1,6 @@
 # LeetCode 剑指Offer 11
 
 <!--more-->
-# LeetCode刷题笔记--剑指Offer 11
-
 ## 题目：旋转数组的最小数字
 
 [题目链接](https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/)。

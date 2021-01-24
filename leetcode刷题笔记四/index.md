@@ -1,8 +1,6 @@
 # LeetCode 剑指Offer 05
 
 <!--more-->
-# LeetCode刷题笔记--剑指Offer 05
-
 ## 题目：把数字翻译成字符串
 
 [题目链接](https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof)。

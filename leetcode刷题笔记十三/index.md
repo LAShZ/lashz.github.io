@@ -2,8 +2,6 @@
 
 <!--more-->
 
-# LeetCode刷题笔记--剑指Offer 15
-
 ## 题目：二进制中1的个数
 
 [题目链接](https://leetcode-cn.com/problems/er-jin-zhi-zhong-1de-ge-shu-lcof)
