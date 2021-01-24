@@ -58,6 +58,6 @@ func exchange(nums []int) []int {
 }
 ```
 
-> 执行时间: 20 ms
+> 执行用时: 20 ms
 >
 > 内存消耗: 6.3 MB
