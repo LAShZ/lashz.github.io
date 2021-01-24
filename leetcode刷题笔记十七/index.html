@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>LeetCode 剑指Offer 19 - Lavch&#39;s Blog</title><meta name="Description" content="正则表达式匹配"><meta property="og:title" content="LeetCode 剑指Offer 19" />
+<meta property="og:description" content="正则表达式匹配" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lashz.github.io/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%83/" />
+<meta property="og:image" content="https://lashz.github.io/logo.png"/>
+<meta property="article:published_time" content="2021-01-24T15:54:44+08:00" />
+<meta property="article:modified_time" content="2021-01-24T15:54:44+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://lashz.github.io/logo.png"/>
+
+<meta name="twitter:title" content="LeetCode 剑指Offer 19"/>
+<meta name="twitter:description" content="正则表达式匹配"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://lashz.github.io/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%83/" /><link rel="prev" href="https://lashz.github.io/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E5%8D%81%E5%85%AD/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "LeetCode 剑指Offer 19",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/lashz.github.io\/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%83\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/lashz.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "Go, LeetCode, 算法, 剑指Offer","wordcount":  1781 ,
+        "url": "https:\/\/lashz.github.io\/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%83\/","datePublished": "2021-01-24T15:54:44+08:00","dateModified": "2021-01-24T15:54:44+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Lavch","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/lashz.github.io\/images\/user.jpg",
+                    "width":  150 ,
+                    "height":  150 
+                }},"author": {
+                "@type": "Person",
+                "name": "Lavch"
+            },"description": "正则表达式匹配"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Lavch&#39;s Blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Lavch&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LAShZ" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%83/" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Lavch&#39;s Blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Lavch&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LAShZ" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%83/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">LeetCode 剑指Offer 19</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lavch</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>刷题笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-24">2021-01-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1781 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#题目正则表达式匹配">题目：正则表达式匹配</a></li>
+    <li><a href="#题解">题解</a>
+      <ul>
+        <li><a href="#动规解法">动规解法</a></li>
+        <li><a href="#递归解法">递归解法</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="题目正则表达式匹配">题目：正则表达式匹配</h2>
+<p><a href="https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/" target="_blank" rel="noopener noreffer">题目链接</a></p>
+<p>请实现一个函数用来匹配包含<code>'. '</code>和<code>'*'</code>的正则表达式。模式中的字符<code>'.'</code>表示任意一个字符，而<code>'*'</code>表示它前面的字符可以出现任意次（含0次）。在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串<code>&quot;aaa&quot;</code>与模式<code>&quot;a.a&quot;</code>和<code>&quot;ab*ac*a&quot;</code>匹配，但与<code>&quot;aa.a&quot;</code>和<code>&quot;ab*a&quot;</code>均不匹配。</p>
+<blockquote>
+<p>示例1</p>
+</blockquote>
+<p><strong>输入</strong>：</p>
+<p>s = &ldquo;aa&rdquo;
+p = &ldquo;a&rdquo;</p>
+<p><strong>输出</strong>：</p>
+<p>false</p>
+<p><strong>解释</strong>:</p>
+<p>&ldquo;a&rdquo; 无法匹配 &ldquo;aa&rdquo; 整个字符串。</p>
+<blockquote>
+<p>示例2</p>
+</blockquote>
+<p><strong>输入</strong>：</p>
+<p>s = &ldquo;aa&rdquo;
+p = &ldquo;a*&rdquo;</p>
+<p><strong>输出</strong>：</p>
+<p>true</p>
+<p><strong>解释</strong>：</p>
+<p>因为 &lsquo;*&rsquo; 代表可以匹配零个或多个前面的那一个元素, 在这里前面的元素就是 &lsquo;a&rsquo;。因此，字符串 &ldquo;aa&rdquo; 可被视为 &lsquo;a&rsquo; 重复了一次。</p>
+<blockquote>
+<p>示例3</p>
+</blockquote>
+<p><strong>输入</strong>：</p>
+<p>s = &ldquo;ab&rdquo;
+p = &ldquo;.*&rdquo;</p>
+<p><strong>输出</strong>：</p>
+<p>true</p>
+<p><strong>解释</strong>：</p>
+<p>&ldquo;.<em>&rdquo; 表示可匹配零个或多个（'</em>'）任意字符（'.'）。</p>
+<blockquote>
+<p>示例4</p>
+</blockquote>
+<p><strong>输入</strong>：</p>
+<p>s = &ldquo;aab&rdquo;
+p = &ldquo;c*a*b&rdquo;</p>
+<p><strong>输出</strong>：</p>
+<p>true</p>
+<p><strong>解释</strong>：</p>
+<p>因为 &lsquo;*&rsquo; 表示零个或多个，这里 &lsquo;c&rsquo; 为 0 个, &lsquo;a&rsquo; 被重复一次。因此可以匹配字符串 &ldquo;aab&rdquo;。</p>
+<blockquote>
+<p>示例5</p>
+</blockquote>
+<p><strong>输入</strong>：</p>
+<p>s = &ldquo;mississippi&rdquo;
+p = &ldquo;mis*is*p*.&rdquo;</p>
+<p><strong>输出</strong>：</p>
+<p>false</p>
+<blockquote>
+<p><strong>说明</strong>:</p>
+</blockquote>
+<ul>
+<li><code>s</code> 可能为空，且只包含从 <code>a-z</code> 的小写字母。</li>
+<li><code>p</code> 可能为空，且只包含从 <code>a-z</code> 的小写字母以及字符 <code>.</code> 和 <code>*</code>，无连续的 <code>'*'</code>。</li>
+</ul>
+<h2 id="题解">题解</h2>
+<p>本题为困难题，需要一定的理解与算法思想。</p>
+<p>正则匹配最先想到的由正则表达式构建自然是有限状态机，不过由于本题只有两种模式字符，故本题可以直接使用DP或是递归解法求解。</p>
+<h3 id="动规解法">动规解法</h3>
+<p>设<code>f[i][j]</code>为字符串s的前i个字符与模式串p的前j个字符是否匹配。观察模式串p可以发现，模式串的字符有三种情况：正常字符、‘*’、和‘.’，针对这三种情况讨论：</p>
+<ol>
+<li>若当前模式串的字符为正常字符: 代表当前不是正则匹配模式，首先匹配模式串与字符串字符，若相等，则当前状态等于上一个字符的状态，即f[i][j]=f[i-1][j-1]</li>
+<li>若当前模式串的字符为'.': 代表当前为任意字符匹配模式，直接看f[i-1][j-1]是否匹配，即f[i][j]=f[i-1][j-1]</li>
+<li>若当前模式串的字符为'*': 代表当前为前一字符出现任意次模式，假设p[j-1]==&lsquo;c&rsquo;，即当前的正则匹配为&quot;c*&quot;，则分为两种情况：
+<ul>
+<li>若出现0次，即当前字符串的字符不等于&rsquo;c'，则直接舍弃模式串的&quot;c*&quot;，即f[i][j]=f[i][j-2]</li>
+<li>若出现大于1次，即当前字符串的字符等于&rsquo;c'，则模式串无需移动，字符串前移一个重新匹配，即f[i][j]=f[i-1][j]</li>
+</ul>
+</li>
+</ol>
+<p>由此得到DP的转移方程为：
+$$
+f[i][j]=\begin{cases}
+{f[i-1][j-1]} &amp;\text{if }{p[j]\neq'*'} \cr
+\begin{cases}
+{f[i][j-1]} &amp;\text{if }{p[j-1]\neq{s[i]}} \cr
+{f[i-1][j]} &amp;\text{if }{p[j-1]=s[i]}
+\end{cases}=&gt;&amp;\text{if }{p[j]='*'}
+\end{cases}
+$$</p>
+<p>初始条件为f[0][0]=true，f[i][0]=false (i != 0)，即空模式串与空字符串是匹配的，但是空模式串与非空字符串必定是不匹配的。</p>
+<p>最后的代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go">
+<span class="kd">func</span> <span class="nf">isMatch</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">p</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+	<span class="nx">slen</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+	<span class="nx">plen</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span>
+	<span class="nx">dp</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([][]</span><span class="kt">bool</span><span class="p">,</span> <span class="nx">slen</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">slen</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">dp</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">bool</span><span class="p">,</span> <span class="nx">plen</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">slen</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="nx">j</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="p">&lt;</span> <span class="nx">plen</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="nx">j</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+				<span class="nx">dp</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="p">(</span><span class="nx">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="nx">p</span><span class="p">[</span><span class="nx">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">&#39;*&#39;</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="nx">i</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="nx">p</span><span class="p">[</span><span class="nx">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">||</span> <span class="nx">p</span><span class="p">[</span><span class="nx">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">dp</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="nx">dp</span><span class="p">[</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="nx">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+					<span class="p">}</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="nx">j</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="p">{</span>
+						<span class="nx">dp</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="nx">dp</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">||</span> <span class="nx">dp</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span>
+					<span class="p">}</span>
+					<span class="k">if</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">j</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="nx">p</span><span class="p">[</span><span class="nx">j</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">||</span> <span class="nx">p</span><span class="p">[</span><span class="nx">j</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">dp</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="nx">dp</span><span class="p">[</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span> <span class="o">||</span> <span class="nx">dp</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">dp</span><span class="p">[</span><span class="nx">slen</span><span class="p">][</span><span class="nx">plen</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>执行用时: 0 ms</p>
+<p>内存消耗: 2.4 MB</p>
+</blockquote>
+<h3 id="递归解法">递归解法</h3>
+<p>与DP思路类似，不过每一次判断完当前字符是否匹配后，将其从字符串中剔除，然后将新的字符串传入isMatch函数进行递归。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">isMatch</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">p</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+	<span class="nx">slen</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+	<span class="nx">plen</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span>
+
+	<span class="c1">// 若字符串长度为0
+</span><span class="c1"></span>	<span class="k">if</span> <span class="nx">slen</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+		<span class="c1">// 若模式串长度为奇数，必定不匹配
+</span><span class="c1"></span>		<span class="k">if</span> <span class="nx">plen</span><span class="o">%</span><span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="kc">false</span>
+		<span class="p">}</span>
+		<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">plen</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">2</span> <span class="p">{</span>
+			<span class="c1">// 若不是&#34;c*&#34;形式，必定不匹配
+</span><span class="c1"></span>			<span class="k">if</span> <span class="nx">p</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">&#39;*&#39;</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="kc">false</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="k">return</span> <span class="kc">true</span>
+	<span class="p">}</span>
+
+	<span class="c1">// 若模式串长度为0，且字符串长度不为0，必定不匹配
+</span><span class="c1"></span>	<span class="k">if</span> <span class="nx">plen</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="kc">false</span>
+	<span class="p">}</span>
+
+	<span class="nx">c1</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+	<span class="nx">c2</span> <span class="o">:=</span> <span class="nx">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+	<span class="kd">var</span> <span class="nx">c3</span> <span class="kt">byte</span>
+	<span class="c1">// 若模式串长度大于1，则后一个字符有可能为&#39;*&#39;，需要记录
+</span><span class="c1"></span>	<span class="k">if</span> <span class="nx">plen</span> <span class="p">&gt;</span> <span class="mi">1</span> <span class="p">{</span>
+		<span class="nx">c3</span> <span class="p">=</span> <span class="nx">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+	<span class="p">}</span>
+	<span class="c1">// 若不为&#34;c*&#34;模式
+</span><span class="c1"></span>	<span class="k">if</span> <span class="nx">c3</span> <span class="o">!=</span> <span class="sc">&#39;*&#39;</span> <span class="p">{</span>
+		<span class="c1">// 匹配，剔除当前匹配字符，递归
+</span><span class="c1"></span>		<span class="k">if</span> <span class="nx">c1</span> <span class="o">==</span> <span class="nx">c2</span> <span class="o">||</span> <span class="nx">c2</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nf">isMatch</span><span class="p">(</span><span class="nx">s</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="nx">p</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+		<span class="p">}</span>
+		<span class="c1">// 不匹配，直接返回false
+</span><span class="c1"></span>		<span class="k">return</span> <span class="kc">false</span>
+	<span class="p">}</span>
+
+	<span class="c1">// 若为&#34;c*&#34;模式且匹配
+</span><span class="c1"></span>	<span class="k">if</span> <span class="nx">c1</span> <span class="o">==</span> <span class="nx">c2</span> <span class="o">||</span> <span class="nx">c2</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nf">isMatch</span><span class="p">(</span><span class="nx">s</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="nx">p</span><span class="p">)</span> <span class="o">||</span> <span class="nf">isMatch</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">p</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+	<span class="p">}</span>
+	<span class="c1">// 若为&#34;c*&#34;模式且不匹配
+</span><span class="c1"></span>	<span class="k">return</span> <span class="nf">isMatch</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">p</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>执行用时: 12 ms</p>
+<p>内存消耗: 2.1 MB</p>
+</blockquote></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-01-24</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%83/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://lashz.github.io/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%83/" data-title="LeetCode 剑指Offer 19" data-hashtags="Go,LeetCode,算法,剑指Offer"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://lashz.github.io/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%83/" data-hashtag="Go"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://lashz.github.io/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%83/" data-title="LeetCode 剑指Offer 19"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://lashz.github.io/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%83/" data-title="LeetCode 剑指Offer 19"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://lashz.github.io/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%83/" data-title="LeetCode 剑指Offer 19"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go/">Go</a>,&nbsp;<a href="/tags/leetcode/">LeetCode</a>,&nbsp;<a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>,&nbsp;<a href="/tags/%E5%89%91%E6%8C%87offer/">剑指Offer</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E5%8D%81%E5%85%AD/" class="prev" rel="prev" title="LeetCode 剑指Offer 18"><i class="fas fa-angle-left fa-fw"></i>LeetCode 剑指Offer 18</a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Lavch</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"title","label":"✨💬✨comments","lightTheme":"github-light","repo":"LAShZ/lavch-utterances-comments"}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
